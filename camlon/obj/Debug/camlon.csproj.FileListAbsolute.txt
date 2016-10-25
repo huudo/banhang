@@ -7,3 +7,6 @@ C:\Users\do.trong.huu\Documents\Visual Studio 2013\Projects\camlon\camlon\obj\De
 C:\Users\do.trong.huu\Documents\Visual Studio 2013\Projects\camlon\camlon\obj\Debug\camlon.csproj.GenerateResource.Cache
 C:\Users\do.trong.huu\Documents\Visual Studio 2013\Projects\camlon\camlon\obj\Debug\camlon.exe
 C:\Users\do.trong.huu\Documents\Visual Studio 2013\Projects\camlon\camlon\obj\Debug\camlon.pdb
+D:\Code\banhang\camlon\bin\Debug\camlon.exe.config
+D:\Code\banhang\camlon\obj\Debug\camlon.exe
+D:\Code\banhang\camlon\obj\Debug\camlon.pdb
