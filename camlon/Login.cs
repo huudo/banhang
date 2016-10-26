@@ -7,49 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace camlon
 {
     public partial class Login : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
         public Login()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            SqlDataAdapter cmd = new SqlDataAdapter("Select type from users where username= '" + username.Text + "' and password='" + password.Text + "' ", con);
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            if (dt.Rows.Count == 1) {
+                this.Hide();
+                Action a = new Action(dt.Rows[0][0].ToString());
+                a.Show();
+            }else{
+                lblInfo.Visible = true;
+            }
         }
 
-        private void label2_Click_1(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

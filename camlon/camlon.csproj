@@ -51,16 +51,21 @@
     <Compile Include="Action.Designer.cs">
       <DependentUpon>Action.cs</DependentUpon>
     </Compile>
-    <Compile Include="globexDataSet.Designer.cs">
+    <Compile Include="banhangDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>globexDataSet.xsd</DependentUpon>
+      <DependentUpon>banhangDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="globexDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>globexDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +84,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="banhangDataSet.xsc">
+      <DependentUpon>banhangDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="banhangDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>banhangDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="banhangDataSet.xss">
+      <DependentUpon>banhangDataSet.xsd</DependentUpon>
+    </None>
     <None Include="globexDataSet.xsc">
       <DependentUpon>globexDataSet.xsd</DependentUpon>
     </None>

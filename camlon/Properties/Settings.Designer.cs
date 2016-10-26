@@ -32,5 +32,15 @@ namespace camlon.Properties {
                 return ((string)(this["globexConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TUAN-PC\\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True")]
+        public string banhangConnectionString {
+            get {
+                return ((string)(this["banhangConnectionString"]));
+            }
+        }
     }
 }
