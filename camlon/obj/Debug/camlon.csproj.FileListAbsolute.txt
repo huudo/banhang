@@ -17,3 +17,4 @@ D:\Code\banhang\camlon\obj\Debug\camlon.Action.resources
 D:\Code\banhang\camlon\obj\Debug\camlon.Login.resources
 D:\Code\banhang\camlon\obj\Debug\camlon.Properties.Resources.resources
 D:\Code\banhang\camlon\obj\Debug\camlon.csproj.GenerateResource.Cache
+D:\Code\banhang\camlon\obj\Debug\camlon.SanPham.resources
