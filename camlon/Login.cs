@@ -26,7 +26,7 @@ namespace camlon
             cmd.Fill(dt);
             if (dt.Rows.Count == 1) {
                 this.Hide();
-                Action a = new Action(dt.Rows[0][0].ToString());
+                SanPham a = new SanPham();
                 a.Show();
             }else{
                 lblInfo.Visible = true;

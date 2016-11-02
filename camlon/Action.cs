@@ -18,7 +18,7 @@ namespace camlon
             label2.Text = status;
         }
 
-        private void Action_Load(object sender, EventArgs e)
+        private void Action_Load(object sender, EventArgs e) 
         {
 
         }

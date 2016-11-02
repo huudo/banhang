@@ -115,7 +115,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(233, 68);
             this.button5.TabIndex = 6;
-            this.button5.Text = "button5";
+            this.button5.Text = "THỐNG KÊ";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -125,7 +125,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(233, 68);
             this.button6.TabIndex = 7;
-            this.button6.Text = "button6";
+            this.button6.Text = "KHÁCH HÀNG";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -135,7 +135,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(233, 68);
             this.button7.TabIndex = 8;
-            this.button7.Text = "button7";
+            this.button7.Text = "QUẢN LÝ NỢ";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button8
@@ -145,7 +145,7 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(233, 68);
             this.button8.TabIndex = 9;
-            this.button8.Text = "button8";
+            this.button8.Text = "QUẢN LÝ TÀI KHOẢN";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // Action
@@ -167,7 +167,7 @@
             this.ForeColor = System.Drawing.SystemColors.Highlight;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Action";
-            this.Text = "Chức năng";
+            this.Text = "0";
             this.Load += new System.EventHandler(this.Action_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
