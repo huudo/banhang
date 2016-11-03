@@ -35,26 +35,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtMa = new System.Windows.Forms.TextBox();
-            this.txtGianhap = new System.Windows.Forms.TextBox();
-            this.txtChietkhau = new System.Windows.Forms.TextBox();
-            this.txtGiado = new System.Windows.Forms.TextBox();
-            this.txtKg = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtGiaban = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMa = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtKg = new System.Windows.Forms.TextBox();
+            this.txtGiado = new System.Windows.Forms.TextBox();
+            this.txtChietkhau = new System.Windows.Forms.TextBox();
+            this.txtGianhap = new System.Windows.Forms.TextBox();
+            this.txtGiaban = new System.Windows.Forms.TextBox();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textTet = new System.Windows.Forms.TextBox();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,63 +126,6 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Tên Sản Phầm :";
             // 
-            // txtMa
-            // 
-            this.txtMa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMa.Location = new System.Drawing.Point(176, 49);
-            this.txtMa.Name = "txtMa";
-            this.txtMa.Size = new System.Drawing.Size(254, 26);
-            this.txtMa.TabIndex = 7;
-            // 
-            // txtGianhap
-            // 
-            this.txtGianhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGianhap.Location = new System.Drawing.Point(176, 231);
-            this.txtGianhap.Name = "txtGianhap";
-            this.txtGianhap.Size = new System.Drawing.Size(254, 26);
-            this.txtGianhap.TabIndex = 8;
-            // 
-            // txtChietkhau
-            // 
-            this.txtChietkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChietkhau.Location = new System.Drawing.Point(176, 195);
-            this.txtChietkhau.Name = "txtChietkhau";
-            this.txtChietkhau.Size = new System.Drawing.Size(254, 26);
-            this.txtChietkhau.TabIndex = 9;
-            // 
-            // txtGiado
-            // 
-            this.txtGiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiado.Location = new System.Drawing.Point(176, 157);
-            this.txtGiado.Name = "txtGiado";
-            this.txtGiado.Size = new System.Drawing.Size(254, 26);
-            this.txtGiado.TabIndex = 10;
-            // 
-            // txtKg
-            // 
-            this.txtKg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKg.Location = new System.Drawing.Point(176, 122);
-            this.txtKg.Name = "txtKg";
-            this.txtKg.Size = new System.Drawing.Size(254, 26);
-            this.txtKg.TabIndex = 11;
-            // 
-            // txtName
-            // 
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(176, 86);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(254, 26);
-            this.txtName.TabIndex = 12;
-            // 
-            // txtGiaban
-            // 
-            this.txtGiaban.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaban.Location = new System.Drawing.Point(176, 268);
-            this.txtGiaban.Name = "txtGiaban";
-            this.txtGiaban.Size = new System.Drawing.Size(254, 26);
-            this.txtGiaban.TabIndex = 13;
-            this.txtGiaban.TextChanged += new System.EventHandler(this.txtGiaban_TextChanged);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(500, 52);
@@ -203,6 +144,7 @@
             this.button3.TabIndex = 16;
             this.button3.Text = "XÓA";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -217,7 +159,6 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT,
             this.Column2,
             this.Column3,
             this.Column4,
@@ -231,36 +172,73 @@
             this.dataGridView1.Size = new System.Drawing.Size(1294, 499);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
-            // STT
+            // txtMa
             // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.Width = 80;
+            this.txtMa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMa.Location = new System.Drawing.Point(180, 49);
+            this.txtMa.Name = "txtMa";
+            this.txtMa.Size = new System.Drawing.Size(283, 26);
+            this.txtMa.TabIndex = 19;
             // 
-            // Column2
+            // txtName
             // 
-            this.Column2.HeaderText = "Mã SP";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Location = new System.Drawing.Point(180, 86);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(283, 26);
+            this.txtName.TabIndex = 20;
             // 
-            // Column3
+            // txtKg
             // 
-            this.Column3.HeaderText = "Tên SP";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 400;
+            this.txtKg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtKg.Location = new System.Drawing.Point(180, 122);
+            this.txtKg.Name = "txtKg";
+            this.txtKg.Size = new System.Drawing.Size(283, 26);
+            this.txtKg.TabIndex = 21;
             // 
-            // Column4
+            // txtGiado
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Khối lượng";
-            this.Column4.Name = "Column4";
+            this.txtGiado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiado.Location = new System.Drawing.Point(180, 158);
+            this.txtGiado.Name = "txtGiado";
+            this.txtGiado.Size = new System.Drawing.Size(283, 26);
+            this.txtGiado.TabIndex = 22;
             // 
-            // Column5
+            // txtChietkhau
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "Giá Đỏ";
-            this.Column5.Name = "Column5";
+            this.txtChietkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChietkhau.Location = new System.Drawing.Point(180, 195);
+            this.txtChietkhau.Name = "txtChietkhau";
+            this.txtChietkhau.Size = new System.Drawing.Size(283, 26);
+            this.txtChietkhau.TabIndex = 23;
+            // 
+            // txtGianhap
+            // 
+            this.txtGianhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGianhap.Location = new System.Drawing.Point(180, 231);
+            this.txtGianhap.Name = "txtGianhap";
+            this.txtGianhap.Size = new System.Drawing.Size(283, 26);
+            this.txtGianhap.TabIndex = 24;
+            // 
+            // txtGiaban
+            // 
+            this.txtGiaban.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaban.Location = new System.Drawing.Point(180, 265);
+            this.txtGiaban.Name = "txtGiaban";
+            this.txtGiaban.Size = new System.Drawing.Size(283, 26);
+            this.txtGiaban.TabIndex = 25;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Giá Bán Ra";
+            this.Column8.Name = "Column8";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Giá Nhập vào";
+            this.Column7.Name = "Column7";
             // 
             // Column6
             // 
@@ -268,41 +246,46 @@
             this.Column6.HeaderText = "Chiết Khấu";
             this.Column6.Name = "Column6";
             // 
-            // Column7
+            // Column5
             // 
-            this.Column7.HeaderText = "Giá Nhập vào";
-            this.Column7.Name = "Column7";
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.HeaderText = "Giá Đỏ";
+            this.Column5.Name = "Column5";
             // 
-            // Column8
+            // Column4
             // 
-            this.Column8.HeaderText = "Giá Bán Ra";
-            this.Column8.Name = "Column8";
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.HeaderText = "Khối lượng";
+            this.Column4.Name = "Column4";
             // 
-            // textTet
+            // Column3
             // 
-            this.textTet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textTet.Location = new System.Drawing.Point(481, 268);
-            this.textTet.Name = "textTet";
-            this.textTet.Size = new System.Drawing.Size(254, 26);
-            this.textTet.TabIndex = 19;
+            this.Column3.HeaderText = "Tên SP";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 400;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Mã SP";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 200;
             // 
             // SanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 839);
-            this.Controls.Add(this.textTet);
+            this.Controls.Add(this.txtGiaban);
+            this.Controls.Add(this.txtGianhap);
+            this.Controls.Add(this.txtChietkhau);
+            this.Controls.Add(this.txtGiado);
+            this.Controls.Add(this.txtKg);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtMa);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtGiaban);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.txtKg);
-            this.Controls.Add(this.txtGiado);
-            this.Controls.Add(this.txtChietkhau);
-            this.Controls.Add(this.txtGianhap);
-            this.Controls.Add(this.txtMa);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -328,18 +311,17 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtMa;
-        private System.Windows.Forms.TextBox txtGianhap;
-        private System.Windows.Forms.TextBox txtChietkhau;
-        private System.Windows.Forms.TextBox txtGiado;
-        private System.Windows.Forms.TextBox txtKg;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtGiaban;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.TextBox txtMa;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtKg;
+        private System.Windows.Forms.TextBox txtGiado;
+        private System.Windows.Forms.TextBox txtChietkhau;
+        private System.Windows.Forms.TextBox txtGianhap;
+        private System.Windows.Forms.TextBox txtGiaban;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -347,6 +329,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.TextBox textTet;
     }
 }
