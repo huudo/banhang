@@ -41,6 +41,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addCart = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,7 +113,7 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            this.dataGridView1.Location = new System.Drawing.Point(30, 255);
+            this.dataGridView1.Location = new System.Drawing.Point(35, 257);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1085, 314);
@@ -157,11 +158,22 @@
             this.addCart.UseVisualStyleBackColor = true;
             this.addCart.Click += new System.EventHandler(this.addCart_Click);
             // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(302, 207);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(75, 23);
+            this.btnCreate.TabIndex = 21;
+            this.btnCreate.Text = "Tạo Đơn";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // BanHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 613);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.addCart);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox3);
@@ -194,5 +206,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Button addCart;
+        private System.Windows.Forms.Button btnCreate;
     }
 }

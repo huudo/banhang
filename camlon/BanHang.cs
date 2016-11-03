@@ -79,11 +79,12 @@ namespace camlon
             {
                 con.Open();
                 int n = Int32.Parse(textBox2.Text);
-                string name ="";
-                string gia ="";
-                SqlCommand cmd = new SqlCommand("SELECT * FROM sanpham WHERE mahang = '" + textBox1.Text + "' ", con);
-                SqlDataReader dr;
-                dr = cmd.ExecuteReader();
+                string name = "";
+                string gia = "";
+                var query = "SELECT * from sanpham WHERE mahang = @mahang";
+                var cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@mahang", textBox1.Text);
+                var dr = cmd.ExecuteReader();            
                 while (dr.Read())
                 {
                     gia = dr["giaban"].ToString();
@@ -104,6 +105,17 @@ namespace camlon
             }
             
             
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            con.Open();
+            int tongtien = 1245;
+            SqlCommand cmd = new SqlCommand("INSERT INTO donhang (id_sanpham,tongtien) VALUES ('"+ textBox1.Text +"','"+ tongtien +"')", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            dataGridView1.ClearSelection();
+            MessageBox.Show("thanh cong");
         }
 
     }
