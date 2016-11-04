@@ -39,20 +39,28 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMa = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtKg = new System.Windows.Forms.TextBox();
             this.txtGiado = new System.Windows.Forms.TextBox();
             this.txtChietkhau = new System.Windows.Forms.TextBox();
             this.txtGianhap = new System.Windows.Forms.TextBox();
-            this.txtGiaban = new System.Windows.Forms.TextBox();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtChietKhauBan = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtGiaCung = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtGiaBan1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtGiaBan2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtGiaBan3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +78,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(31, 271);
+            this.label2.Location = new System.Drawing.Point(517, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 20);
+            this.label2.Size = new System.Drawing.Size(128, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Giá Bán Ra :";
+            this.label2.Text = "Chiết Khấu Bán :";
             // 
             // label3
             // 
@@ -92,9 +100,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(31, 195);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 20);
+            this.label4.Size = new System.Drawing.Size(137, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Chiết Khấu :";
+            this.label4.Text = "Chiết Khấu Nhập :";
             // 
             // label5
             // 
@@ -128,7 +136,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(500, 52);
+            this.button1.Location = new System.Drawing.Point(1071, 45);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 34);
             this.button1.TabIndex = 14;
@@ -138,7 +146,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(500, 195);
+            this.button3.Location = new System.Drawing.Point(1071, 188);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(88, 34);
             this.button3.TabIndex = 16;
@@ -148,7 +156,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(500, 122);
+            this.button4.Location = new System.Drawing.Point(1071, 115);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(88, 34);
             this.button4.TabIndex = 17;
@@ -173,6 +181,46 @@
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Mã SP";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Tên SP";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 400;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.HeaderText = "Khối lượng";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.HeaderText = "Giá Đỏ";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.HeaderText = "Chiết Khấu";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Giá Nhập vào";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Giá Bán Ra";
+            this.Column8.Name = "Column8";
             // 
             // txtMa
             // 
@@ -222,60 +270,100 @@
             this.txtGianhap.Size = new System.Drawing.Size(283, 26);
             this.txtGianhap.TabIndex = 24;
             // 
-            // txtGiaban
+            // txtChietKhauBan
             // 
-            this.txtGiaban.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaban.Location = new System.Drawing.Point(180, 265);
-            this.txtGiaban.Name = "txtGiaban";
-            this.txtGiaban.Size = new System.Drawing.Size(283, 26);
-            this.txtGiaban.TabIndex = 25;
+            this.txtChietKhauBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChietKhauBan.Location = new System.Drawing.Point(685, 49);
+            this.txtChietKhauBan.Name = "txtChietKhauBan";
+            this.txtChietKhauBan.Size = new System.Drawing.Size(283, 26);
+            this.txtChietKhauBan.TabIndex = 25;
             // 
-            // Column8
+            // label8
             // 
-            this.Column8.HeaderText = "Giá Bán Ra";
-            this.Column8.Name = "Column8";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(517, 89);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(155, 20);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Giá Cứng (VNĐ/Kg) :";
             // 
-            // Column7
+            // txtGiaCung
             // 
-            this.Column7.HeaderText = "Giá Nhập vào";
-            this.Column7.Name = "Column7";
+            this.txtGiaCung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaCung.Location = new System.Drawing.Point(685, 86);
+            this.txtGiaCung.Name = "txtGiaCung";
+            this.txtGiaCung.Size = new System.Drawing.Size(283, 26);
+            this.txtGiaCung.TabIndex = 27;
             // 
-            // Column6
+            // label9
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "Chiết Khấu";
-            this.Column6.Name = "Column6";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(517, 127);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(113, 20);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Giá Bán Ra 1 :";
             // 
-            // Column5
+            // txtGiaBan1
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.HeaderText = "Giá Đỏ";
-            this.Column5.Name = "Column5";
+            this.txtGiaBan1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaBan1.Location = new System.Drawing.Point(685, 122);
+            this.txtGiaBan1.Name = "txtGiaBan1";
+            this.txtGiaBan1.Size = new System.Drawing.Size(283, 26);
+            this.txtGiaBan1.TabIndex = 29;
             // 
-            // Column4
+            // label10
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.HeaderText = "Khối lượng";
-            this.Column4.Name = "Column4";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(517, 164);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(113, 20);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Giá Bán Ra 2 :";
             // 
-            // Column3
+            // txtGiaBan2
             // 
-            this.Column3.HeaderText = "Tên SP";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 400;
+            this.txtGiaBan2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaBan2.Location = new System.Drawing.Point(685, 158);
+            this.txtGiaBan2.Name = "txtGiaBan2";
+            this.txtGiaBan2.Size = new System.Drawing.Size(283, 26);
+            this.txtGiaBan2.TabIndex = 31;
             // 
-            // Column2
+            // label11
             // 
-            this.Column2.HeaderText = "Mã SP";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(517, 198);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 20);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Giá Bán Ra 3 :";
+            // 
+            // txtGiaBan3
+            // 
+            this.txtGiaBan3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaBan3.Location = new System.Drawing.Point(685, 198);
+            this.txtGiaBan3.Name = "txtGiaBan3";
+            this.txtGiaBan3.Size = new System.Drawing.Size(283, 26);
+            this.txtGiaBan3.TabIndex = 33;
             // 
             // SanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1365, 839);
-            this.Controls.Add(this.txtGiaban);
+            this.Controls.Add(this.txtGiaBan3);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtGiaBan2);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtGiaBan1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtGiaCung);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtChietKhauBan);
             this.Controls.Add(this.txtGianhap);
             this.Controls.Add(this.txtChietkhau);
             this.Controls.Add(this.txtGiado);
@@ -321,7 +409,7 @@
         private System.Windows.Forms.TextBox txtGiado;
         private System.Windows.Forms.TextBox txtChietkhau;
         private System.Windows.Forms.TextBox txtGianhap;
-        private System.Windows.Forms.TextBox txtGiaban;
+        private System.Windows.Forms.TextBox txtChietKhauBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -329,5 +417,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtGiaCung;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtGiaBan1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtGiaBan2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtGiaBan3;
     }
 }

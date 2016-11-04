@@ -28,7 +28,7 @@ namespace camlon
         private void button1_Click(object sender, EventArgs e)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand("INSERT INTO sanpham (mahang,name,khoiluong,giado,chietkhau,gianhap,giaban) VALUES ('" + txtMa.Text + "','" + txtName.Text + "','" + txtKg.Text + "','" + txtGiado.Text + "','" + txtChietkhau.Text + "','" + txtGianhap.Text + "','" + txtGiaban.Text + "')", con);
+            SqlCommand cmd = new SqlCommand("INSERT INTO sanpham (mahang,name,khoiluong,giado,chietkhau,gianhap,giaban) VALUES ('" + txtMa.Text + "','" + txtName.Text + "','" + txtKg.Text + "','" + txtGiado.Text + "','" + txtChietkhau.Text + "','" + txtGianhap.Text + "','" + txtChietKhauBan.Text + "')", con);
             cmd.ExecuteNonQuery();
             con.Close();
             DisplayData();
@@ -65,7 +65,7 @@ namespace camlon
                 txtGiado.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
                 txtChietkhau.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
                 txtGianhap.Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
-                txtGiaban.Text = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
+                txtChietKhauBan.Text = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
             }catch{
 
             }
