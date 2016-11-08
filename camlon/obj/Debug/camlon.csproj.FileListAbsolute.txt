@@ -19,3 +19,4 @@ D:\Code\banhang\camlon\obj\Debug\camlon.Properties.Resources.resources
 D:\Code\banhang\camlon\obj\Debug\camlon.csproj.GenerateResource.Cache
 D:\Code\banhang\camlon\obj\Debug\camlon.SanPham.resources
 D:\Code\banhang\camlon\obj\Debug\camlon.BanHang.resources
+D:\Code\banhang\camlon\obj\Debug\camlon.NhapHang.resources

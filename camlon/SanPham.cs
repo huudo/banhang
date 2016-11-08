@@ -290,5 +290,10 @@ namespace camlon
             checkNumber(e);
         }
 
+        private void txtMa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
