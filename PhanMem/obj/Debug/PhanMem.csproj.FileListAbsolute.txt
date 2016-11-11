@@ -1,0 +1,11 @@
+D:\Code\DuAn\PhanMem\PhanMem\bin\Debug\PhanMem.exe.config
+D:\Code\DuAn\PhanMem\PhanMem\bin\Debug\PhanMem.exe
+D:\Code\DuAn\PhanMem\PhanMem\bin\Debug\PhanMem.pdb
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.csprojResolveAssemblyReference.cache
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.NhapHang.resources
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.Properties.Resources.resources
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.exe
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.pdb
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.SanPham.resources
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.BanHang.resources
