@@ -53,6 +53,7 @@
     <Compile Include="BanHang.Designer.cs">
       <DependentUpon>BanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListItem.cs" />
     <Compile Include="NhapHang.cs">
       <SubType>Form</SubType>
     </Compile>

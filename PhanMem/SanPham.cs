@@ -10,11 +10,12 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
 
+
 namespace PhanMem
 {
     public partial class SanPham : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True;");
         public SanPham()
         {
             InitializeComponent();
@@ -170,6 +171,8 @@ namespace PhanMem
                 "VALUES(@mahang,@name,@khoiluong,@giadokg,@giadobao,@ck1,@ck2,@ck3,@gianetkg,@gianetbao,@giabankg1,@giabankg2,@giabankg3,@giabankg4,@giabanbao1,@giabanbao2,@giabanbao3,@giabanbao4)";
 
                 var cmd = new SqlCommand(query, con);
+               
+
                 cmd.Parameters.AddWithValue("@mahang", txtMa.Text);
                 cmd.Parameters.AddWithValue("@name", txtName.Text);
                 cmd.Parameters.AddWithValue("@khoiluong", float.Parse(txtKg.Text));
@@ -189,6 +192,7 @@ namespace PhanMem
                 cmd.Parameters.AddWithValue("@giabanbao3", decimal.Parse(txtBanBao3.Text, NumberStyles.Currency));
                 cmd.Parameters.AddWithValue("@giabanbao4", decimal.Parse(txtBanBao4.Text, NumberStyles.Currency));
                 cmd.ExecuteNonQuery();
+              
                 con.Close();
                 DisplayData();
             }
