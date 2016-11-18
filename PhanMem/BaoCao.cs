@@ -11,7 +11,6 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Net.Mail;
 using System.IO;
-using System.Collections;
 
 
 
@@ -20,9 +19,11 @@ namespace PhanMem
     public partial class BaoCao : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
+
         public BaoCao()
         {
             InitializeComponent();
+           
         }
 
         private void BaoCao_Load(object sender, EventArgs e)
@@ -30,6 +31,8 @@ namespace PhanMem
             cbxDonvi.Items.Add("Bao/Túi");
             cbxDonvi.Items.Add("Kg/Lon");
             cbxDonvi.SelectedIndex = cbxDonvi.FindStringExact("Bao/Túi");
+
+            
         }
         public class sPham
         {
@@ -228,6 +231,11 @@ namespace PhanMem
             dr.Close();
            
             searData(spList);
+        }
+
+        private void timeFrom_ValueChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

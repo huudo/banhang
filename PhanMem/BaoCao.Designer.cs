@@ -160,6 +160,7 @@
             this.timeFrom.Name = "timeFrom";
             this.timeFrom.Size = new System.Drawing.Size(122, 26);
             this.timeFrom.TabIndex = 3;
+            this.timeFrom.ValueChanged += new System.EventHandler(this.timeFrom_ValueChanged);
             // 
             // label3
             // 
