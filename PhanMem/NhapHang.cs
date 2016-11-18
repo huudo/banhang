@@ -18,6 +18,8 @@ namespace PhanMem
     {
         SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
         Boolean check = false;
+        double Sum = 0;
+        string type = "";
         public NhapHang()
         {
             InitializeComponent();
@@ -86,6 +88,7 @@ namespace PhanMem
                 }
                 dr.Close();
                 con.Close();
+                txtPay.Text = "0";
             }
             catch (Exception ex)
             {
@@ -179,6 +182,7 @@ namespace PhanMem
                 {
                     soLuong = Int32.Parse(txtCount.Text);
                 }
+                Sum += double.Parse(txtTotal.Text);
                 int weight = Int32.Parse(txtKhoiLuong.Text);
                 double total = double.Parse(decimal.Parse(txtTotal.Text, NumberStyles.Currency).ToString());
                 double price = double.Parse(decimal.Parse(txtGiaBao.Text, NumberStyles.Currency).ToString());
@@ -186,7 +190,7 @@ namespace PhanMem
                 string firstColum = txtMa.Text;
                 string secondColum = txtName.Text;
                 string threeColum = txtCount.Text;
-                string fourColum = txtGiaBao.Text;
+                string fourColum = type;
                 string fiveColum = khuyenmai.ToString();
                 string sixColum = txtGiaNetBao.Text;
                 string sevenColum = txtTotal.Text;
@@ -198,13 +202,14 @@ namespace PhanMem
                     firstColum = txtMa.Text;
                     secondColum = txtName.Text;
                     threeColum = tangbao.ToString();
-                    fourColum = txtGiaBao.Text;
-                    fiveColum = "Tặng Bao";
+                    fourColum = type;
+                    fiveColum = "0";
                     sixColum = txtGiaNetBao.Text;
                     sevenColum = "0";
                     string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                     dataGridView1.Rows.Add(rowAdd);
                 }
+                txtSum.Text = string.Format("{0:n0}", Sum);
 
             }
             catch
@@ -237,15 +242,65 @@ namespace PhanMem
                     txtGiaBao.Text = string.Format("{0:n0}", dr["giadobao"]);
                     txtGiaNetKg.Text = string.Format("{0:n0}", dr["gianetkg"]);
                     txtGiaNetBao.Text = string.Format("{0:n0}", dr["gianetbao"]);
+                    type = dr["type"].ToString();
                 }
                 check = true;
                 dr.Close();
                 con.Close();
-
             }
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
+        {
+
+            DateTime d1 = DateTime.Now ;
+            
+            //MessageBox.Show(d1);
+            int nhaphang_id = 0;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            String query = "select max(id) from nhaphang";
+            cmd.Connection = con;
+            cmd.CommandText = query;
+            try
+            {
+                nhaphang_id = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
+
+            }
+            catch (Exception ex)
+            {
+                nhaphang_id = 1;
+            }
+            double payment = double.Parse(txtPay.Text);
+            double no = double.Parse(txtNo.Text);
+            String querryAdd = "INSERT INTO nhaphang(sum,pay,no,date) VALUES(@sum,@pay,@no,@date)";
+            var cmdAdd = new SqlCommand(querryAdd, con);
+
+            cmdAdd.Parameters.AddWithValue("@sum", Sum);
+            cmdAdd.Parameters.AddWithValue("@pay", payment);
+            cmdAdd.Parameters.AddWithValue("@no", no);
+            cmdAdd.Parameters.AddWithValue("@date", d1);
+            cmdAdd.ExecuteNonQuery();
+
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            {
+                var stringQr = "INSERT INTO nhaphang_list (id_don,id_mahang,soluong,donvi,gianetnhap,tienhang,date)" +
+               "VALUES(@id_don,@id_mahang,@soluong,@donvi,@gianetnhap,@tienhang,@date)";
+                var cmdRun = new SqlCommand(stringQr, con);
+                cmdRun.Parameters.AddWithValue("@id_don", nhaphang_id);
+                cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
+                cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
+                cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
+                cmdRun.Parameters.AddWithValue("@gianetnhap", float.Parse(dataGridView1.Rows[i].Cells["gianetnhap"].Value.ToString()));
+                cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
+                cmdRun.Parameters.AddWithValue("@date", d1);
+                cmdRun.ExecuteNonQuery();
+            }
+            con.Close();
+            //ExportExcel();
+        }
+
+        void ExportExcel()
         {
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
             objexcelapp.Application.Workbooks.Add(Type.Missing);
@@ -310,8 +365,24 @@ namespace PhanMem
             mail.Attachments.Add(attachment);
             SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
             SmtpServer.Send(mail); */
+        
         }
 
+        private void txtPay_TextChanged(object sender, EventArgs e)
+        {
+            double payment = 0;
+            if (!string.IsNullOrEmpty(txtPay.Text))
+            {
+                payment = double.Parse(txtPay.Text);
+            }
+
+            txtNo.Text = (Sum - payment).ToString();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
 
     }
 }

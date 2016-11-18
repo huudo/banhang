@@ -117,6 +117,7 @@ namespace PhanMem
                 txtCK1.Text = "0";
                 txtCK2.Text = "0";
                 txtCK3.Text = "0";
+                txtPay.Text = "0";
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SELECT mahang FROM sanpham WHERE mahang like '%" + txtMa.Text + "%' ", con);
                 SqlDataReader dr;
@@ -365,8 +366,7 @@ namespace PhanMem
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            
+        {            
             DateTime d1 = DateTime.Now;
             int banhang_id = 0;
             con.Open();

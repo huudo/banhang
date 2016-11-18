@@ -16,7 +16,7 @@ namespace PhanMem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BanHang());
+            Application.Run(new BaoCao());
         }
     }
 }
