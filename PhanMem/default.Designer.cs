@@ -28,87 +28,112 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Default));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnNhapHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnBanHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.báoCáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCuoiNgay = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDoanhThu = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSanLuong = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLoiNhuan = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnKhachHang = new System.Windows.Forms.ToolStripMenuItem();
+            this.quànLýTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quảnLýNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // menuStrip1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox1.Location = new System.Drawing.Point(468, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(248, 26);
-            this.textBox1.TabIndex = 0;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNhapHang,
+            this.btnBanHang,
+            this.báoCáoToolStripMenuItem,
+            this.btnKhachHang,
+            this.quànLýTàiKhoảnToolStripMenuItem,
+            this.quảnLýNợToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(927, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // textBox2
+            // btnNhapHang
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox2.Location = new System.Drawing.Point(468, 202);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(248, 26);
-            this.textBox2.TabIndex = 1;
+            this.btnNhapHang.Name = "btnNhapHang";
+            this.btnNhapHang.Size = new System.Drawing.Size(78, 20);
+            this.btnNhapHang.Text = "Nhập hàng";
+            this.btnNhapHang.Click += new System.EventHandler(this.btnNhapHang_Click);
             // 
-            // textBox3
+            // btnBanHang
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox3.Location = new System.Drawing.Point(468, 247);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(248, 26);
-            this.textBox3.TabIndex = 2;
+            this.btnBanHang.Name = "btnBanHang";
+            this.btnBanHang.Size = new System.Drawing.Size(71, 20);
+            this.btnBanHang.Text = "Bán Hàng";
             // 
-            // button1
+            // báoCáoToolStripMenuItem
             // 
-            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(603, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 43);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "ĐĂNG KÝ";
-            this.button1.UseVisualStyleBackColor = false;
+            this.báoCáoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCuoiNgay,
+            this.btnDoanhThu,
+            this.btnSanLuong,
+            this.btnLoiNhuan});
+            this.báoCáoToolStripMenuItem.Name = "báoCáoToolStripMenuItem";
+            this.báoCáoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.báoCáoToolStripMenuItem.Text = "Báo cáo";
             // 
-            // button2
+            // btnCuoiNgay
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(753, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(42, 38);
-            this.button2.TabIndex = 4;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCuoiNgay.Name = "btnCuoiNgay";
+            this.btnCuoiNgay.Size = new System.Drawing.Size(174, 22);
+            this.btnCuoiNgay.Text = "Báo cáo cuối ngày";
+            // 
+            // btnDoanhThu
+            // 
+            this.btnDoanhThu.Name = "btnDoanhThu";
+            this.btnDoanhThu.Size = new System.Drawing.Size(174, 22);
+            this.btnDoanhThu.Text = "Báo cáo doanh thu";
+            // 
+            // btnSanLuong
+            // 
+            this.btnSanLuong.Name = "btnSanLuong";
+            this.btnSanLuong.Size = new System.Drawing.Size(174, 22);
+            this.btnSanLuong.Text = "Báo cáo sản lượng";
+            // 
+            // btnLoiNhuan
+            // 
+            this.btnLoiNhuan.Name = "btnLoiNhuan";
+            this.btnLoiNhuan.Size = new System.Drawing.Size(174, 22);
+            this.btnLoiNhuan.Text = "Báo cáo lợi nhuận";
+            // 
+            // btnKhachHang
+            // 
+            this.btnKhachHang.Name = "btnKhachHang";
+            this.btnKhachHang.Size = new System.Drawing.Size(125, 20);
+            this.btnKhachHang.Text = "Quản lý khách hàng";
+            // 
+            // quànLýTàiKhoảnToolStripMenuItem
+            // 
+            this.quànLýTàiKhoảnToolStripMenuItem.Name = "quànLýTàiKhoảnToolStripMenuItem";
+            this.quànLýTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.quànLýTàiKhoảnToolStripMenuItem.Text = "Quàn lý tài khoản";
+            // 
+            // quảnLýNợToolStripMenuItem
+            // 
+            this.quảnLýNợToolStripMenuItem.Name = "quảnLýNợToolStripMenuItem";
+            this.quảnLýNợToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.quảnLýNợToolStripMenuItem.Text = "Quản Lý Nợ";
             // 
             // Default
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(801, 500);
-            this.ControlBox = false;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.ClientSize = new System.Drawing.Size(927, 536);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "Default";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WELCOME";
+            this.Text = "Default";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,14 +141,17 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.DirectoryServices.DirectoryEntry directoryEntry1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-
-
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem btnNhapHang;
+        private System.Windows.Forms.ToolStripMenuItem btnBanHang;
+        private System.Windows.Forms.ToolStripMenuItem báoCáoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnCuoiNgay;
+        private System.Windows.Forms.ToolStripMenuItem btnDoanhThu;
+        private System.Windows.Forms.ToolStripMenuItem btnSanLuong;
+        private System.Windows.Forms.ToolStripMenuItem btnLoiNhuan;
+        private System.Windows.Forms.ToolStripMenuItem btnKhachHang;
+        private System.Windows.Forms.ToolStripMenuItem quànLýTàiKhoảnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýNợToolStripMenuItem;
 
     }
 }
