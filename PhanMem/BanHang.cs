@@ -61,6 +61,32 @@ namespace PhanMem
             txtTotal.Clear();
 
         }
+        void resetVariable()
+        {
+            check = false;
+            giabankg1 = 0;
+            giabankg2 = 0;
+            giabankg3 = 0;
+            giabankg4 = 0;
+
+            giabanbao1 = 0;
+            giabanbao2 = 0;
+            giabanbao3 = 0;
+            giabanbao4 = 0;
+            banKg = 0;
+            banBao = 0;
+            dauRaKg = 0;
+            dauRaBao = 0;
+            totalPrice = 0;
+            Sum = 0;
+            tangBao = 10;
+            type = "";
+            typeSmall = "";
+            khuyenMai = 0;
+            panel4.Visible = false;
+            dataGridView1.Rows.Clear();
+
+        }
         void CalculateTotal()
         {
             int ck1 = 0;
@@ -117,7 +143,7 @@ namespace PhanMem
                 txtCK1.Text = "0";
                 txtCK2.Text = "0";
                 txtCK3.Text = "0";
-                txtPay.Text = "0";
+                //txtPay.Text = "0";
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SELECT mahang FROM sanpham WHERE mahang like '%" + txtMa.Text + "%' ", con);
                 SqlDataReader dr;
@@ -127,13 +153,21 @@ namespace PhanMem
                     txtMa.AutoCompleteCustomSource.Add(dr["mahang"].ToString());
                 }
                 dr.Close();
+                SqlCommand cmd2 = new SqlCommand("SELECT name FROM customer WHERE name like '%" + txtCustomer.Text + "%' ", con);
+                SqlDataReader dr2;
+                dr2 = cmd2.ExecuteReader();
+                while (dr2.Read())
+                {
+                    txtCustomer.AutoCompleteCustomSource.Add(dr2["name"].ToString());
+                }
+                dr2.Close();
                 con.Close();
             }
             catch (Exception ex)
             {
 
             }
-        } 
+        }
 
         private void txtMa_KeyDown(object sender, KeyEventArgs e)
         {
@@ -256,7 +290,7 @@ namespace PhanMem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            panel4.Visible = true; 
+            panel4.Visible = true;
             int soBao = 0;
             string firstColum = txtMa.Text;
             string secondColum = txtName.Text;
@@ -297,11 +331,12 @@ namespace PhanMem
                 string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                 dataGridView1.Rows.Add(rowAdd);
             }
-            
+
         }
 
-        void ExportExcel() 
+        void ExportExcel(int banhang_id)
         {
+            string date = DateTime.Now.ToString("dd-MM-yyy");
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
             objexcelapp.Application.Workbooks.Add(Type.Missing);
             objexcelapp.Columns.ColumnWidth = 25;
@@ -324,7 +359,7 @@ namespace PhanMem
             }
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now.AddDays(60);
-            string date = (d1 - d2).TotalDays.ToString();
+            //string date = (d1 - d2).TotalDays.ToString();
             objexcelapp.Cells[maxRow + 1, maxColum - 1] = "Tổng Tiền Hàng: ";
             objexcelapp.Cells[maxRow + 1, maxColum] = Sum.ToString();
 
@@ -339,7 +374,7 @@ namespace PhanMem
             {
                 Directory.CreateDirectory(root);
             }
-            string filename = "auto.xlsx";
+            string filename = date + "_" + "MaDon" + banhang_id.ToString() + ".xlsx";
             MessageBox.Show(root + @"\" + filename);
             objexcelapp.ActiveWorkbook.SaveCopyAs(root + @"\" + filename);
 
@@ -366,7 +401,7 @@ namespace PhanMem
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {            
+        {
             DateTime d1 = DateTime.Now;
             int banhang_id = 0;
             con.Open();
@@ -377,10 +412,10 @@ namespace PhanMem
             try
             {
                 banhang_id = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
-                
+
             }
             catch (Exception ex)
-            {                
+            {
                 banhang_id = 1;
             }
             double payment = double.Parse(txtPay.Text);
@@ -392,25 +427,29 @@ namespace PhanMem
             cmdAdd.Parameters.AddWithValue("@pay", payment);
             cmdAdd.Parameters.AddWithValue("@no", no);
             cmdAdd.Parameters.AddWithValue("@date", d1);
-            cmdAdd.ExecuteNonQuery();         
+            cmdAdd.ExecuteNonQuery();
 
-            for (int i = 0; i < dataGridView1.Rows.Count -1; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date)" +
                "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date)";
                 var cmdRun = new SqlCommand(stringQr, con);
                 cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
                 cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
-                cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()) );
+                cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
                 cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
-                cmdRun.Parameters.AddWithValue("@date", d1);                
-                cmdRun.ExecuteNonQuery();                
+                cmdRun.Parameters.AddWithValue("@date", d1);
+                cmdRun.ExecuteNonQuery();
             }
             con.Close();
-           // ExportExcel();
-           // ClearTextBox();
+            MessageBox.Show("Thanh toán hoàn tất !");
+            ExportExcel(banhang_id);
+            // ClearTextBox();
+            resetVariable();
+            ClearTextBox();
+
         }
 
         private void txtPay_TextChanged(object sender, EventArgs e)
@@ -420,8 +459,27 @@ namespace PhanMem
             {
                 payment = double.Parse(txtPay.Text);
             }
-           
-            txtNo.Text = (Sum - payment).ToString();
+
+            txtNo.Text = string.Format("{0:n0}", (Sum - payment));
+        }
+
+        private void txtCustomer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM customer WHERE name = N'" + txtCustomer.Text + "' ", con);
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    txtCustomer.Text = dr["name"].ToString();
+                }
+
+                dr.Close();
+                con.Close();
+
+            }
         }
 
     }

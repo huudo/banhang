@@ -10,3 +10,5 @@ D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.pdb
 D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.SanPham.resources
 D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.BanHang.resources
 D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.BaoCao.resources
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.KhachHang.resources
+D:\Code\DuAn\PhanMem\PhanMem\obj\Debug\PhanMem.Default.resources

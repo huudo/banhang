@@ -101,8 +101,8 @@ namespace PhanMem
         public void searData(List<sPham> spList)
         {
             
-            DateTime dateFrom = timeFrom.Value;
-            DateTime dateTo = timeTo.Value;
+            string dateFrom = timeFrom.Value.ToString("yyy/MM/dd");
+            string dateTo = timeTo.Value.ToString("yyy/MM/dd");
             for (int i = 0; i < spList.Count; i++)
             {
                 string firstColumn = "";
@@ -121,6 +121,7 @@ namespace PhanMem
 
                 double kthuocBao = spList[i].khoiluong;
                 // Tinh so luong nhap den dateTo
+               // MessageBox.Show(dateTo);
                 SqlCommand cmdTo = new SqlCommand("SELECT SUM(soluong) as soluong FROM nhaphang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "'  and donvi = 'bao' ", con);
                 SqlDataReader readTo = cmdTo.ExecuteReader();
 
@@ -186,25 +187,21 @@ namespace PhanMem
                     if (read2["soluong"].ToString() != "")
                     {
                         //hangTonKho = sumNhap - Int32.Parse(read2["soluong"].ToString());
-                        fiveColumn = read2["soluong"].ToString();
-                        
+                        fiveColumn = read2["soluong"].ToString();                                   
                     }
                     else
                     {
                         fiveColumn = "0";
                         //hangTonKho = sumNhap;
                         //MessageBox.Show("asd");
-
                     }
-
                 }
                 hangTonKho = sumNhap - sumBan;
                 sixColumn = hangTonKho.ToString();
                 string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn };
                 dataGridView1.Rows.Add(row);
                 read2.Close();
-               // MessageBox.Show(hangTonKho.ToString());
-                
+               // MessageBox.Show(hangTonKho.ToString());                
             }
             con.Close();
         }

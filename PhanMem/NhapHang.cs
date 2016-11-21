@@ -255,7 +255,7 @@ namespace PhanMem
 
             DateTime d1 = DateTime.Now ;
             
-            //MessageBox.Show(d1);
+           // MessageBox.Show(d1.ToString());
             int nhaphang_id = 0;
             con.Open();
             SqlCommand cmd = new SqlCommand();

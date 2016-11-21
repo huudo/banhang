@@ -69,7 +69,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCustomer = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtGiaBao = new System.Windows.Forms.TextBox();
@@ -486,7 +486,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.textBox2);
+            this.panel5.Controls.Add(this.txtCustomer);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.textBox1);
             this.panel5.Controls.Add(this.txtGiaBao);
@@ -514,13 +514,16 @@
             this.label14.TabIndex = 120;
             this.label14.Text = "Khách Hàng :";
             // 
-            // textBox2
+            // txtCustomer
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(199, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(309, 26);
-            this.textBox2.TabIndex = 119;
+            this.txtCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomer.Location = new System.Drawing.Point(199, 41);
+            this.txtCustomer.Name = "txtCustomer";
+            this.txtCustomer.Size = new System.Drawing.Size(309, 26);
+            this.txtCustomer.TabIndex = 119;
+            this.txtCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomer_KeyDown);
             // 
             // label5
             // 
@@ -664,7 +667,7 @@
         private System.Windows.Forms.TextBox txtSoLuongKg;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCustomer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtGiaBao;
