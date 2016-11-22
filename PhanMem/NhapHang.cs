@@ -16,13 +16,20 @@ namespace PhanMem
 {
     public partial class NhapHang : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
+       
+        //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
+        //SqlConnection con = new SqlConnection("(LocalDb)\v11.0;ActtackDBFilename=" + AppDomain.CurrentDomain.BaseDirectory + "\banhang.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        //string a ="Data Source=(LocalDB)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "banhang.mdf ";
         Boolean check = false;
+        
         double Sum = 0;
         string type = "";
         public NhapHang()
         {
             InitializeComponent();
+            //MessageBox.Show(a);
+
         }
         void ClearTextBox()
         {

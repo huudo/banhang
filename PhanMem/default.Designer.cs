@@ -117,6 +117,7 @@
             this.quànLýTàiKhoảnToolStripMenuItem.Name = "quànLýTàiKhoảnToolStripMenuItem";
             this.quànLýTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.quànLýTàiKhoảnToolStripMenuItem.Text = "Quàn lý tài khoản";
+            this.quànLýTàiKhoảnToolStripMenuItem.Click += new System.EventHandler(this.quànLýTàiKhoảnToolStripMenuItem_Click);
             // 
             // quảnLýNợToolStripMenuItem
             // 

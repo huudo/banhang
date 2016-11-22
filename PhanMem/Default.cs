@@ -43,5 +43,11 @@ namespace PhanMem
             }
             return false;
         }
+
+        private void quànLýTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SanPham sp = new SanPham();
+            sp.Show();
+        }
     }
 }
