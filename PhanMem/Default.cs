@@ -74,5 +74,14 @@ namespace PhanMem
             ln.Show();
         }
 
+        private void Default_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
