@@ -70,6 +70,7 @@
             this.btnBanHang.Name = "btnBanHang";
             this.btnBanHang.Size = new System.Drawing.Size(71, 20);
             this.btnBanHang.Text = "Bán Hàng";
+            this.btnBanHang.Click += new System.EventHandler(this.btnBanHang_Click);
             // 
             // báoCáoToolStripMenuItem
             // 
@@ -99,6 +100,7 @@
             this.btnSanLuong.Name = "btnSanLuong";
             this.btnSanLuong.Size = new System.Drawing.Size(174, 22);
             this.btnSanLuong.Text = "Báo cáo sản lượng";
+            this.btnSanLuong.Click += new System.EventHandler(this.btnSanLuong_Click);
             // 
             // btnLoiNhuan
             // 
@@ -111,6 +113,7 @@
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.Size = new System.Drawing.Size(125, 20);
             this.btnKhachHang.Text = "Quản lý khách hàng";
+            this.btnKhachHang.Click += new System.EventHandler(this.btnKhachHang_Click);
             // 
             // quànLýTàiKhoảnToolStripMenuItem
             // 

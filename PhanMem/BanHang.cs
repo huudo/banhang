@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Net.Mail;
 using System.IO;
-
+using Microsoft.Office.Interop.Excel;
 namespace PhanMem
 {
     public partial class BanHang : Form
@@ -36,9 +36,12 @@ namespace PhanMem
         string type = "";
         string typeSmall = "";
         double khuyenMai = 0;
+        List<double> LoiNhuan = new List<double>();
+        double gianetKg = 0;
+        double gianetBao = 0;
 
-        //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
-        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
+        //SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         public BanHang()
         {
             InitializeComponent();
@@ -60,6 +63,7 @@ namespace PhanMem
             txtNo.Clear();
             txtPay.Clear();
             txtTotal.Clear();
+            txtCustomer.Clear();
 
         }
         void resetVariable()
@@ -84,6 +88,9 @@ namespace PhanMem
             type = "";
             typeSmall = "";
             khuyenMai = 0;
+            gianetBao = 0;
+            gianetKg = 0;
+            LoiNhuan.Clear();
             panel4.Visible = false;
             dataGridView1.Rows.Clear();
 
@@ -180,6 +187,7 @@ namespace PhanMem
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
+                    cbxGia.SelectedIndex = cbxGia.FindStringExact("Giá Loại 1");
                     txtName.Text = dr["name"].ToString();
                     txtKhoiLuong.Text = dr["khoiluong"].ToString();
                     txtGiaKg.Text = string.Format("{0:n0}", dr["gianetkg"]);
@@ -196,6 +204,8 @@ namespace PhanMem
                     giabanbao3 = double.Parse(dr["giabanbao3"].ToString());
                     giabanbao4 = double.Parse(dr["giabanbao4"].ToString());
 
+                    gianetKg = double.Parse(dr["gianetkg"].ToString());
+                    gianetBao = double.Parse(dr["gianetBao"].ToString());
 
                 }
                 txtGiaBanKg.Text = string.Format("{0:n0}", giabankg1);
@@ -304,6 +314,9 @@ namespace PhanMem
                 threeColum = txtSoLuongKg.Text;
                 fourColum = typeSmall;
                 sixColum = txtGiaBanKg.Text;
+                double lai = Int32.Parse(txtSoLuongKg.Text) * (banKg - gianetKg);
+                LoiNhuan.Add(lai);
+                //khuyenMai = (gia)
             }
             else
             {
@@ -311,6 +324,9 @@ namespace PhanMem
                 fourColum = type;
                 sixColum = txtGiaBanBao.Text;
                 soBao = Int32.Parse(txtSoLuongBao.Text);
+                double lai = Int32.Parse(txtSoLuongBao.Text) * (banBao - gianetBao );
+                LoiNhuan.Add(lai);
+                MessageBox.Show("Lai Bao", lai.ToString());
             }
 
             fiveColum = "Khuyến mãi";
@@ -330,20 +346,40 @@ namespace PhanMem
                 sixColum = "0";
                 sevenColum = "0";
                 string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                LoiNhuan.Add(0);
                 dataGridView1.Rows.Add(rowAdd);
             }
 
         }
 
-        void ExportExcel(int banhang_id)
+        void ExportExcel(int banhang_id, string customer,double payment, double no)
         {
+            string khachhang = "";
+            if (customer != "")
+            {
+                khachhang = customer;
+            }
+            else
+            {
+                khachhang = "KHÁCH LẺ";
+            }
             string date = DateTime.Now.ToString("dd-MM-yyy");
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
             objexcelapp.Application.Workbooks.Add(Type.Missing);
             objexcelapp.Columns.ColumnWidth = 25;
+            objexcelapp.get_Range("A1", "G1").Merge(false);
+            var chartRange = objexcelapp.get_Range("A1", "G1");
+            string subjectHeader = "HÓA ĐƠN BÁN HÀNG NGÀY " + date + " MÃ ĐƠN " + banhang_id.ToString() +" KHÁCH HÀNG "+khachhang;
+            chartRange.FormulaR1C1 = subjectHeader;
+            chartRange.HorizontalAlignment = 3;
+            chartRange.VerticalAlignment = 3;
+            chartRange.Font.Size = 16;
+            chartRange.EntireRow.Font.Bold = true;
+
             for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
             {
-                objexcelapp.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+                objexcelapp.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                objexcelapp.Cells[2, i].HorizontalAlignment = XlHAlign.xlHAlignCenter;
             }
             /*For storing Each row and column value to excel sheet*/
             int maxRow = dataGridView1.Rows.Count;
@@ -354,16 +390,45 @@ namespace PhanMem
                 {
                     if (dataGridView1.Rows[i].Cells[j].Value != null)
                     {
-                        objexcelapp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        objexcelapp.Cells[i + 3, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        //objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = 3;
+
+                        objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = XlHAlign.xlHAlignCenter;
+                        
+                        
+                        objexcelapp.Cells[i + 3, j + 1].Font.Size = 12;
                     }
                 }
             }
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now.AddDays(60);
             //string date = (d1 - d2).TotalDays.ToString();
-            objexcelapp.Cells[maxRow + 1, maxColum - 1] = "Tổng Tiền Hàng: ";
-            objexcelapp.Cells[maxRow + 1, maxColum] = Sum.ToString();
 
+            //objexcelapp.Range["A1", "G1"].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbDarkBlue;
+            Microsoft.Office.Interop.Excel.Range formatRange;
+            formatRange = objexcelapp.get_Range("A2", "G2");
+            formatRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Green);
+            formatRange.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+            formatRange.Font.Size = 14;
+           // objexcelapp.Range["A1", "G1"].Interior.Color = Excel.XlRgbColor.rgbDarkBlue;
+            objexcelapp.Cells[maxRow + 3, maxColum - 1] = "Tổng Tiền Hàng: ";
+            objexcelapp.Cells[maxRow + 3, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 3, maxColum] = string.Format("{0:n0}", Sum);
+            objexcelapp.Cells[maxRow + 3, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
+            objexcelapp.Cells[maxRow + 4, maxColum - 1] = "Đã Thanh Toán: ";
+            objexcelapp.Cells[maxRow + 4, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 4, maxColum] = string.Format("{0:n0}", payment);
+            objexcelapp.Cells[maxRow + 4, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
+            objexcelapp.Cells[maxRow + 5, maxColum - 1] = "Còn Nợ: ";
+            objexcelapp.Cells[maxRow + 5, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 5, maxColum] = string.Format("{0:n0}", no);
+            objexcelapp.Cells[maxRow + 5, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
 
             string root = @"D:\QuanLyBanHang\BanHang";
 
@@ -376,35 +441,52 @@ namespace PhanMem
                 Directory.CreateDirectory(root);
             }
             string filename = date + "_" + "MaDon" + banhang_id.ToString() + ".xlsx";
-            MessageBox.Show(root + @"\" + filename);
+            //MessageBox.Show(root + @"\" + filename);
             objexcelapp.ActiveWorkbook.SaveCopyAs(root + @"\" + filename);
 
             objexcelapp.ActiveWorkbook.Saved = true;
+            MessageBox.Show(root + @"\" + filename);
             // SEND MAIL
-            /*MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient();
-            SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-            SmtpServer.UseDefaultCredentials = false; 
-            SmtpServer.Host = "smtp.gmail.com";
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Port = 587;
+            /*
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient();
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Host = "smtp.gmail.com";
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Port = 587;
+                string mailFrom = "qlbancam@gmail.com";
+                string mailTo = "huudt.3012@gmail.com";
+                mail.From = new MailAddress(mailFrom);
+                mail.To.Add(mailTo);
+                mail.Subject = subjectHeader;
+                mail.Body = subjectHeader;
 
-            mail.From = new MailAddress("qlbancam@gmail.com");
-            mail.To.Add("do.trong.huu@miyatsu.vn");
-            mail.Subject = "HÓA ĐƠN NHẬP HÀNG";
-            mail.Body = "HÓA ĐƠN NHẬP HÀNG";
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(root + @"\" + filename);
+                mail.Attachments.Add(attachment);
+                SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
+                SmtpServer.Send(mail);
+                MessageBox.Show("Hệ thống tự động gửi hóa đơn đến mail " + mailTo);
+            }
+            catch
+            {
 
-            System.Net.Mail.Attachment attachment;
-            attachment = new System.Net.Mail.Attachment(@"D:\"+filename);
-            mail.Attachments.Add(attachment);
-            SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
-            SmtpServer.Send(mail); */
+            }*/
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             DateTime d1 = DateTime.Now;
             int banhang_id = 0;
+            string customer = "";
+            if (!string.IsNullOrEmpty(txtCustomer.Text))
+            {
+                customer = txtCustomer.Text;
+            }
             con.Open();
             SqlCommand cmd = new SqlCommand();
             String query = "select max(id) from banhang";
@@ -413,7 +495,6 @@ namespace PhanMem
             try
             {
                 banhang_id = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
-
             }
             catch (Exception ex)
             {
@@ -421,19 +502,20 @@ namespace PhanMem
             }
             double payment = double.Parse(txtPay.Text);
             double no = double.Parse(txtNo.Text);
-            String querryAdd = "INSERT INTO banhang(sum,pay,no,date) VALUES(@sum,@pay,@no,@date)";
+            String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customer) VALUES(@sum,@pay,@no,@date,@customer)";
             var cmdAdd = new SqlCommand(querryAdd, con);
 
             cmdAdd.Parameters.AddWithValue("@sum", Sum);
             cmdAdd.Parameters.AddWithValue("@pay", payment);
             cmdAdd.Parameters.AddWithValue("@no", no);
             cmdAdd.Parameters.AddWithValue("@date", d1);
+            cmdAdd.Parameters.AddWithValue("@customer", customer);
             cmdAdd.ExecuteNonQuery();
 
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date)" +
-               "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date)";
+                var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customer,loinhuan)" +
+               "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customer,@loinhuan)";
                 var cmdRun = new SqlCommand(stringQr, con);
                 cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
                 cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
@@ -442,11 +524,13 @@ namespace PhanMem
                 cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@date", d1);
+                cmdRun.Parameters.AddWithValue("@customer", customer);
+                cmdRun.Parameters.AddWithValue("@loinhuan", LoiNhuan[i]);
                 cmdRun.ExecuteNonQuery();
             }
             con.Close();
             MessageBox.Show("Thanh toán hoàn tất !");
-            ExportExcel(banhang_id);
+            ExportExcel(banhang_id, customer,payment,no);
             // ClearTextBox();
             resetVariable();
             ClearTextBox();

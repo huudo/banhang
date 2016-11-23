@@ -15,8 +15,10 @@ namespace PhanMem
 {
     public partial class SanPham : Form
     {
-        //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True;");
-        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
+     
+        //SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        
         public SanPham()
         {
             InitializeComponent();
@@ -46,6 +48,7 @@ namespace PhanMem
             int ck1 = 0;
             int ck2 = 0;
             int ck3 = 0;
+            double giaKg = 0;
             if (!string.IsNullOrEmpty(txtCK1.Text))
             {
                 ck1 = Int32.Parse(txtCK1.Text);
@@ -58,10 +61,14 @@ namespace PhanMem
             {
                 ck3 = Int32.Parse(txtCK3.Text);
             }
+            if (!string.IsNullOrEmpty(txtGiaKg.Text))
+            {
+                giaKg = float.Parse(txtGiaKg.Text);
+            }
 
 
             int weight = Int32.Parse(txtKg.Text);
-            double giaKg = float.Parse(txtGiaKg.Text);
+            //giaKg = float.Parse(txtGiaKg.Text);
             double giaBao = 0;
             double giaNetKg = 0;
             double giaNetBao = 0;
@@ -157,19 +164,22 @@ namespace PhanMem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            con.Open();
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }            
             SqlDataAdapter check = new SqlDataAdapter("Select mahang from sanpham where mahang= '" + txtMa.Text + "'  ", con);
             DataTable dt = new DataTable();
             check.Fill(dt);
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Mã hàng đã tồn tại! Vui lòng cập nhật!");
-                con.Close();
+                
             }
             else
             {
-                var query = "INSERT INTO sanpham (mahang,name,khoiluong,giadokg,giadobao,ck1,ck2,ck3,gianetkg,gianetbao,giabankg1,giabankg2,giabankg3,giabankg4,giabanbao1,giabanbao2,giabanbao3,giabanbao4)" +
-                "VALUES(@mahang,@name,@khoiluong,@giadokg,@giadobao,@ck1,@ck2,@ck3,@gianetkg,@gianetbao,@giabankg1,@giabankg2,@giabankg3,@giabankg4,@giabanbao1,@giabanbao2,@giabanbao3,@giabanbao4)";
+                var query = "INSERT INTO sanpham (mahang,name,khoiluong,giadokg,giadobao,ck1,ck2,ck3,gianetkg,gianetbao,giabankg1,giabankg2,giabankg3,giabankg4,giabanbao1,giabanbao2,giabanbao3,giabanbao4,type)" +
+                "VALUES(@mahang,@name,@khoiluong,@giadokg,@giadobao,@ck1,@ck2,@ck3,@gianetkg,@gianetbao,@giabankg1,@giabankg2,@giabankg3,@giabankg4,@giabanbao1,@giabanbao2,@giabanbao3,@giabanbao4,@type)";
 
                 var cmd = new SqlCommand(query, con);
                
@@ -192,10 +202,15 @@ namespace PhanMem
                 cmd.Parameters.AddWithValue("@giabanbao2", decimal.Parse(txtBanBao2.Text, NumberStyles.Currency));
                 cmd.Parameters.AddWithValue("@giabanbao3", decimal.Parse(txtBanBao3.Text, NumberStyles.Currency));
                 cmd.Parameters.AddWithValue("@giabanbao4", decimal.Parse(txtBanBao4.Text, NumberStyles.Currency));
+                cmd.Parameters.AddWithValue("@type", "bao");
                 cmd.ExecuteNonQuery();
               
-                con.Close();
+                
                 DisplayData();
+            }
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
             }
         }
 
@@ -203,10 +218,16 @@ namespace PhanMem
         {
             try
             {
-                con.Open();
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }    
                 SqlCommand cmd = new SqlCommand("DELETE FROM sanpham WHERE(mahang ='" + txtMa.Text + "')", con);
                 cmd.ExecuteNonQuery();
-                con.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
                 MessageBox.Show("Xóa thành công!");
                 DisplayData();
             }
@@ -220,7 +241,10 @@ namespace PhanMem
         {
             try
             {
-                con.Open();
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }    
                 var query = "SELECT * from sanpham WHERE mahang = @mahang";
                 var cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@mahang", dataGridView1.SelectedRows[0].Cells[0].Value);
@@ -248,7 +272,10 @@ namespace PhanMem
 
                 }
                 dr.Close();
-                con.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
 
             }
             catch

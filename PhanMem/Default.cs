@@ -49,5 +49,24 @@ namespace PhanMem
             SanPham sp = new SanPham();
             sp.Show();
         }
+
+        private void btnSanLuong_Click(object sender, EventArgs e)
+        {
+            BaoCao bc = new BaoCao();
+            bc.Show();
+        }
+
+        private void btnKhachHang_Click(object sender, EventArgs e)
+        {
+            KhachHang kh = new KhachHang();
+            kh.Show();
+        }
+
+        private void btnBanHang_Click(object sender, EventArgs e)
+        {
+            BanHang bh = new BanHang();
+            bh.Show();
+        }
+
     }
 }

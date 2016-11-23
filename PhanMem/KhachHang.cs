@@ -13,7 +13,7 @@ namespace PhanMem
 {
     public partial class KhachHang : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC\SQLEXPRESS;Initial Catalog=banhang;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
         public KhachHang()
         {
             InitializeComponent();
