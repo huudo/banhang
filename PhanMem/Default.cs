@@ -68,5 +68,11 @@ namespace PhanMem
             bh.Show();
         }
 
+        private void btnLoiNhuan_Click(object sender, EventArgs e)
+        {
+            BCLoiNhuan ln = new BCLoiNhuan();
+            ln.Show();
+        }
+
     }
 }

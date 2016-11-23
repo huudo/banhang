@@ -107,6 +107,7 @@
             this.btnLoiNhuan.Name = "btnLoiNhuan";
             this.btnLoiNhuan.Size = new System.Drawing.Size(174, 22);
             this.btnLoiNhuan.Text = "Báo cáo lợi nhuận";
+            this.btnLoiNhuan.Click += new System.EventHandler(this.btnLoiNhuan_Click);
             // 
             // btnKhachHang
             // 

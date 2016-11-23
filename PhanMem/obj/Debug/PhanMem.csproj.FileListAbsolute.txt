@@ -28,3 +28,4 @@ D:\banhang\PhanMem\obj\Debug\PhanMem.NhapHang.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.Properties.Resources.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.SanPham.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
+D:\banhang\PhanMem\obj\Debug\PhanMem.BCLoiNhuan.resources
