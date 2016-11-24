@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Net.Mail;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 namespace PhanMem
 {
@@ -304,17 +305,28 @@ namespace PhanMem
                 cmdRun.ExecuteNonQuery();
             }
             con.Close();
-            //ExportExcel();
+            ExportExcel(nhaphang_id,payment,no);
         }
 
-        void ExportExcel()
+        void ExportExcel(int nhaphang_id,double payment,double no)
         {
+            string date = DateTime.Now.ToString("dd-MM-yyy");
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
             objexcelapp.Application.Workbooks.Add(Type.Missing);
             objexcelapp.Columns.ColumnWidth = 25;
+            objexcelapp.get_Range("A1", "G1").Merge(false);
+            var chartRange = objexcelapp.get_Range("A1", "G1");
+            string subjectHeader = "HÓA ĐƠN NHẬP HÀNG NGÀY " + date + " MÃ ĐƠN " + nhaphang_id.ToString();
+            chartRange.FormulaR1C1 = subjectHeader;
+            chartRange.HorizontalAlignment = 3;
+            chartRange.VerticalAlignment = 3;
+            chartRange.Font.Size = 16;
+            chartRange.EntireRow.Font.Bold = true;
+
             for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
             {
-                objexcelapp.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+                objexcelapp.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                objexcelapp.Cells[2, i].HorizontalAlignment = XlHAlign.xlHAlignCenter;
             }
             /*For storing Each row and column value to excel sheet*/
             int maxRow = dataGridView1.Rows.Count;
@@ -325,16 +337,45 @@ namespace PhanMem
                 {
                     if (dataGridView1.Rows[i].Cells[j].Value != null)
                     {
-                        objexcelapp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        objexcelapp.Cells[i + 3, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                        //objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = 3;
+
+                        objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = XlHAlign.xlHAlignCenter;
+
+
+                        objexcelapp.Cells[i + 3, j + 1].Font.Size = 12;
                     }
                 }
             }
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now.AddDays(60);
-            string date = (d1 - d2).TotalDays.ToString();
-            objexcelapp.Cells[maxRow + 1, maxColum - 1] = "Tổng Tiền Hàng: ";
-            objexcelapp.Cells[maxRow + 1, maxColum] = d2.ToString();
+            //string date = (d1 - d2).TotalDays.ToString();
 
+            //objexcelapp.Range["A1", "G1"].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbDarkBlue;
+            Microsoft.Office.Interop.Excel.Range formatRange;
+            formatRange = objexcelapp.get_Range("A2", "G2");
+            formatRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Green);
+            formatRange.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+            formatRange.Font.Size = 14;
+            // objexcelapp.Range["A1", "G1"].Interior.Color = Excel.XlRgbColor.rgbDarkBlue;
+            objexcelapp.Cells[maxRow + 3, maxColum - 1] = "Tổng Tiền Hàng: ";
+            objexcelapp.Cells[maxRow + 3, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 3, maxColum] = string.Format("{0:n0}", Sum);
+            objexcelapp.Cells[maxRow + 3, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
+            objexcelapp.Cells[maxRow + 4, maxColum - 1] = "Đã Thanh Toán: ";
+            objexcelapp.Cells[maxRow + 4, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 4, maxColum] = string.Format("{0:n0}", payment);
+            objexcelapp.Cells[maxRow + 4, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
+            objexcelapp.Cells[maxRow + 5, maxColum - 1] = "Còn Nợ: ";
+            objexcelapp.Cells[maxRow + 5, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
+            objexcelapp.Cells[maxRow + 5, maxColum] = string.Format("{0:n0}", no);
+            objexcelapp.Cells[maxRow + 5, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
 
             string root = @"D:\QuanLyBanHang\NhapHang";
 
@@ -344,34 +385,43 @@ namespace PhanMem
 
             if (!Directory.Exists(root))
             {
-
                 Directory.CreateDirectory(root);
-
             }
-            string filename = "auto.xlsx";
-            MessageBox.Show(root + @"\" + filename);
+            string filename = date + "_" + "MaDon" + nhaphang_id.ToString() + ".xlsx";
+            //MessageBox.Show(root + @"\" + filename);
             objexcelapp.ActiveWorkbook.SaveCopyAs(root + @"\" + filename);
 
             objexcelapp.ActiveWorkbook.Saved = true;
+            MessageBox.Show(root + @"\" + filename);
             // SEND MAIL
-            /*MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient();
-            SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-            SmtpServer.UseDefaultCredentials = false; 
-            SmtpServer.Host = "smtp.gmail.com";
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Port = 587;
+            /*
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient();
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Host = "smtp.gmail.com";
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Port = 587;
+                string mailFrom = "qlbancam@gmail.com";
+                string mailTo = "huudt.3012@gmail.com";
+                mail.From = new MailAddress(mailFrom);
+                mail.To.Add(mailTo);
+                mail.Subject = subjectHeader;
+                mail.Body = subjectHeader;
 
-            mail.From = new MailAddress("qlbancam@gmail.com");
-            mail.To.Add("do.trong.huu@miyatsu.vn");
-            mail.Subject = "HÓA ĐƠN NHẬP HÀNG";
-            mail.Body = "HÓA ĐƠN NHẬP HÀNG";
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(root + @"\" + filename);
+                mail.Attachments.Add(attachment);
+                SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
+                SmtpServer.Send(mail);
+                MessageBox.Show("Hệ thống tự động gửi hóa đơn đến mail " + mailTo);
+            }
+            catch
+            {
 
-            System.Net.Mail.Attachment attachment;
-            attachment = new System.Net.Mail.Attachment(@"D:\"+filename);
-            mail.Attachments.Add(attachment);
-            SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
-            SmtpServer.Send(mail); */
+            }*/
         
         }
 

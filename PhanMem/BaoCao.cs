@@ -31,9 +31,7 @@ namespace PhanMem
         {
             cbxDonvi.Items.Add("Bao/Túi");
             cbxDonvi.Items.Add("Kg/Lon");
-            cbxDonvi.SelectedIndex = cbxDonvi.FindStringExact("Bao/Túi");
-
-            
+            cbxDonvi.SelectedIndex = cbxDonvi.FindStringExact("Bao/Túi");            
         }
         public class sPham
         {

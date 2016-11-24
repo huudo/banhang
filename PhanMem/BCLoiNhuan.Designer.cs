@@ -31,6 +31,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MaHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiennhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tienxuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tonkho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtMa = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,11 +54,6 @@
             this.báoCáoLợiNhuậnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýKháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quànLýTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tiennhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tienxuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tonkho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -101,6 +101,34 @@
             this.dataGridView1.Size = new System.Drawing.Size(1154, 407);
             this.dataGridView1.TabIndex = 9;
             // 
+            // MaHang
+            // 
+            this.MaHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.MaHang.HeaderText = "Mã SP";
+            this.MaHang.Name = "MaHang";
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.name.HeaderText = "Tên SP";
+            this.name.Name = "name";
+            this.name.Width = 350;
+            // 
+            // tiennhap
+            // 
+            this.tiennhap.HeaderText = "Tổng tiền nhập";
+            this.tiennhap.Name = "tiennhap";
+            // 
+            // tienxuat
+            // 
+            this.tienxuat.HeaderText = "Tổng tiền xuất";
+            this.tienxuat.Name = "tienxuat";
+            // 
+            // tonkho
+            // 
+            this.tonkho.HeaderText = "Lợi nhuận";
+            this.tonkho.Name = "tonkho";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txtMa);
@@ -128,7 +156,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(569, 93);
+            this.button1.Location = new System.Drawing.Point(570, 94);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 34);
             this.button1.TabIndex = 18;
@@ -258,34 +286,6 @@
             this.quànLýTàiKhoảnToolStripMenuItem.Name = "quànLýTàiKhoảnToolStripMenuItem";
             this.quànLýTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.quànLýTàiKhoảnToolStripMenuItem.Text = "Quàn lý tài khoản";
-            // 
-            // MaHang
-            // 
-            this.MaHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MaHang.HeaderText = "Mã SP";
-            this.MaHang.Name = "MaHang";
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.name.HeaderText = "Tên SP";
-            this.name.Name = "name";
-            this.name.Width = 350;
-            // 
-            // tiennhap
-            // 
-            this.tiennhap.HeaderText = "Tổng tiền nhập";
-            this.tiennhap.Name = "tiennhap";
-            // 
-            // tienxuat
-            // 
-            this.tienxuat.HeaderText = "Tổng tiền xuất";
-            this.tienxuat.Name = "tienxuat";
-            // 
-            // tonkho
-            // 
-            this.tonkho.HeaderText = "Lợi nhuận";
-            this.tonkho.Name = "tonkho";
             // 
             // BCLoiNhuan
             // 
