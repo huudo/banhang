@@ -15,7 +15,8 @@ namespace PhanMem
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         public Welcome()
         {
-            InitializeComponent();
+            
+            InitializeComponent(); 
             //label1.BackColor = System.Drawing.Color.Transparent;
         }
 
@@ -32,7 +33,7 @@ namespace PhanMem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            con.Open();
+            
             if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPass.Text) || string.IsNullOrEmpty(txtRePass.Text))
             {
                 MessageBox.Show("Thiếu thông tin tài khoản. Nhập lại!");
@@ -45,6 +46,10 @@ namespace PhanMem
                 }
                 else
                 {
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
                     
                     var query = "INSERT INTO account (email,password)" +
                     "VALUES(@email,@password)";
@@ -52,10 +57,12 @@ namespace PhanMem
                     //cmd.Parameters.AddWithValue("@ma", 5);
                     cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                     cmd.Parameters.AddWithValue("@password", txtPass.Text);
-                    
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Thêm thành công! ");
-                    con.Close();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
                 }
             }
             this.Hide();

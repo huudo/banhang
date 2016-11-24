@@ -227,6 +227,10 @@ namespace PhanMem
             dr.Close();
            
             searData(spList);
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
 
         private void timeFrom_ValueChanged(object sender, EventArgs e)

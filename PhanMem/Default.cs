@@ -83,5 +83,13 @@ namespace PhanMem
         {
             Application.Exit();
         }
+
+        private void btnQuanLyNo_Click(object sender, EventArgs e)
+        {
+            QuanLyNo qln = new QuanLyNo();
+            qln.Show();
+        }
+
+    
     }
 }

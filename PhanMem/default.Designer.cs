@@ -38,7 +38,7 @@
             this.btnLoiNhuan = new System.Windows.Forms.ToolStripMenuItem();
             this.btnKhachHang = new System.Windows.Forms.ToolStripMenuItem();
             this.quànLýTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quảnLýNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnQuanLyNo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@
             this.báoCáoToolStripMenuItem,
             this.btnKhachHang,
             this.quànLýTàiKhoảnToolStripMenuItem,
-            this.quảnLýNợToolStripMenuItem});
+            this.btnQuanLyNo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(927, 24);
@@ -123,11 +123,12 @@
             this.quànLýTàiKhoảnToolStripMenuItem.Text = "Quàn lý tài khoản";
             this.quànLýTàiKhoảnToolStripMenuItem.Click += new System.EventHandler(this.quànLýTàiKhoảnToolStripMenuItem_Click);
             // 
-            // quảnLýNợToolStripMenuItem
+            // btnQuanLyNo
             // 
-            this.quảnLýNợToolStripMenuItem.Name = "quảnLýNợToolStripMenuItem";
-            this.quảnLýNợToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
-            this.quảnLýNợToolStripMenuItem.Text = "Quản Lý Nợ";
+            this.btnQuanLyNo.Name = "btnQuanLyNo";
+            this.btnQuanLyNo.Size = new System.Drawing.Size(77, 20);
+            this.btnQuanLyNo.Text = "Quản lý nợ";
+            this.btnQuanLyNo.Click += new System.EventHandler(this.btnQuanLyNo_Click);
             // 
             // Default
             // 
@@ -157,7 +158,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnLoiNhuan;
         private System.Windows.Forms.ToolStripMenuItem btnKhachHang;
         private System.Windows.Forms.ToolStripMenuItem quànLýTàiKhoảnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quảnLýNợToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnQuanLyNo;
 
     }
 }
