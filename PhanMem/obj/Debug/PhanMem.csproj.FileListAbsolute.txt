@@ -65,3 +65,6 @@ D:\PM\banhang2\PhanMem\obj\Debug\PhanMem.SanPham.resources
 D:\PM\banhang2\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
 D:\PM\banhang2\PhanMem\obj\Debug\PhanMem.QuanLyNo.resources
 D:\PM\banhang2\PhanMem\obj\Debug\PhanMem.ThanhToanNo.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.Login.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.QuanLyNo.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.ThanhToanNo.resources

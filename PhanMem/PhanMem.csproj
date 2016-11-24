@@ -105,7 +105,6 @@
     <Compile Include="KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListItem.cs" />
     <Compile Include="NhapHang.cs">
       <SubType>Form</SubType>
     </Compile>

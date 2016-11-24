@@ -115,21 +115,30 @@ namespace PhanMem
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-            ThanhToanNo frm = new ThanhToanNo(name);
-            frm.ShowDialog();
+            try
+            {
+                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                ThanhToanNo frm = new ThanhToanNo(name);
+                frm.ShowDialog();
 
-            //WHEN SHOWDIALOG() END
-            dataGridView1.Rows.Clear();
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
+                //WHEN SHOWDIALOG() END
+                frm.Dispose();
+                dataGridView1.Rows.Clear();
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                showData(saveList);
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
-            showData(saveList);
-            if (con.State == ConnectionState.Open)
+            catch
             {
-                con.Close();
+
             }
+            
         }
 
     }
