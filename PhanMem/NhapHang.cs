@@ -46,6 +46,13 @@ namespace PhanMem
             txtTotal.Clear();
             check = false;
         }
+        void ResetData()
+        {
+            dataGridView1.Rows.Clear();
+            Sum = 0;
+            type = "";
+        
+        }
         void calculatePrice()
         {
             int ck1 = 0;
@@ -306,6 +313,9 @@ namespace PhanMem
             }
             con.Close();
             ExportExcel(nhaphang_id,payment,no);
+            ClearTextBox();
+            ResetData();
+            
         }
 
         void ExportExcel(int nhaphang_id,double payment,double no)
