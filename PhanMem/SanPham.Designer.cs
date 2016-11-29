@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SanPham));
             this.txtBanBao4 = new System.Windows.Forms.TextBox();
             this.txtGiaNetBao = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -74,6 +75,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtTangBao = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -242,7 +245,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(116, 154);
+            this.label10.Location = new System.Drawing.Point(116, 156);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(155, 20);
             this.label10.TabIndex = 95;
@@ -252,7 +255,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(116, 118);
+            this.label9.Location = new System.Drawing.Point(116, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 20);
             this.label9.TabIndex = 94;
@@ -262,7 +265,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(116, 82);
+            this.label8.Location = new System.Drawing.Point(116, 83);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(155, 20);
             this.label8.TabIndex = 93;
@@ -280,7 +283,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(396, 211);
+            this.button4.Location = new System.Drawing.Point(402, 262);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(88, 34);
             this.button4.TabIndex = 91;
@@ -289,7 +292,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(292, 211);
+            this.btnAdd.Location = new System.Drawing.Point(298, 262);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 34);
             this.btnAdd.TabIndex = 89;
@@ -308,6 +311,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtTangBao);
+            this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.txtBanBao4);
             this.panel2.Controls.Add(this.txtBanKg4);
             this.panel2.Controls.Add(this.txtBanBao3);
@@ -331,7 +336,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(500, 211);
+            this.btnDelete.Location = new System.Drawing.Point(506, 262);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 34);
             this.btnDelete.TabIndex = 90;
@@ -535,12 +540,31 @@
             this.label1.TabIndex = 77;
             this.label1.Text = "Mã Sản Phẩm :";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(116, 196);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(156, 20);
+            this.label14.TabIndex = 104;
+            this.label14.Text = "Tặng 1 bao khi mua :";
+            // 
+            // txtTangBao
+            // 
+            this.txtTangBao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTangBao.Location = new System.Drawing.Point(292, 193);
+            this.txtTangBao.Name = "txtTangBao";
+            this.txtTangBao.Size = new System.Drawing.Size(296, 26);
+            this.txtTangBao.TabIndex = 105;
+            // 
             // SanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 723);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SanPham";
             this.Text = "SẢN PHẨM";
             this.Load += new System.EventHandler(this.SanPham_Load);
@@ -603,5 +627,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTangBao;
+        private System.Windows.Forms.Label label14;
     }
 }

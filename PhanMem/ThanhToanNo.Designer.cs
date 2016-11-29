@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThanhToanNo));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtThanhToan = new System.Windows.Forms.Button();
             this.txtPayment = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblConNo = new System.Windows.Forms.Label();
@@ -40,16 +47,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblSumNo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblKhachHang = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.payment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtThanhToan = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -99,6 +98,32 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.id.HeaderText = "Mã hóa đơn";
+            this.id.Name = "id";
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Ngày mua";
+            this.date.Name = "date";
+            // 
+            // sum
+            // 
+            this.sum.HeaderText = "Tổng tiền hàng";
+            this.sum.Name = "sum";
+            // 
+            // payment
+            // 
+            this.payment.HeaderText = "Đã thanh toán";
+            this.payment.Name = "payment";
+            // 
+            // no
+            // 
+            this.no.HeaderText = "Còn Nợ";
+            this.no.Name = "no";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txtThanhToan);
@@ -110,8 +135,6 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.lblSumNo);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.lblDate);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblKhachHang);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -119,6 +142,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(954, 162);
             this.panel1.TabIndex = 0;
+            // 
+            // txtThanhToan
+            // 
+            this.txtThanhToan.Location = new System.Drawing.Point(856, 119);
+            this.txtThanhToan.Name = "txtThanhToan";
+            this.txtThanhToan.Size = new System.Drawing.Size(89, 33);
+            this.txtThanhToan.TabIndex = 12;
+            this.txtThanhToan.Text = "Thanh Toán";
+            this.txtThanhToan.UseVisualStyleBackColor = true;
+            this.txtThanhToan.Visible = false;
+            this.txtThanhToan.Click += new System.EventHandler(this.txtThanhToan_Click);
             // 
             // txtPayment
             // 
@@ -128,6 +162,7 @@
             this.txtPayment.Size = new System.Drawing.Size(135, 26);
             this.txtPayment.TabIndex = 11;
             this.txtPayment.TextChanged += new System.EventHandler(this.txtPayment_TextChanged);
+            this.txtPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayment_KeyDown);
             // 
             // label5
             // 
@@ -201,26 +236,6 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Tổng tiền hàng:";
             // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblDate.Location = new System.Drawing.Point(706, 43);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(46, 19);
-            this.lblDate.TabIndex = 3;
-            this.lblDate.Text = "Ngày ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(663, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Ngày ";
-            // 
             // lblKhachHang
             // 
             this.lblKhachHang.AutoSize = true;
@@ -241,49 +256,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Khách Hàng :";
             // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.id.HeaderText = "Mã hóa đơn";
-            this.id.Name = "id";
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Ngày mua";
-            this.date.Name = "date";
-            // 
-            // sum
-            // 
-            this.sum.HeaderText = "Tổng tiền hàng";
-            this.sum.Name = "sum";
-            // 
-            // payment
-            // 
-            this.payment.HeaderText = "Đã thanh toán";
-            this.payment.Name = "payment";
-            // 
-            // no
-            // 
-            this.no.HeaderText = "Còn Nợ";
-            this.no.Name = "no";
-            // 
-            // txtThanhToan
-            // 
-            this.txtThanhToan.Location = new System.Drawing.Point(856, 119);
-            this.txtThanhToan.Name = "txtThanhToan";
-            this.txtThanhToan.Size = new System.Drawing.Size(89, 33);
-            this.txtThanhToan.TabIndex = 12;
-            this.txtThanhToan.Text = "Thanh Toán";
-            this.txtThanhToan.UseVisualStyleBackColor = true;
-            this.txtThanhToan.Visible = false;
-            this.txtThanhToan.Click += new System.EventHandler(this.txtThanhToan_Click);
-            // 
             // ThanhToanNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 562);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ThanhToanNo";
             this.Text = "THANH TOÁN NỢ";
             this.Load += new System.EventHandler(this.ThanhToanNo_Load);
@@ -310,8 +289,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblSumNo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblKhachHang;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;

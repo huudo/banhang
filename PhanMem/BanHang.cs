@@ -39,7 +39,7 @@ namespace PhanMem
         List<double> LoiNhuan = new List<double>();
         double gianetKg = 0;
         double gianetBao = 0;
-
+        string emailNhan = "";
         //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         public BanHang()
@@ -64,6 +64,7 @@ namespace PhanMem
             txtPay.Clear();
             txtTotal.Clear();
             txtCustomer.Clear();
+            cbxGia.SelectedIndex = cbxGia.FindStringExact("Giá Loại 1");
 
         }
         void resetVariable()
@@ -142,6 +143,8 @@ namespace PhanMem
         {
             try
             {
+                button1.Visible = false;
+                dataGridView1.AllowUserToAddRows = false;
                 cbxGia.Items.Add("Giá Loại 1");
                 cbxGia.Items.Add("Giá Loại 2");
                 cbxGia.Items.Add("Giá Loại 3");
@@ -167,6 +170,15 @@ namespace PhanMem
                 while (dr2.Read())
                 {
                     txtCustomer.AutoCompleteCustomSource.Add(dr2["name"].ToString());
+                }
+                dr2.Close();
+                SqlCommand cmd3 = new SqlCommand("SELECT email,password FROM account", con);
+                SqlDataReader dr3;
+                dr3 = cmd3.ExecuteReader();
+                while (dr3.Read())
+                {
+                    emailNhan = dr3["email"].ToString();
+                    //passEmail = dr2["password"].ToString();
                 }
                 dr2.Close();
                 con.Close();
@@ -326,7 +338,7 @@ namespace PhanMem
                 soBao = Int32.Parse(txtSoLuongBao.Text);
                 double lai = Int32.Parse(txtSoLuongBao.Text) * (banBao - gianetBao );
                 LoiNhuan.Add(lai);
-                MessageBox.Show("Lai Bao", lai.ToString());
+                //MessageBox.Show("Lai Bao", lai.ToString());
             }
 
             fiveColum = "Khuyến mãi";
@@ -447,7 +459,7 @@ namespace PhanMem
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
             // SEND MAIL
-            /*
+            
             try
             {
                 MailMessage mail = new MailMessage();
@@ -458,7 +470,7 @@ namespace PhanMem
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Port = 587;
                 string mailFrom = "qlbancam@gmail.com";
-                string mailTo = "huudt.3012@gmail.com";
+                string mailTo = emailNhan;
                 mail.From = new MailAddress(mailFrom);
                 mail.To.Add(mailTo);
                 mail.Subject = subjectHeader;
@@ -474,12 +486,13 @@ namespace PhanMem
             catch
             {
 
-            }*/
+            }
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             DateTime d1 = DateTime.Now;
             int banhang_id = 0;
             string customer = "";
@@ -529,20 +542,27 @@ namespace PhanMem
                 cmdRun.ExecuteNonQuery();
             }
             con.Close();
-            MessageBox.Show("Thanh toán hoàn tất !");
+            //MessageBox.Show("Thanh toán hoàn tất !");
             ExportExcel(banhang_id, customer,payment,no);
             // ClearTextBox();
             resetVariable();
             ClearTextBox();
+            txtMa.Clear();
+            button1.Visible = false;
 
         }
 
         private void txtPay_TextChanged(object sender, EventArgs e)
         {
+            button1.Visible = true;
             double payment = 0;
             if (!string.IsNullOrEmpty(txtPay.Text))
             {
                 payment = double.Parse(txtPay.Text);
+            }
+            else
+            {
+                button1.Visible = false;
             }
 
             txtNo.Text = string.Format("{0:n0}", (Sum - payment));

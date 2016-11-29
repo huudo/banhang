@@ -29,6 +29,7 @@ namespace PhanMem
 
         private void BaoCao_Load(object sender, EventArgs e)
         {
+            dataGridView1.AllowUserToAddRows = false;
             cbxDonvi.Items.Add("Bao/Túi");
             cbxDonvi.Items.Add("Kg/Lon");
             cbxDonvi.SelectedIndex = cbxDonvi.FindStringExact("Bao/Túi");            
@@ -99,7 +100,15 @@ namespace PhanMem
         }
         public void searData(List<sPham> spList)
         {
-            
+            string firstColumn1 = "";
+            string secondColumn1 = "";
+            string threeColumn1 = "";
+            string fourColumn1 = "";
+            string fiveColumn1 = "";
+            string sixColumn1 = "0";
+            double tongNhap = 0;
+            double tongBan = 0;
+            double tongTonKho = 0;
             string dateFrom = timeFrom.Value.ToString("yyy/MM/dd");
             string dateTo = timeTo.Value.ToString("yyy/MM/dd");
             for (int i = 0; i < spList.Count; i++)
@@ -196,12 +205,24 @@ namespace PhanMem
                     }
                 }
                 hangTonKho = sumNhap - sumBan;
+                tongNhap += sumNhap;
+                tongBan += sumBan;
+                tongTonKho += hangTonKho;
                 sixColumn = hangTonKho.ToString();
                 string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn };
                 dataGridView1.Rows.Add(row);
                 read2.Close();
+                
                // MessageBox.Show(hangTonKho.ToString());                
             }
+            firstColumn1 = "Tổng";
+            secondColumn1 = "";
+            threeColumn1 = "bao";
+            fourColumn1 = tongNhap.ToString();
+            fiveColumn1 = tongBan.ToString();
+            sixColumn1 = tongTonKho.ToString();
+            string[] rows = { firstColumn1, secondColumn1, threeColumn1, fourColumn1, fiveColumn1, sixColumn1 };
+            dataGridView1.Rows.Add(rows);
             con.Close();
         }
 

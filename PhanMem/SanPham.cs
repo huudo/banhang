@@ -18,14 +18,14 @@ namespace PhanMem
         //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
 
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
-        
+        int TangBao = 10;
         public SanPham()
         {
             InitializeComponent();
         }
         void DisplayData()
         {
-
+            
             SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM sanpham", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -130,7 +130,10 @@ namespace PhanMem
 
         private void SanPham_Load(object sender, EventArgs e)
         {
+            txtTangBao.Text = "10";
+            dataGridView1.AllowUserToAddRows = false;
             DisplayData();
+
         }
         private void txtMa_TextChanged(object sender, EventArgs e)
         {
@@ -164,6 +167,14 @@ namespace PhanMem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtTangBao.Text))
+            {
+                TangBao = Int32.Parse(txtTangBao.Text);
+            }
+            else
+            {
+                TangBao = 0;
+            }
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
@@ -178,8 +189,8 @@ namespace PhanMem
             }
             else
             {
-                var query = "INSERT INTO sanpham (mahang,name,khoiluong,giadokg,giadobao,ck1,ck2,ck3,gianetkg,gianetbao,giabankg1,giabankg2,giabankg3,giabankg4,giabanbao1,giabanbao2,giabanbao3,giabanbao4,type)" +
-                "VALUES(@mahang,@name,@khoiluong,@giadokg,@giadobao,@ck1,@ck2,@ck3,@gianetkg,@gianetbao,@giabankg1,@giabankg2,@giabankg3,@giabankg4,@giabanbao1,@giabanbao2,@giabanbao3,@giabanbao4,@type)";
+                var query = "INSERT INTO sanpham (mahang,name,khoiluong,giadokg,giadobao,ck1,ck2,ck3,gianetkg,gianetbao,giabankg1,giabankg2,giabankg3,giabankg4,giabanbao1,giabanbao2,giabanbao3,giabanbao4,type,tangbao)" +
+                "VALUES(@mahang,@name,@khoiluong,@giadokg,@giadobao,@ck1,@ck2,@ck3,@gianetkg,@gianetbao,@giabankg1,@giabankg2,@giabankg3,@giabankg4,@giabanbao1,@giabanbao2,@giabanbao3,@giabanbao4,@type,@tangbao)";
 
                 var cmd = new SqlCommand(query, con);
                
@@ -203,9 +214,8 @@ namespace PhanMem
                 cmd.Parameters.AddWithValue("@giabanbao3", decimal.Parse(txtBanBao3.Text, NumberStyles.Currency));
                 cmd.Parameters.AddWithValue("@giabanbao4", decimal.Parse(txtBanBao4.Text, NumberStyles.Currency));
                 cmd.Parameters.AddWithValue("@type", "bao");
-                cmd.ExecuteNonQuery();
-              
-                
+                cmd.Parameters.AddWithValue("@tangbao", TangBao);
+                cmd.ExecuteNonQuery();                
                 DisplayData();
             }
             if (con.State == ConnectionState.Open)

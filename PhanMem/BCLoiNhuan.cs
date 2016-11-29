@@ -30,7 +30,14 @@ namespace PhanMem
         }
         public void searData(List<sPham> spList)
         {
-
+            string firstColumn1 = "";
+            string secondColumn1 = "";
+            string threeColumn1 = "";
+            string fourColumn1 = "";
+            string fiveColumn1 = "";
+            double tongXuat = 0;
+            double tongNhap = 0;
+            double tongLoiNhuan = 0;
             string dateFrom = timeFrom.Value.ToString("yyy/MM/dd");
             string dateTo = timeTo.Value.ToString("yyy/MM/dd");
             for (int i = 0; i < spList.Count; i++)
@@ -54,11 +61,13 @@ namespace PhanMem
                     if (read["tienhang"].ToString() != "")
                     {
                         threeColumn = string.Format("{0:n0}", read["tienhang"]);
+                        tongNhap += double.Parse(read["tienhang"].ToString());
 
                     }
                     else
                     {
                         threeColumn = "0";
+                        tongNhap += 0;
                         //MessageBox.Show("asd");
 
                     }
@@ -74,10 +83,12 @@ namespace PhanMem
                     {
                         //hangTonKho = sumNhap - Int32.Parse(read2["soluong"].ToString());
                         fourColumn = string.Format("{0:n0}", read2["tienhang"]);
+                        tongXuat += double.Parse(read2["tienhang"].ToString());
                     }
                     else
                     {
                         fourColumn = "0";
+                        tongXuat += 0;
                         //hangTonKho = sumNhap;
                         //MessageBox.Show("asd");
                     }
@@ -92,10 +103,12 @@ namespace PhanMem
                     {
                         //hangTonKho = sumNhap - Int32.Parse(read2["soluong"].ToString());
                         fiveColumn = string.Format("{0:n0}", read3["loinhuan"]);
+                        tongLoiNhuan += double.Parse(read3["loinhuan"].ToString());
                     }
                     else
                     {
                         fiveColumn = "0";
+                        tongLoiNhuan += 0;
                         //hangTonKho = sumNhap;
                         //MessageBox.Show("asd");
                     }
@@ -107,6 +120,13 @@ namespace PhanMem
 
                 // MessageBox.Show(hangTonKho.ToString());                
             }
+            firstColumn1 = "Tổng";
+            secondColumn1 = "";
+            threeColumn1 = string.Format("{0:n0}", tongNhap);
+            fourColumn1 = string.Format("{0:n0}", tongXuat); 
+            fiveColumn1 = string.Format("{0:n0}", tongLoiNhuan);
+            string[] rows = { firstColumn1, secondColumn1, threeColumn1, fourColumn1, fiveColumn1 };
+            dataGridView1.Rows.Add(rows);
             con.Close();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -155,6 +175,11 @@ namespace PhanMem
             dr.Close();
 
             searData(spList);
+        }
+
+        private void BCLoiNhuan_Load(object sender, EventArgs e)
+        {
+            dataGridView1.AllowUserToAddRows = false;
         }
 
     }

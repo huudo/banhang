@@ -45,15 +45,17 @@ namespace PhanMem
 
 
                 // Tinh tong no
-                SqlCommand cmdTo = new SqlCommand("SELECT SUM(no) as tongno FROM banhang WHERE customer= N'" + name + "' ", con);
+                SqlCommand cmdTo = new SqlCommand("SELECT SUM(no) as tongno FROM banhang WHERE customer= N'" + name + "' and no > 0 ", con);
                 SqlDataReader readTo = cmdTo.ExecuteReader();
-
+                double checkNo = 0;
                 while (readTo.Read())
                 {
+                    
                     if (readTo["tongno"].ToString() != "")
                     {
                         fourColumn = string.Format("{0:n0}", readTo["tongno"]);
                         SumNo += double.Parse(readTo["tongno"].ToString());
+                        checkNo = double.Parse(readTo["tongno"].ToString()); ;
                     }
                     else
                     {
@@ -64,13 +66,19 @@ namespace PhanMem
                 }
                 readTo.Close();
                 string[] row = { firstColumn, secondColumn, threeColumn, fourColumn };
-                dataGridView1.Rows.Add(row);
-                lblTongNo.Text = string.Format("{0:n0}", SumNo);
+                if (checkNo != 0)
+                {
+                    dataGridView1.Rows.Add(row);
+                }
+                
+                
             }
+            lblTongNo.Text = string.Format("{0:n0}", SumNo);
         }
        
         private void QuanLyNo_Load(object sender, EventArgs e)
         {
+            dataGridView1.AllowUserToAddRows = false;
             saveList.Clear();
             if (con.State != ConnectionState.Open)
             {

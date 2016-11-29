@@ -26,6 +26,8 @@ namespace PhanMem
         
         double Sum = 0;
         string type = "";
+        string emailNhan = "";
+        string passEmail = "";
         public NhapHang()
         {
             InitializeComponent();
@@ -44,6 +46,9 @@ namespace PhanMem
             txtGiaNetKg.Clear();
             txtName.Clear();
             txtTotal.Clear();
+            txtPay.Clear();
+            txtNo.Clear();
+            txtKhoiLuong.Clear();
             check = false;
         }
         void ResetData()
@@ -51,6 +56,7 @@ namespace PhanMem
             dataGridView1.Rows.Clear();
             Sum = 0;
             type = "";
+            panel4.Visible = false;
         
         }
         void calculatePrice()
@@ -93,7 +99,14 @@ namespace PhanMem
         {
             try
             {
-                con.Open();
+                btnOrder.Visible = false;
+                dataGridView1.AllowUserToAddRows = false;
+                panel4.Visible = false;
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                
                 SqlCommand cmd = new SqlCommand("SELECT mahang FROM sanpham WHERE mahang like '%" + txtMa.Text + "%' ", con);
                 SqlDataReader dr;
                 dr = cmd.ExecuteReader();
@@ -102,7 +115,19 @@ namespace PhanMem
                     txtMa.AutoCompleteCustomSource.Add(dr["mahang"].ToString());
                 }
                 dr.Close();
-                con.Close();
+                SqlCommand cmd2 = new SqlCommand("SELECT email,password FROM account", con);
+                SqlDataReader dr2;
+                dr2 = cmd2.ExecuteReader();
+                while (dr2.Read())
+                {
+                    emailNhan = dr2["email"].ToString();
+                    passEmail = dr2["password"].ToString();
+                }
+                dr2.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
                 txtPay.Text = "0";
             }
             catch (Exception ex)
@@ -177,6 +202,7 @@ namespace PhanMem
         {
             try
             {
+                panel4.Visible = true;
                 int ck1 = 0;
                 int ck2 = 0;
                 int ck3 = 0;
@@ -315,6 +341,8 @@ namespace PhanMem
             ExportExcel(nhaphang_id,payment,no);
             ClearTextBox();
             ResetData();
+            btnOrder.Visible = false;
+            txtMa.Clear();
             
         }
 
@@ -404,7 +432,7 @@ namespace PhanMem
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
             // SEND MAIL
-            /*
+           
             try
             {
                 MailMessage mail = new MailMessage();
@@ -415,7 +443,7 @@ namespace PhanMem
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Port = 587;
                 string mailFrom = "qlbancam@gmail.com";
-                string mailTo = "huudt.3012@gmail.com";
+                string mailTo = emailNhan;
                 mail.From = new MailAddress(mailFrom);
                 mail.To.Add(mailTo);
                 mail.Subject = subjectHeader;
@@ -431,12 +459,13 @@ namespace PhanMem
             catch
             {
 
-            }*/
-        
+            }
+            
         }
 
         private void txtPay_TextChanged(object sender, EventArgs e)
         {
+            btnOrder.Visible = true;
             double payment = 0;
             if (!string.IsNullOrEmpty(txtPay.Text))
             {

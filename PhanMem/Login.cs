@@ -32,8 +32,11 @@ namespace PhanMem
             }
             else
             {
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
                 
-                con.Open();
                 SqlDataAdapter check = new SqlDataAdapter("Select email from account where email= '"+ txtEmail.Text +"' and password= '"+ txtPass.Text +"' ", con);
                 DataTable dt = new DataTable();
                 check.Fill(dt);
@@ -46,6 +49,10 @@ namespace PhanMem
                 else
                 {
                     MessageBox.Show("Thông tin đăng nhập không chính xác!");
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
                 }
                 
             }

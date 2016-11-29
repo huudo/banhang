@@ -17,7 +17,7 @@ namespace PhanMem
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         string customerName = "";
         int id_don = 0;
-        double tongNo = 0;
+        double tongTienHang = 0;
         double daTra = 0;
         double conNo = 0;
         double traThem = 0;
@@ -25,15 +25,18 @@ namespace PhanMem
         {
             InitializeComponent();
             customerName = name;
+            
         }
 
         private void ThanhToanNo_Load(object sender, EventArgs e)
         {
+            
             lblKhachHang.Text = customerName;
             ShowData();
         }
         void ShowData()
         {
+            dataGridView1.Rows.Clear();
             txtPayment.Enabled = false;
             if (con.State != ConnectionState.Open)
             {
@@ -86,7 +89,7 @@ namespace PhanMem
                 txtThanhToan.Visible = false;
                 id_don = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                 lblSumNo.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-                tongNo = double.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+                tongTienHang = double.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
                 lblDaTra.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
                 daTra = double.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
                 lblConNo.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
@@ -100,20 +103,6 @@ namespace PhanMem
 
         private void txtPayment_TextChanged(object sender, EventArgs e)
         {
-            txtThanhToan.Visible = true;
-           
-            if (!string.IsNullOrEmpty(txtPayment.Text))
-            {
-                traThem = Int32.Parse(txtPayment.Text);
-            }
-            else
-            {
-                traThem = 0;
-            }
-            
-            conNo = tongNo - daTra - traThem;
-            lblConNo.Text = string.Format("{0:n0}", conNo);
-           
 
         }
 
@@ -124,7 +113,7 @@ namespace PhanMem
                 con.Open();
             }
             double thanhtoan = daTra + traThem;
-            var query = "UPDATE banhang SET sum= '" + tongNo + "',pay = '" + thanhtoan + "',no = '" + conNo + "' WHERE id = '" + id_don + "' ";
+            var query = "UPDATE banhang SET sum= '" + tongTienHang + "',pay = '" + thanhtoan + "',no = '" + conNo + "' WHERE id = '" + id_don + "' ";
             var cmd = new SqlCommand(query, con);
             //cmd.Parameters.AddWithValue("@ma", 5);
             //cmd.Parameters.AddWithValue("@tongNo", tongNo);
@@ -137,6 +126,23 @@ namespace PhanMem
             {
                 con.Close();
             }
+            ShowData();
+            txtThanhToan.Visible = false;
+            txtPayment.Clear();
         }
+
+        private void txtPayment_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtThanhToan.Visible = true;
+                traThem = double.Parse(txtPayment.Text);
+                conNo = tongTienHang - traThem - daTra;
+                lblConNo.Text = string.Format("{0:n0}", conNo);
+                
+            }
+        }
+    
+  
     }
 }

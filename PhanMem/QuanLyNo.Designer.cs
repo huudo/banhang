@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNo));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -86,7 +87,7 @@
             this.lblTongNo.AutoSize = true;
             this.lblTongNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblTongNo.ForeColor = System.Drawing.Color.Blue;
-            this.lblTongNo.Location = new System.Drawing.Point(860, 49);
+            this.lblTongNo.Location = new System.Drawing.Point(816, 49);
             this.lblTongNo.Name = "lblTongNo";
             this.lblTongNo.Size = new System.Drawing.Size(17, 19);
             this.lblTongNo.TabIndex = 2;
@@ -165,6 +166,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 586);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QuanLyNo";
             this.Text = "QUẢN LÝ CÔNG NỢ";
             this.Load += new System.EventHandler(this.QuanLyNo_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Default));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnNhapHang = new System.Windows.Forms.ToolStripMenuItem();
             this.btnBanHang = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,8 +120,8 @@
             // quànLýTàiKhoảnToolStripMenuItem
             // 
             this.quànLýTàiKhoảnToolStripMenuItem.Name = "quànLýTàiKhoảnToolStripMenuItem";
-            this.quànLýTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
-            this.quànLýTàiKhoảnToolStripMenuItem.Text = "Quàn lý tài khoản";
+            this.quànLýTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.quànLýTàiKhoảnToolStripMenuItem.Text = "Sản phẩm";
             this.quànLýTàiKhoảnToolStripMenuItem.Click += new System.EventHandler(this.quànLýTàiKhoảnToolStripMenuItem_Click);
             // 
             // btnQuanLyNo
@@ -136,6 +137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 536);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Default";
             this.Text = "Default";
             this.Load += new System.EventHandler(this.Default_Load);
