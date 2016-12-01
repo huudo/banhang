@@ -23,6 +23,9 @@ namespace PhanMem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            dataGridView1.Columns.Clear();
+ 
+            MessageBox.Show("de");
             using (OpenFileDialog ofd = new OpenFileDialog() {Filter="Exel WorkBook|*.xls || *.xlsx", ValidateNames = true })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
@@ -40,6 +43,8 @@ namespace PhanMem
 
         private void btnImportDB_Click(object sender, EventArgs e)
         {
+            
+            MessageBox.Show("del");
             int id_bangGia = 0;
             DateTime dateNow = DateTime.Now;
             if (con.State != ConnectionState.Open)
@@ -121,7 +126,8 @@ namespace PhanMem
             Gia obj = comboBox1.SelectedItem as Gia;
             if (obj != null)
             {
-                MessageBox.Show(obj.id.ToString());
+                //MessageBox.Show(obj.id.ToString());
+                showData(obj.id);
             }
         }
 
@@ -141,6 +147,51 @@ namespace PhanMem
             comboBox1.DataSource = list;
             comboBox1.ValueMember = "id";
             comboBox1.DisplayMember = "name";
+        }
+        void showData(int id_banggia)
+        {
+            dataGridView1.Rows.Clear();
+            string firstColumn = "";
+            string secondColumn = "";
+            string threeColumn = "";
+            string fourColumn = "";
+            string fiveColumn = "";
+            string sixColumn = "";
+            string sevenColumn = "";
+            string eightColumn = "";
+            string nineColumn = "";
+            string tenColumn = "";
+            string elevenColumn = "";
+            string twelveColumn = "";
+            string thirteenColumn = "";
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            SqlCommand cmdQr = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia= '" + id_banggia + "'  ", con);
+            SqlDataReader read = cmdQr.ExecuteReader();
+
+            while (read.Read())
+            {
+                firstColumn = read["mahang"].ToString();
+                secondColumn = read["name"].ToString();
+                threeColumn = read["donvi"].ToString();
+                fourColumn = read["khoiluong"].ToString();
+                fiveColumn = read["giado"].ToString();
+                sixColumn = read["ck1"].ToString();
+                sevenColumn = read["ck2"].ToString();
+                eightColumn = read["ck3"].ToString();
+                nineColumn = read["gianet"].ToString();
+                tenColumn = read["giaban1"].ToString();
+                elevenColumn = read["giaban2"].ToString();
+                twelveColumn = read["giaban3"].ToString();
+                thirteenColumn = read["giaban4"].ToString();
+               // thirteenColumn = "?";
+                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn, sevenColumn, eightColumn, nineColumn, tenColumn, elevenColumn, twelveColumn, thirteenColumn };
+                dataGridView1.Rows.Add(row);
+            }
+            read.Close();
+
         }
     }
 }

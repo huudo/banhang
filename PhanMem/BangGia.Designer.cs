@@ -36,6 +36,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnImportDB = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.mahang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.donvi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.khoiluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ck1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ck2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ck3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gianet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaban1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaban2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaban3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaban4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,10 +82,26 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mahang,
+            this.name,
+            this.donvi,
+            this.khoiluong,
+            this.giado,
+            this.ck1,
+            this.ck2,
+            this.ck3,
+            this.gianet,
+            this.giaban1,
+            this.giaban2,
+            this.giaban3,
+            this.giaban4});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(929, 351);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -127,6 +156,84 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // mahang
+            // 
+            this.mahang.HeaderText = "Mã Hàng";
+            this.mahang.Name = "mahang";
+            this.mahang.Width = 76;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Tên Sản Phẩm";
+            this.name.Name = "name";
+            this.name.Width = 103;
+            // 
+            // donvi
+            // 
+            this.donvi.HeaderText = "Đơn Vị";
+            this.donvi.Name = "donvi";
+            this.donvi.Width = 64;
+            // 
+            // khoiluong
+            // 
+            this.khoiluong.HeaderText = "Khối Lượng";
+            this.khoiluong.Name = "khoiluong";
+            this.khoiluong.Width = 86;
+            // 
+            // giado
+            // 
+            this.giado.HeaderText = "Giá Hóa Đơn";
+            this.giado.Name = "giado";
+            this.giado.Width = 94;
+            // 
+            // ck1
+            // 
+            this.ck1.HeaderText = "CK %";
+            this.ck1.Name = "ck1";
+            this.ck1.Width = 57;
+            // 
+            // ck2
+            // 
+            this.ck2.HeaderText = "CK VNĐ/KG";
+            this.ck2.Name = "ck2";
+            this.ck2.Width = 92;
+            // 
+            // ck3
+            // 
+            this.ck3.HeaderText = "KM VNĐ/KG";
+            this.ck3.Name = "ck3";
+            this.ck3.Width = 94;
+            // 
+            // gianet
+            // 
+            this.gianet.HeaderText = "Giá Net Nhập";
+            this.gianet.Name = "gianet";
+            this.gianet.Width = 97;
+            // 
+            // giaban1
+            // 
+            this.giaban1.HeaderText = "Giá Bán 1";
+            this.giaban1.Name = "giaban1";
+            this.giaban1.Width = 79;
+            // 
+            // giaban2
+            // 
+            this.giaban2.HeaderText = "Giá Bán 2";
+            this.giaban2.Name = "giaban2";
+            this.giaban2.Width = 79;
+            // 
+            // giaban3
+            // 
+            this.giaban3.HeaderText = "Giá Bán 3";
+            this.giaban3.Name = "giaban3";
+            this.giaban3.Width = 79;
+            // 
+            // giaban4
+            // 
+            this.giaban4.HeaderText = "Giá Bán 4";
+            this.giaban4.Name = "giaban4";
+            this.giaban4.Width = 79;
+            // 
             // BangGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,5 +262,18 @@
         private System.Windows.Forms.Button btnImportDB;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mahang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn donvi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn khoiluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ck1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ck2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ck3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gianet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaban1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaban2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaban3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn giaban4;
     }
 }
