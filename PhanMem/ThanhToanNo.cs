@@ -30,7 +30,6 @@ namespace PhanMem
 
         private void ThanhToanNo_Load(object sender, EventArgs e)
         {
-            
             lblKhachHang.Text = customerName;
             ShowData();
         }
@@ -66,7 +65,6 @@ namespace PhanMem
                 conLai += double.Parse(readTo["no"].ToString());
                 string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColum };
                 dataGridView1.Rows.Add(row);
-
             }
             readTo.Close();
             lblSumNo.Text = string.Format("{0:n0}", sumNo);
@@ -141,8 +139,6 @@ namespace PhanMem
                 lblConNo.Text = string.Format("{0:n0}", conNo);
                 
             }
-        }
-    
-  
+        }  
     }
 }

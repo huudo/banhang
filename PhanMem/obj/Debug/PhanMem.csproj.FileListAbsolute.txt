@@ -68,3 +68,9 @@ D:\PM\banhang2\PhanMem\obj\Debug\PhanMem.ThanhToanNo.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.Login.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.QuanLyNo.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.ThanhToanNo.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.QuanLyNo.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.ThanhToanNo.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BangGia.resources
+D:\PM\banhang\PhanMem\bin\Debug\Excel.dll
+D:\PM\banhang\PhanMem\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\PM\banhang\PhanMem\bin\Debug\Excel.pdb
