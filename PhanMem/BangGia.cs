@@ -16,6 +16,7 @@ namespace PhanMem
     public partial class BangGia : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        int id_bangGiaChon = 0;
         public BangGia()
         {
             InitializeComponent();
@@ -123,16 +124,19 @@ namespace PhanMem
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            btnAccept.Visible = true;
             Gia obj = comboBox1.SelectedItem as Gia;
             if (obj != null)
             {
-                //MessageBox.Show(obj.id.ToString());
+                id_bangGiaChon = obj.id;
                 showData(obj.id);
+
             }
         }
 
         private void BangGia_Load(object sender, EventArgs e)
         {
+            btnAccept.Visible = false;
             comboBox1.Items.Clear();
             List<Gia> list = new List<Gia>();
             con.Open();
@@ -192,6 +196,26 @@ namespace PhanMem
             }
             read.Close();
 
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            btnAccept.Visible = false;
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            MessageBox.Show(id_bangGiaChon.ToString(), "ID GIA");
+            var query = "UPDATE banggia SET status= 0 WHERE id <> '" + id_bangGiaChon + "' ";
+            var cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            var query2 = "UPDATE banggia SET status= 1 WHERE id = '" + id_bangGiaChon + "' ";
+            var cmd2 = new SqlCommand(query2, con);
+            cmd2.ExecuteNonQuery();
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
         }
     }
 }

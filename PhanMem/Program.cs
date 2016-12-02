@@ -27,7 +27,7 @@ namespace PhanMem
             check.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                Application.Run(new BangGia());
+                Application.Run(new BanHang());
             }
             else
             {

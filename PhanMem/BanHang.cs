@@ -12,85 +12,61 @@ using System.Globalization;
 using System.Net.Mail;
 using System.IO;
 using Microsoft.Office.Interop.Excel;
+
 namespace PhanMem
 {
     public partial class BanHang : Form
     {
-        Boolean check = false;
-        double giabankg1 = 0;
-        double giabankg2 = 0;
-        double giabankg3 = 0;
-        double giabankg4 = 0;
-
-        double giabanbao1 = 0;
-        double giabanbao2 = 0;
-        double giabanbao3 = 0;
-        double giabanbao4 = 0;
-        double banKg = 0;
-        double banBao = 0;
-        double dauRaKg = 0;
-        double dauRaBao = 0;
-        double totalPrice = 0;
-        double Sum = 0;
-        int tangBao = 10;
-        string type = "";
-        string typeSmall = "";
-        double khuyenMai = 0;
-        List<double> LoiNhuan = new List<double>();
-        double gianetKg = 0;
-        double gianetBao = 0;
-        string emailNhan = "";
-        //SqlConnection con = new SqlConnection(@"Data Source=TUAN-PC;Initial Catalog=quanly;Integrated Security=True;");
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        Boolean check = false;
+        double giaNet = 0;
+        double giaLuaChon = 0;
+        double giaBanRa = 0;
+        double giaban1 = 0;
+        double giaban2 = 0;
+        double giaban3 = 0;
+        double giaban4 = 0;
+        double totalPay = 0;
+        double Sum = 0;
+        int quyCach = 0;
+        string donviTinh = "";
+        string emailNhan = "";
+        int id_bangGia = 0;
+        List<double> LoiNhuan = new List<double>();
         public BanHang()
         {
             InitializeComponent();
         }
-        void ClearTextBox()
+        public void clearText()
         {
+            txtName.Clear();
             txtCK1.Clear();
             txtCK2.Clear();
             txtCK3.Clear();
-            txtSoLuongKg.Clear();
-            txtGiaBao.Clear();
-            txtGiaKg.Clear();
-            txtGiaBanBao.Clear();
-            txtGiaBanKg.Clear();
-            txtSoLuongBao.Clear();
-            txtName.Clear();
-            txtKhoiLuong.Clear();
+            txtDonVi.Clear();
+            txtSoLuong.Clear();
+            txtKhuyenMai.Clear();
+            txtGiaBan.Clear();
             txtSum.Clear();
             txtNo.Clear();
             txtPay.Clear();
             txtTotal.Clear();
             txtCustomer.Clear();
             cbxGia.SelectedIndex = cbxGia.FindStringExact("Giá Loại 1");
-
         }
         void resetVariable()
         {
+            giaNet = 0;
             check = false;
-            giabankg1 = 0;
-            giabankg2 = 0;
-            giabankg3 = 0;
-            giabankg4 = 0;
-
-            giabanbao1 = 0;
-            giabanbao2 = 0;
-            giabanbao3 = 0;
-            giabanbao4 = 0;
-            banKg = 0;
-            banBao = 0;
-            dauRaKg = 0;
-            dauRaBao = 0;
-            totalPrice = 0;
+            giaban1 = 0;
+            giaban2 = 0;
+            giaban3 = 0;
+            giaban4 = 0;
+            totalPay = 0;
+            quyCach = 0;
+            donviTinh = "";
+            emailNhan = "";
             Sum = 0;
-            tangBao = 10;
-            type = "";
-            typeSmall = "";
-            khuyenMai = 0;
-            gianetBao = 0;
-            gianetKg = 0;
             LoiNhuan.Clear();
             panel4.Visible = false;
             dataGridView1.Rows.Clear();
@@ -101,8 +77,7 @@ namespace PhanMem
             int ck1 = 0;
             int ck2 = 0;
             int ck3 = 0;
-            int soLuongkg = 0;
-            int soLuongbao = 0;
+            int soLuong = 0;
             if (!string.IsNullOrEmpty(txtCK1.Text))
             {
                 ck1 = Int32.Parse(txtCK1.Text);
@@ -115,31 +90,18 @@ namespace PhanMem
             {
                 ck3 = Int32.Parse(txtCK3.Text);
             }
-            if (!string.IsNullOrEmpty(txtSoLuongKg.Text))
+            if (!string.IsNullOrEmpty(txtSoLuong.Text))
             {
-                soLuongkg = Int32.Parse(txtSoLuongKg.Text);
+                soLuong = Int32.Parse(txtSoLuong.Text);
             }
-            if (!string.IsNullOrEmpty(txtSoLuongBao.Text))
-            {
-                soLuongbao = Int32.Parse(txtSoLuongBao.Text);
-            }
-            dauRaKg = banKg * (100 - ck1) / 100 - ck2 - ck3;
-            dauRaBao = dauRaKg * Int32.Parse(txtKhoiLuong.Text);
-            txtGiaBanKg.Text = string.Format("{0:n0}", dauRaKg);
-            txtGiaBanBao.Text = string.Format("{0:n0}", dauRaBao);
-            totalPrice = soLuongkg * dauRaKg + soLuongbao * dauRaBao;
-            txtTotal.Text = string.Format("{0:n0}", totalPrice);
-            //khuyenMai = (ck1*banKg +ck2+ck3) * (soLuongkg + soLuongbao*)
 
-
+            giaBanRa = giaLuaChon * (100 - ck1) / 100 - (ck2 - ck3)*quyCach;
+            txtGiaBan.Text = string.Format("{0:n0}", giaBanRa);
+            totalPay = giaBanRa * soLuong;
+            txtTotal.Text = string.Format("{0:n0}", totalPay);
+            
         }
-
-        private void txtMa_TextChanged(object sender, EventArgs e)
-        {
-            ClearTextBox();
-        }
-
-        private void BanHang2_Load(object sender, EventArgs e)
+        private void BanHang_Load(object sender, EventArgs e)
         {
             try
             {
@@ -156,7 +118,16 @@ namespace PhanMem
                 txtCK3.Text = "0";
                 //txtPay.Text = "0";
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT mahang FROM sanpham WHERE mahang like '%" + txtMa.Text + "%' ", con);
+                SqlCommand cmd4 = new SqlCommand("SELECT id FROM banggia WHERE status = 1", con);
+                SqlDataReader dr4;
+                dr4 = cmd4.ExecuteReader();
+                while (dr4.Read())
+                {
+                    id_bangGia = Int32.Parse(dr4["id"].ToString());
+                    //passEmail = dr2["password"].ToString();
+                }
+                dr4.Close();
+                SqlCommand cmd = new SqlCommand("SELECT mahang FROM sanpham WHERE id_banggia = '" + id_bangGia+ "' AND mahang like '%" + txtMa.Text + "%' ", con);
                 SqlDataReader dr;
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
@@ -181,136 +152,18 @@ namespace PhanMem
                     //passEmail = dr2["password"].ToString();
                 }
                 dr2.Close();
+               
                 con.Close();
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
-
-        private void txtMa_KeyDown(object sender, KeyEventArgs e)
+        private void txtMa_TextChanged(object sender, EventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM sanpham WHERE mahang = '" + txtMa.Text + "' ", con);
-                SqlDataReader dr;
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    cbxGia.SelectedIndex = cbxGia.FindStringExact("Giá Loại 1");
-                    txtName.Text = dr["name"].ToString();
-                    txtKhoiLuong.Text = dr["khoiluong"].ToString();
-                    txtGiaKg.Text = string.Format("{0:n0}", dr["gianetkg"]);
-                    txtGiaBao.Text = string.Format("{0:n0}", dr["gianetbao"]);
-                    type = dr["type"].ToString();
-
-                    giabankg1 = double.Parse(dr["giabankg1"].ToString());
-                    giabankg2 = double.Parse(dr["giabankg2"].ToString());
-                    giabankg3 = double.Parse(dr["giabankg3"].ToString());
-                    giabankg4 = double.Parse(dr["giabankg4"].ToString());
-
-                    giabanbao1 = double.Parse(dr["giabanbao1"].ToString());
-                    giabanbao2 = double.Parse(dr["giabanbao2"].ToString());
-                    giabanbao3 = double.Parse(dr["giabanbao3"].ToString());
-                    giabanbao4 = double.Parse(dr["giabanbao4"].ToString());
-
-                    gianetKg = double.Parse(dr["gianetkg"].ToString());
-                    gianetBao = double.Parse(dr["gianetBao"].ToString());
-
-                }
-                txtGiaBanKg.Text = string.Format("{0:n0}", giabankg1);
-                txtGiaBanBao.Text = string.Format("{0:n0}", giabanbao1);
-                banKg = giabankg1;
-                banBao = giabanbao1;
-                switch (type)
-                {
-                    case "bao": typeSmall = "Kg";
-                        break;
-                    case "tui": typeSmall = "Lọ";
-                        break;
-                    default: break;
-                }
-                check = true;
-                dr.Close();
-                con.Close();
-
-            }
+            clearText();
         }
-
-        private void cbxGia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (cbxGia.Text)
-            {
-                case "Giá Loại 1": txtGiaBanKg.Text = string.Format("{0:n0}", giabankg1);
-                    txtGiaBanBao.Text = string.Format("{0:n0}", giabanbao1);
-                    banKg = giabankg1;
-                    banBao = giabanbao1;
-                    break;
-                case "Giá Loại 2": txtGiaBanKg.Text = string.Format("{0:n0}", giabankg2);
-                    txtGiaBanBao.Text = string.Format("{0:n0}", giabanbao2);
-                    banKg = giabankg2;
-                    banBao = giabanbao2;
-                    break;
-                case "Giá Loại 3": txtGiaBanKg.Text = string.Format("{0:n0}", giabankg3);
-                    txtGiaBanBao.Text = string.Format("{0:n0}", giabanbao3);
-                    banKg = giabankg3;
-                    banBao = giabanbao3;
-                    break;
-                case "Giá Loại 4": txtGiaBanKg.Text = string.Format("{0:n0}", giabankg4);
-                    txtGiaBanBao.Text = string.Format("{0:n0}", giabanbao4);
-                    banKg = giabankg4;
-                    banBao = giabanbao4;
-                    break;
-                default: break;
-            }
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
-        private void txtSoLuongKg_TextChanged(object sender, EventArgs e)
-        {
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
-        private void txtSoLuongBao_TextChanged(object sender, EventArgs e)
-        {
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
-        private void txtCK1_TextChanged(object sender, EventArgs e)
-        {
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
-        private void txtCK2_TextChanged(object sender, EventArgs e)
-        {
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
-        private void txtCK3_TextChanged(object sender, EventArgs e)
-        {
-            if (check)
-            {
-                CalculateTotal();
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             panel4.Visible = true;
@@ -321,25 +174,17 @@ namespace PhanMem
             string fiveColum = "";
             string fourColum = "";
             string sixColum = "";
-            if (!string.IsNullOrEmpty(txtSoLuongKg.Text))
+            if (!string.IsNullOrEmpty(txtSoLuong.Text))
             {
-                threeColum = txtSoLuongKg.Text;
-                fourColum = typeSmall;
-                sixColum = txtGiaBanKg.Text;
-                double lai = Int32.Parse(txtSoLuongKg.Text) * (banKg - gianetKg);
+                threeColum = txtSoLuong.Text;
+                fourColum = donviTinh;
+                sixColum = txtGiaBan.Text;
+                double lai = Int32.Parse(txtSoLuong.Text) * (giaBanRa - giaNet);
                 LoiNhuan.Add(lai);
+                soBao = Int32.Parse(txtSoLuong.Text);
                 //khuyenMai = (gia)
             }
-            else
-            {
-                threeColum = txtSoLuongBao.Text;
-                fourColum = type;
-                sixColum = txtGiaBanBao.Text;
-                soBao = Int32.Parse(txtSoLuongBao.Text);
-                double lai = Int32.Parse(txtSoLuongBao.Text) * (banBao - gianetBao );
-                LoiNhuan.Add(lai);
-                //MessageBox.Show("Lai Bao", lai.ToString());
-            }
+           
 
             fiveColum = "Khuyến mãi";
             string sevenColum = txtTotal.Text;
@@ -347,24 +192,88 @@ namespace PhanMem
             txtSum.Text = string.Format("{0:n0}", Sum);
             string[] row = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
             dataGridView1.Rows.Add(row);
-            int tangbao = (soBao / 10);
-            if (tangbao >= 1)
+            int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
+            if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
             {
-                firstColum = txtMa.Text;
-                secondColum = txtName.Text;
-                threeColum = tangbao.ToString();
-                fourColum = type;
-                fiveColum = "Tặng Bao";
-                sixColum = "0";
-                sevenColum = "0";
-                string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                LoiNhuan.Add(0);
-                dataGridView1.Rows.Add(rowAdd);
+                kmBao = Int32.Parse(txtKhuyenMai.Text);
+                int tangbao = (soBao / kmBao);
+                if (tangbao >= 1)
+                {
+                    firstColum = txtMa.Text;
+                    secondColum = txtName.Text;
+                    threeColum = tangbao.ToString();
+                    fourColum = donviTinh;
+                    fiveColum = "Tặng Bao";
+                    sixColum = "0";
+                    sevenColum = "0";
+                    string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                    LoiNhuan.Add(0);
+                    dataGridView1.Rows.Add(rowAdd);
+                }
             }
-
+            
         }
 
-        void ExportExcel(int banhang_id, string customer,double payment, double no)
+        private void txtMa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia = '" + id_bangGia + "' AND mahang = '" + txtMa.Text + "' ", con);
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cbxGia.SelectedIndex = cbxGia.FindStringExact("Giá Loại 1");
+                    txtName.Text = dr["name"].ToString();
+                    donviTinh = dr["donvi"].ToString();
+                    txtDonVi.Text = dr["donvi"].ToString();
+                    giaNet = double.Parse(dr["gianet"].ToString());
+                    quyCach = Int32.Parse(dr["khoiluong"].ToString());
+                    txtQuyCach.Text = quyCach.ToString();
+                    if (dr["giaban1"].ToString() != "")
+                    {
+                        giaban1 = double.Parse(dr["giaban1"].ToString());
+                    }
+                    else
+                    {
+                        giaban1 = giaNet + 5000;
+                    }
+                    if (dr["giaban2"].ToString() != "")
+                    {
+                        giaban1 = double.Parse(dr["giaban2"].ToString());
+                    }
+                    else
+                    {
+                        giaban2 = giaNet + 10000;
+                    }
+                    if (dr["giaban3"].ToString() != "")
+                    {
+                        giaban3 = double.Parse(dr["giaban3"].ToString());
+                    }
+                    else
+                    {
+                        giaban3 = giaNet + 15000;
+                    }
+                    if (dr["giaban4"].ToString() != "")
+                    {
+                        giaban4 = double.Parse(dr["giaban4"].ToString());
+                    }
+                    else
+                    {
+                        giaban4 = giaNet + 20000;
+                    }                                     
+
+                }
+                txtGiaBan.Text = string.Format("{0:n0}", giaban1);
+                giaLuaChon = giaban1;
+                check = true;
+                dr.Close();
+                con.Close();
+
+            }
+        }
+        void ExportExcel(int banhang_id, string customer, double payment, double no)
         {
             string khachhang = "";
             if (customer != "")
@@ -381,7 +290,7 @@ namespace PhanMem
             objexcelapp.Columns.ColumnWidth = 25;
             objexcelapp.get_Range("A1", "G1").Merge(false);
             var chartRange = objexcelapp.get_Range("A1", "G1");
-            string subjectHeader = "HÓA ĐƠN BÁN HÀNG NGÀY " + date + " MÃ ĐƠN " + banhang_id.ToString() +" KHÁCH HÀNG "+khachhang;
+            string subjectHeader = "HÓA ĐƠN BÁN HÀNG NGÀY " + date + " MÃ ĐƠN " + banhang_id.ToString() + " KHÁCH HÀNG " + khachhang;
             chartRange.FormulaR1C1 = subjectHeader;
             chartRange.HorizontalAlignment = 3;
             chartRange.VerticalAlignment = 3;
@@ -406,8 +315,8 @@ namespace PhanMem
                         //objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = 3;
 
                         objexcelapp.Cells[i + 3, j + 1].HorizontalAlignment = XlHAlign.xlHAlignCenter;
-                        
-                        
+
+
                         objexcelapp.Cells[i + 3, j + 1].Font.Size = 12;
                     }
                 }
@@ -422,7 +331,7 @@ namespace PhanMem
             formatRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Green);
             formatRange.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
             formatRange.Font.Size = 14;
-           // objexcelapp.Range["A1", "G1"].Interior.Color = Excel.XlRgbColor.rgbDarkBlue;
+            // objexcelapp.Range["A1", "G1"].Interior.Color = Excel.XlRgbColor.rgbDarkBlue;
             objexcelapp.Cells[maxRow + 3, maxColum - 1] = "Tổng Tiền Hàng: ";
             objexcelapp.Cells[maxRow + 3, maxColum - 1].Font.Size = 12;
             objexcelapp.Cells[maxRow + 3, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
@@ -459,7 +368,7 @@ namespace PhanMem
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
             // SEND MAIL
-            
+
             try
             {
                 MailMessage mail = new MailMessage();
@@ -487,12 +396,83 @@ namespace PhanMem
             {
 
             }
-            
+
+        }
+
+        private void txtSoLuong_TextChanged(object sender, EventArgs e)
+        {
+            if (check)
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtCK1_TextChanged(object sender, EventArgs e)
+        {
+            if (check)
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtCK2_TextChanged(object sender, EventArgs e)
+        {
+            if (check)
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtCK3_TextChanged(object sender, EventArgs e)
+        {
+            if (check)
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void cbxGia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbxGia.Text)
+            {
+                case "Giá Loại 1": txtGiaBan.Text = string.Format("{0:n0}", giaban1);
+                    giaLuaChon = giaban1;
+                    break;
+                case "Giá Loại 2": txtGiaBan.Text = string.Format("{0:n0}", giaban2);
+                    giaLuaChon = giaban2;
+                    break;
+                case "Giá Loại 3": txtGiaBan.Text = string.Format("{0:n0}", giaban3);
+                    giaLuaChon = giaban3;
+                    break;
+                case "Giá Loại 4": txtGiaBan.Text = string.Format("{0:n0}", giaban4);
+                    giaLuaChon = giaban4;
+                    break;
+                default: break;
+            }
+            if (check)
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtPay_TextChanged(object sender, EventArgs e)
+        {
+            button1.Visible = true;
+            double payment = 0;
+            if (!string.IsNullOrEmpty(txtPay.Text))
+            {
+                payment = double.Parse(txtPay.Text);
+            }
+            else
+            {
+                button1.Visible = false;
+            }
+
+            txtNo.Text = string.Format("{0:n0}", (Sum - payment));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             DateTime d1 = DateTime.Now;
             int banhang_id = 0;
             string customer = "";
@@ -543,49 +523,12 @@ namespace PhanMem
             }
             con.Close();
             //MessageBox.Show("Thanh toán hoàn tất !");
-            ExportExcel(banhang_id, customer,payment,no);
+            //ExportExcel(banhang_id, customer, payment, no);
             // ClearTextBox();
             resetVariable();
-            ClearTextBox();
+            clearText();
             txtMa.Clear();
             button1.Visible = false;
-
         }
-
-        private void txtPay_TextChanged(object sender, EventArgs e)
-        {
-            button1.Visible = true;
-            double payment = 0;
-            if (!string.IsNullOrEmpty(txtPay.Text))
-            {
-                payment = double.Parse(txtPay.Text);
-            }
-            else
-            {
-                button1.Visible = false;
-            }
-
-            txtNo.Text = string.Format("{0:n0}", (Sum - payment));
-        }
-
-        private void txtCustomer_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM customer WHERE name = N'" + txtCustomer.Text + "' ", con);
-                SqlDataReader dr;
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    txtCustomer.Text = dr["name"].ToString();
-                }
-
-                dr.Close();
-                con.Close();
-
-            }
-        }
-
     }
 }
