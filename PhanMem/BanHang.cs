@@ -481,18 +481,6 @@ namespace PhanMem
                 customer = txtCustomer.Text;
             }
             con.Open();
-            SqlCommand cmd = new SqlCommand();
-            String query = "select max(id) from banhang";
-            cmd.Connection = con;
-            cmd.CommandText = query;
-            try
-            {
-                banhang_id = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
-            }
-            catch (Exception ex)
-            {
-                banhang_id = 1;
-            }
             double payment = double.Parse(txtPay.Text);
             double no = double.Parse(txtNo.Text);
             String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customer) VALUES(@sum,@pay,@no,@date,@customer)";
@@ -504,8 +492,21 @@ namespace PhanMem
             cmdAdd.Parameters.AddWithValue("@date", d1);
             cmdAdd.Parameters.AddWithValue("@customer", customer);
             cmdAdd.ExecuteNonQuery();
+            SqlCommand cmd = new SqlCommand();
+            String query = "select max(id) from banhang";
+            cmd.Connection = con;
+            cmd.CommandText = query;
+            try
+            {
+                banhang_id = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                banhang_id = 1;
+            }
+            
 
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customer,loinhuan)" +
                "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customer,@loinhuan)";

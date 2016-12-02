@@ -25,9 +25,9 @@ namespace PhanMem
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
- 
+
             MessageBox.Show("de");
-            using (OpenFileDialog ofd = new OpenFileDialog() {Filter="Exel WorkBook|*.xls || *.xlsx", ValidateNames = true })
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*.xls || *.xlsx", ValidateNames = true })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
@@ -44,7 +44,7 @@ namespace PhanMem
 
         private void btnImportDB_Click(object sender, EventArgs e)
         {
-            
+
             MessageBox.Show("del");
             int id_bangGia = 0;
             DateTime dateNow = DateTime.Now;
@@ -52,7 +52,7 @@ namespace PhanMem
             {
                 con.Open();
             }
-            
+
             SqlCommand cmd = new SqlCommand();
             String query = "select max(id) from banggia";
             cmd.Connection = con;
@@ -77,7 +77,7 @@ namespace PhanMem
                "VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia)";
                 var cmdRun = new SqlCommand(stringQr, con);
                 cmdRun.Parameters.AddWithValue("@mahang", dataGridView1.Rows[i].Cells[1].Value.ToString());
-                cmdRun.Parameters.AddWithValue("@name",dataGridView1.Rows[i].Cells[2].Value.ToString());
+                cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
                 cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells[3].Value.ToString());
                 cmdRun.Parameters.AddWithValue("@khoiluong", Int32.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@giado", float.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString()));
@@ -107,8 +107,8 @@ namespace PhanMem
                 }
                 cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
-                 
-                cmdRun.ExecuteNonQuery();               
+
+                cmdRun.ExecuteNonQuery();
             }
             MessageBox.Show("ad");
             if (con.State == ConnectionState.Open)
@@ -152,9 +152,26 @@ namespace PhanMem
             comboBox1.ValueMember = "id";
             comboBox1.DisplayMember = "name";
         }
+        public class dataGrid
+        {
+            public string d1 { get; set; }
+            public string d2 { get; set; }
+            public string d3 { get; set; }
+            public string d4 { get; set; }
+            public string d5 { get; set; }
+            public string d6 { get; set; }
+            public string d7 { get; set; }
+            public string d8 { get; set; }
+            public string d9 { get; set; }
+            public string d10 { get; set; }
+            public string d11 { get; set; }
+            public string d12 { get; set; }
+            public string d13 { get; set; }
+        }
         void showData(int id_banggia)
         {
-            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+            List<dataGrid> gridView = new List<dataGrid>();
             string firstColumn = "";
             string secondColumn = "";
             string threeColumn = "";
@@ -190,10 +207,41 @@ namespace PhanMem
                 elevenColumn = read["giaban2"].ToString();
                 twelveColumn = read["giaban3"].ToString();
                 thirteenColumn = read["giaban4"].ToString();
-               // thirteenColumn = "?";
-                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn, sevenColumn, eightColumn, nineColumn, tenColumn, elevenColumn, twelveColumn, thirteenColumn };
-                dataGridView1.Rows.Add(row);
+                
+                // Add new Column for DataGridView
+                gridView.Add(new dataGrid()
+                {
+                    d1 = firstColumn,
+                    d2 = secondColumn,
+                    d3 = threeColumn,
+                    d4 = fourColumn,
+                    d5 = fiveColumn,
+                    d6 = sixColumn,
+                    d7 = sevenColumn,
+                    d8 = eightColumn,
+                    d9 = nineColumn,
+                    d10 = tenColumn,
+                    d11 = elevenColumn,
+                    d12 = twelveColumn,
+                    d13 = thirteenColumn,
+                });                                
             }
+            dataGridView1.DataSource = gridView;
+            // Change Header Text of DataGridView
+            dataGridView1.Columns[0].HeaderText = "Mã SP";
+            dataGridView1.Columns[1].HeaderText = "Tên Sản Phẩm";
+            dataGridView1.Columns[2].HeaderText = "Đơn Vị";
+            dataGridView1.Columns[3].HeaderText = "Khối Lượng";
+            dataGridView1.Columns[4].HeaderText = "Giá Hóa Đơn";
+            dataGridView1.Columns[5].HeaderText = "CK %";
+            dataGridView1.Columns[6].HeaderText = "CK VNĐ/KG";
+            dataGridView1.Columns[7].HeaderText = "KM VNĐ/Kg";
+            dataGridView1.Columns[8].HeaderText = "Giá Net Nhập";
+            dataGridView1.Columns[9].HeaderText = "Giá Bán 1";
+            dataGridView1.Columns[10].HeaderText = "Giá Bán 2";
+            dataGridView1.Columns[11].HeaderText = "Giá Bán 3";
+            dataGridView1.Columns[12].HeaderText = "Giá Bán 4";
+
             read.Close();
 
         }
