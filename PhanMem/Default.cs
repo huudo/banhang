@@ -16,12 +16,12 @@ namespace PhanMem
         {
             InitializeComponent();
         }
-        NhapHang fm = null;
+        NhapHang2 fm = null;
         private void btnNhapHang_Click(object sender, EventArgs e)
         {
             if (fm == null || fm.Text == "")
             {
-                fm = new NhapHang();
+                fm = new NhapHang2();
                
                 fm.Show();
             }

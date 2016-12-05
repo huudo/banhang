@@ -35,6 +35,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtQuyCach = new System.Windows.Forms.TextBox();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtCustomer = new System.Windows.Forms.TextBox();
@@ -49,13 +51,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.mahang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.donvi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kmai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSum = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -77,8 +72,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtKhuyenMai = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtQuyCach = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.mahang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.donvi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kmai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -156,6 +155,25 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(542, 299);
             this.panel5.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(28, 193);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 18);
+            this.label3.TabIndex = 123;
+            this.label3.Text = "Quy Cách hoặc Kg :";
+            // 
+            // txtQuyCach
+            // 
+            this.txtQuyCach.Enabled = false;
+            this.txtQuyCach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuyCach.Location = new System.Drawing.Point(201, 190);
+            this.txtQuyCach.Name = "txtQuyCach";
+            this.txtQuyCach.Size = new System.Drawing.Size(308, 24);
+            this.txtQuyCach.TabIndex = 122;
             // 
             // txtSoLuong
             // 
@@ -289,7 +307,6 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.mahang,
-            this.name,
             this.soluong,
             this.donvi,
             this.kmai,
@@ -302,47 +319,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1096, 271);
             this.dataGridView1.TabIndex = 87;
-            // 
-            // mahang
-            // 
-            this.mahang.HeaderText = "Mã SP";
-            this.mahang.Name = "mahang";
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Tên SP";
-            this.name.Name = "name";
-            this.name.Width = 400;
-            // 
-            // soluong
-            // 
-            this.soluong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.soluong.HeaderText = "Số Lượng";
-            this.soluong.Name = "soluong";
-            // 
-            // donvi
-            // 
-            this.donvi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.donvi.HeaderText = "Đơn vị";
-            this.donvi.Name = "donvi";
-            // 
-            // kmai
-            // 
-            this.kmai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.kmai.HeaderText = "Khuyến mãi";
-            this.kmai.Name = "kmai";
-            // 
-            // dongia
-            // 
-            this.dongia.HeaderText = "Đơn giá";
-            this.dongia.Name = "dongia";
-            this.dongia.Width = 150;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Tiền Hàng ";
-            this.total.Name = "total";
-            this.total.Width = 140;
             // 
             // txtSum
             // 
@@ -579,24 +555,40 @@
             this.label5.TabIndex = 158;
             this.label5.Text = "Tặng 1 khi mua :";
             // 
-            // txtQuyCach
+            // mahang
             // 
-            this.txtQuyCach.Enabled = false;
-            this.txtQuyCach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuyCach.Location = new System.Drawing.Point(201, 190);
-            this.txtQuyCach.Name = "txtQuyCach";
-            this.txtQuyCach.Size = new System.Drawing.Size(308, 24);
-            this.txtQuyCach.TabIndex = 122;
+            this.mahang.HeaderText = "Mã SP";
+            this.mahang.Name = "mahang";
             // 
-            // label3
+            // soluong
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 193);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 18);
-            this.label3.TabIndex = 123;
-            this.label3.Text = "Quy Cách hoặc Kg :";
+            this.soluong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.soluong.HeaderText = "Số Lượng";
+            this.soluong.Name = "soluong";
+            // 
+            // donvi
+            // 
+            this.donvi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.donvi.HeaderText = "Đơn vị";
+            this.donvi.Name = "donvi";
+            // 
+            // kmai
+            // 
+            this.kmai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.kmai.HeaderText = "Khuyến mãi";
+            this.kmai.Name = "kmai";
+            // 
+            // dongia
+            // 
+            this.dongia.HeaderText = "Đơn giá";
+            this.dongia.Name = "dongia";
+            this.dongia.Width = 150;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Tiền Hàng ";
+            this.total.Name = "total";
+            this.total.Width = 140;
             // 
             // BanHang
             // 
@@ -634,13 +626,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mahang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn donvi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kmai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dongia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.TextBox txtSum;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -675,5 +660,11 @@
         private System.Windows.Forms.TextBox txtQuyCach;
         private System.Windows.Forms.TextBox txtKhuyenMai;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mahang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn donvi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kmai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dongia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
     }
 }

@@ -169,7 +169,7 @@ namespace PhanMem
             panel4.Visible = true;
             int soBao = 0;
             string firstColum = txtMa.Text;
-            string secondColum = txtName.Text;
+            //string secondColum = txtName.Text;
             string threeColum = "";
             string fiveColum = "";
             string fourColum = "";
@@ -190,7 +190,7 @@ namespace PhanMem
             string sevenColum = txtTotal.Text;
             Sum += double.Parse(txtTotal.Text);
             txtSum.Text = string.Format("{0:n0}", Sum);
-            string[] row = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+            string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
             dataGridView1.Rows.Add(row);
             int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
             if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
@@ -200,13 +200,14 @@ namespace PhanMem
                 if (tangbao >= 1)
                 {
                     firstColum = txtMa.Text;
-                    secondColum = txtName.Text;
+                    //secondColum = txtName.Text;
                     threeColum = tangbao.ToString();
                     fourColum = donviTinh;
                     fiveColum = "Tặng Bao";
                     sixColum = "0";
                     sevenColum = "0";
-                    string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                    //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                    string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                     LoiNhuan.Add(0);
                     dataGridView1.Rows.Add(rowAdd);
                 }
@@ -287,14 +288,14 @@ namespace PhanMem
             string date = DateTime.Now.ToString("dd-MM-yyy");
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
             objexcelapp.Application.Workbooks.Add(Type.Missing);
-            objexcelapp.Columns.ColumnWidth = 25;
-            objexcelapp.get_Range("A1", "G1").Merge(false);
-            var chartRange = objexcelapp.get_Range("A1", "G1");
+            objexcelapp.Columns.ColumnWidth = 14;
+            objexcelapp.get_Range("A1", "F1").Merge(false);
+            var chartRange = objexcelapp.get_Range("A1", "F1");
             string subjectHeader = "HÓA ĐƠN BÁN HÀNG NGÀY " + date + " MÃ ĐƠN " + banhang_id.ToString() + " KHÁCH HÀNG " + khachhang;
             chartRange.FormulaR1C1 = subjectHeader;
             chartRange.HorizontalAlignment = 3;
             chartRange.VerticalAlignment = 3;
-            chartRange.Font.Size = 16;
+            chartRange.Font.Size = 12;
             chartRange.EntireRow.Font.Bold = true;
 
             for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
@@ -327,28 +328,28 @@ namespace PhanMem
 
             //objexcelapp.Range["A1", "G1"].Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbDarkBlue;
             Microsoft.Office.Interop.Excel.Range formatRange;
-            formatRange = objexcelapp.get_Range("A2", "G2");
+            formatRange = objexcelapp.get_Range("A2", "F2");
             formatRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Green);
             formatRange.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-            formatRange.Font.Size = 14;
+            formatRange.Font.Size = 12;
             // objexcelapp.Range["A1", "G1"].Interior.Color = Excel.XlRgbColor.rgbDarkBlue;
             objexcelapp.Cells[maxRow + 3, maxColum - 1] = "Tổng Tiền Hàng: ";
-            objexcelapp.Cells[maxRow + 3, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum - 1].Font.Size = 10;
             objexcelapp.Cells[maxRow + 3, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
             objexcelapp.Cells[maxRow + 3, maxColum] = string.Format("{0:n0}", Sum);
-            objexcelapp.Cells[maxRow + 3, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 3, maxColum].Font.Size = 10;
             objexcelapp.Cells[maxRow + 3, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
             objexcelapp.Cells[maxRow + 4, maxColum - 1] = "Đã Thanh Toán: ";
-            objexcelapp.Cells[maxRow + 4, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum - 1].Font.Size = 10;
             objexcelapp.Cells[maxRow + 4, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
             objexcelapp.Cells[maxRow + 4, maxColum] = string.Format("{0:n0}", payment);
-            objexcelapp.Cells[maxRow + 4, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 4, maxColum].Font.Size = 10;
             objexcelapp.Cells[maxRow + 4, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
             objexcelapp.Cells[maxRow + 5, maxColum - 1] = "Còn Nợ: ";
-            objexcelapp.Cells[maxRow + 5, maxColum - 1].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum - 1].Font.Size = 10;
             objexcelapp.Cells[maxRow + 5, maxColum - 1].HorizontalAlignment = XlHAlign.xlHAlignLeft;
             objexcelapp.Cells[maxRow + 5, maxColum] = string.Format("{0:n0}", no);
-            objexcelapp.Cells[maxRow + 5, maxColum].Font.Size = 12;
+            objexcelapp.Cells[maxRow + 5, maxColum].Font.Size = 10;
             objexcelapp.Cells[maxRow + 5, maxColum].HorizontalAlignment = XlHAlign.xlHAlignRight;
 
             string root = @"D:\QuanLyBanHang\BanHang";
@@ -367,35 +368,41 @@ namespace PhanMem
 
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
+            
             // SEND MAIL
 
-            try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient();
-                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-                SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Host = "smtp.gmail.com";
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Port = 587;
-                string mailFrom = "qlbancam@gmail.com";
-                string mailTo = emailNhan;
-                mail.From = new MailAddress(mailFrom);
-                mail.To.Add(mailTo);
-                mail.Subject = subjectHeader;
-                mail.Body = subjectHeader;
+            //try
+            //{
+            //    MailMessage mail = new MailMessage();
+            //    SmtpClient SmtpServer = new SmtpClient();
+            //    SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    SmtpServer.UseDefaultCredentials = false;
+            //    SmtpServer.Host = "smtp.gmail.com";
+            //    SmtpServer.EnableSsl = true;
+            //    SmtpServer.Port = 587;
+            //    string mailFrom = "qlbancam@gmail.com";
+            //    string mailTo = emailNhan;
+            //    mail.From = new MailAddress(mailFrom);
+            //    mail.To.Add(mailTo);
+            //    mail.Subject = subjectHeader;
+            //    mail.Body = subjectHeader;
 
-                System.Net.Mail.Attachment attachment;
-                attachment = new System.Net.Mail.Attachment(root + @"\" + filename);
-                mail.Attachments.Add(attachment);
-                SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
-                SmtpServer.Send(mail);
-                MessageBox.Show("Hệ thống tự động gửi hóa đơn đến mail " + mailTo);
-            }
-            catch
-            {
+            //    System.Net.Mail.Attachment attachment;
+            //    attachment = new System.Net.Mail.Attachment(root + @"\" + filename);
+            //    mail.Attachments.Add(attachment);
+            //    SmtpServer.Credentials = new System.Net.NetworkCredential("qlbancam@gmail.com", "mmne1212");
+            //    SmtpServer.Send(mail);
+            //    MessageBox.Show("Hệ thống tự động gửi hóa đơn đến mail " + mailTo);
+            //}
+            //catch
+            //{
 
-            }
+            //}
+            // PRINT
+            //Microsoft.Office.Interop.Excel.Workbook wrk = objexcelapp.Workbooks.Open(root + @"\" + filename, 0, true, 5, string.Empty, string.Empty, true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true);
+            //wrk.PrintOut(1, 1, 1, false, null, false, false, null);
+            //wrk.Close(false, string.Empty, false);
+            //objexcelapp.Quit();
 
         }
 
@@ -524,7 +531,7 @@ namespace PhanMem
             }
             con.Close();
             //MessageBox.Show("Thanh toán hoàn tất !");
-            //ExportExcel(banhang_id, customer, payment, no);
+            ExportExcel(banhang_id, customer, payment, no);
             // ClearTextBox();
             resetVariable();
             clearText();
