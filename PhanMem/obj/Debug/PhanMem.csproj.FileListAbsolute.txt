@@ -77,3 +77,10 @@ D:\PM\banhang\PhanMem\bin\Debug\Excel.pdb
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BanHang2.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.SanPham2.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.NhapHang2.resources
+D:\banhang\PhanMem\bin\Debug\Excel.dll
+D:\banhang\PhanMem\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\banhang\PhanMem\bin\Debug\Excel.pdb
+D:\banhang\PhanMem\obj\Debug\PhanMem.BangGia.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.BanHang2.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.NhapHang2.resources
+D:\banhang\PhanMem\obj\Debug\PhanMem.SanPham2.resources

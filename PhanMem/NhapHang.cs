@@ -23,14 +23,16 @@ namespace PhanMem
             InitializeComponent();
         }
         Boolean check = false;
-
+        double giaDo = 0;
         double Sum = 0;
+        double NoConLai = 0;
         string type = "";
         string emailNhan = "";
         string passEmail = "";
         int id_bangGia = 0;
         void ClearTextBox()
         {
+            txtGiaDo.Clear();
             txtDonVi.Clear();
             txtSoLuong.Clear();
             txtCK1.Clear();
@@ -49,7 +51,9 @@ namespace PhanMem
         {
             
             dataGridView1.Rows.Clear();
+            giaDo = 0;
             Sum = 0;
+            NoConLai = 0;
             type = "";
             panel4.Visible = false;
 
@@ -78,7 +82,7 @@ namespace PhanMem
             }
             int weight = Int32.Parse(txtKhoiLuong.Text);
             double giaNetNhap = 0;            
-            double giaDo = double.Parse(decimal.Parse(txtGiaDo.Text, NumberStyles.Currency).ToString());
+            //double giaDo = double.Parse(decimal.Parse(txtGiaDo.Text, NumberStyles.Currency).ToString());
             giaNetNhap = giaDo * (100 - ck1) / 100 - (ck2 - ck3) * weight;
             txtGiaNetNhap.Text = string.Format("{0:n0}", giaNetNhap);
             //double price = double.Parse(decimal.Parse(txtGiaNetNhap.Text, NumberStyles.Currency).ToString());
@@ -373,6 +377,7 @@ namespace PhanMem
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
+                    giaDo = double.Parse(dr["giado"].ToString());
                     txtName.Text = dr["name"].ToString();
                     txtCK1.Text = dr["ck1"].ToString();
                     txtCK2.Text = dr["ck2"].ToString();
@@ -397,8 +402,8 @@ namespace PhanMem
             {
                 payment = double.Parse(txtPay.Text);
             }
-
-            txtNo.Text = (Sum - payment).ToString();
+            NoConLai = Sum - payment;
+            txtNo.Text = string.Format("{0:n0}", NoConLai); 
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
