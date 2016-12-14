@@ -69,12 +69,6 @@
     <Compile Include="BanHang.Designer.cs">
       <DependentUpon>BanHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="BanHang2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BanHang2.Designer.cs">
-      <DependentUpon>BanHang2.cs</DependentUpon>
-    </Compile>
     <Compile Include="BaoCao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,28 +129,13 @@
     <Compile Include="KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="NhapHang2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NhapHang2.Designer.cs">
-      <DependentUpon>NhapHang2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SanPham2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SanPham2.Designer.cs">
-      <DependentUpon>SanPham2.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="BangGia.resx">
       <DependentUpon>BangGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BanHang.resx">
       <DependentUpon>BanHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BanHang2.resx">
-      <DependentUpon>BanHang2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao.resx">
       <DependentUpon>BaoCao.cs</DependentUpon>
@@ -188,9 +167,6 @@
     <EmbeddedResource Include="KhachHang.resx">
       <DependentUpon>KhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NhapHang2.resx">
-      <DependentUpon>NhapHang2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -201,9 +177,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SanPham2.resx">
-      <DependentUpon>SanPham2.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

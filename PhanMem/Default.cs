@@ -16,12 +16,12 @@ namespace PhanMem
         {
             InitializeComponent();
         }
-        NhapHang2 fm = null;
+        NhapHang fm = null;
         private void btnNhapHang_Click(object sender, EventArgs e)
         {
             if (fm == null || fm.Text == "")
             {
-                fm = new NhapHang2();
+                fm = new NhapHang();
                
                 fm.Show();
             }
@@ -46,7 +46,7 @@ namespace PhanMem
 
         private void quànLýTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SanPham2 sp = new SanPham2();
+            SanPham sp = new SanPham();
             sp.Show();
         }
 
@@ -64,7 +64,7 @@ namespace PhanMem
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-            BanHang2 bh = new BanHang2();
+            BanHang bh = new BanHang ();
             bh.Show();
         }
 

@@ -17,6 +17,7 @@ namespace PhanMem
     public partial class BCLoiNhuan : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        int id_bangGia = 0;
         public BCLoiNhuan()
         {
             InitializeComponent();
@@ -74,7 +75,7 @@ namespace PhanMem
 
                 }
                 read.Close();
-                SqlCommand cmdQr2 = new SqlCommand("SELECT SUM(tienhang) as tienhang FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "' and  donvi = 'bao' ", con);
+                SqlCommand cmdQr2 = new SqlCommand("SELECT SUM(tienhang) as tienhang FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "'  ", con);
                 SqlDataReader read2 = cmdQr2.ExecuteReader();
 
                 while (read2.Read())
@@ -94,7 +95,7 @@ namespace PhanMem
                     }
                 }
                 read2.Close();
-                SqlCommand cmdQr3 = new SqlCommand("SELECT SUM(loinhuan) as loinhuan FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "' and  donvi = 'bao' ", con);
+                SqlCommand cmdQr3 = new SqlCommand("SELECT SUM(loinhuan) as loinhuan FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "'  ", con);
                 SqlDataReader read3 = cmdQr3.ExecuteReader();
 
                 while (read3.Read())
@@ -135,7 +136,7 @@ namespace PhanMem
             var spList = new List<sPham>();
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT mahang,name,type,khoiluong FROM sanpham", con);
+            SqlCommand cmd = new SqlCommand("SELECT mahang,name,donvi,khoiluong FROM sanpham WHERE id_banggia = '" + id_bangGia + "' ", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
 
@@ -145,7 +146,7 @@ namespace PhanMem
                 {
                     maSP = dr["mahang"].ToString(),
                     name = dr["name"].ToString(),
-                    type = dr["type"].ToString(),
+                    type = dr["donvi"].ToString(),
                     khoiluong = double.Parse(dr["khoiluong"].ToString()),
                 });
             }
@@ -155,31 +156,57 @@ namespace PhanMem
 
         private void txtMa_TextChanged(object sender, EventArgs e)
         {
-            con.Open();
-            dataGridView1.Rows.Clear();
-            var spList = new List<sPham>();
-            SqlCommand cmd = new SqlCommand("SELECT mahang,name,type,khoiluong FROM sanpham WHERE mahang LIKE '%" + txtMa.Text + "%' ", con);
-            SqlDataReader dr;
-            dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                spList.Add(new sPham
-                {
-                    maSP = dr["mahang"].ToString(),
-                    name = dr["name"].ToString(),
-                    type = dr["type"].ToString(),
-                    khoiluong = double.Parse(dr["khoiluong"].ToString()),
-                });
-            }
-            dr.Close();
-
-            searData(spList);
+           
         }
 
         private void BCLoiNhuan_Load(object sender, EventArgs e)
         {
             dataGridView1.AllowUserToAddRows = false;
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+
+            SqlCommand cmd4 = new SqlCommand("SELECT id FROM banggia WHERE status = 1", con);
+            SqlDataReader dr4;
+            dr4 = cmd4.ExecuteReader();
+            while (dr4.Read())
+            {
+                id_bangGia = Int32.Parse(dr4["id"].ToString());
+            }
+            dr4.Close();
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+        }
+
+        private void txtMa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                con.Open();
+                dataGridView1.Rows.Clear();
+                var spList = new List<sPham>();
+                SqlCommand cmd = new SqlCommand("SELECT mahang,name,donvi,khoiluong FROM sanpham WHERE id_banggia = '" + id_bangGia + "' AND  mahang LIKE '%" + txtMa.Text + "%' ", con);
+                SqlDataReader dr;
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    spList.Add(new sPham
+                    {
+                        maSP = dr["mahang"].ToString(),
+                        name = dr["name"].ToString(),
+                        type = dr["donvi"].ToString(),
+                        khoiluong = double.Parse(dr["khoiluong"].ToString()),
+                    });
+                }
+                dr.Close();
+
+                searData(spList);
+
+            }
         }
 
     }

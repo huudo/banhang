@@ -154,6 +154,7 @@
             this.txtMa.Size = new System.Drawing.Size(156, 26);
             this.txtMa.TabIndex = 19;
             this.txtMa.TextChanged += new System.EventHandler(this.txtMa_TextChanged);
+            this.txtMa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMa_KeyDown);
             // 
             // button1
             // 
