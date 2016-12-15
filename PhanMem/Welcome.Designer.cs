@@ -35,6 +35,7 @@
             this.txtRePass = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -48,7 +49,7 @@
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPass.Location = new System.Drawing.Point(468, 202);
+            this.txtPass.Location = new System.Drawing.Point(468, 238);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(248, 26);
@@ -57,7 +58,7 @@
             // txtRePass
             // 
             this.txtRePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtRePass.Location = new System.Drawing.Point(468, 247);
+            this.txtRePass.Location = new System.Drawing.Point(468, 281);
             this.txtRePass.Name = "txtRePass";
             this.txtRePass.PasswordChar = '*';
             this.txtRePass.Size = new System.Drawing.Size(248, 26);
@@ -86,13 +87,21 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(603, 308);
+            this.btnLogin.Location = new System.Drawing.Point(603, 334);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(113, 43);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "ĐĂNG KÝ";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtUserName.Location = new System.Drawing.Point(468, 197);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(248, 26);
+            this.txtUserName.TabIndex = 6;
             // 
             // Welcome
             // 
@@ -101,6 +110,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(801, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtRePass);
@@ -123,6 +133,7 @@
         private System.Windows.Forms.TextBox txtRePass;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.TextBox txtUserName;
 
 
 

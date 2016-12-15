@@ -26,7 +26,7 @@ namespace PhanMem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPass.Text))
+            if (string.IsNullOrEmpty(txtUserName.Text) || string.IsNullOrEmpty(txtPass.Text))
             {
                 MessageBox.Show("Thiếu thông tin tài khoản. Nhập lại!");
             }
@@ -36,8 +36,8 @@ namespace PhanMem
                 {
                     con.Open();
                 }
-                
-                SqlDataAdapter check = new SqlDataAdapter("Select email from account where email= '"+ txtEmail.Text +"' and password= '"+ txtPass.Text +"' ", con);
+
+                SqlDataAdapter check = new SqlDataAdapter("Select username from account where username= '" + txtUserName.Text + "' and password= '" + txtPass.Text + "' ", con);
                 DataTable dt = new DataTable();
                 check.Fill(dt);
                 if (dt.Rows.Count > 0)

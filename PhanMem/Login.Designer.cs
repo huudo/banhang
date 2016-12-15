@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPass = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -55,19 +55,19 @@
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPass.Location = new System.Drawing.Point(416, 251);
+            this.txtPass.Location = new System.Drawing.Point(416, 254);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(272, 26);
             this.txtPass.TabIndex = 7;
             // 
-            // txtEmail
+            // txtUserName
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtEmail.Location = new System.Drawing.Point(417, 199);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(271, 26);
-            this.txtEmail.TabIndex = 6;
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtUserName.Location = new System.Drawing.Point(417, 201);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(271, 26);
+            this.txtUserName.TabIndex = 6;
             // 
             // btnClose
             // 
@@ -92,7 +92,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
@@ -107,7 +107,7 @@
 
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnClose;
 
     }
