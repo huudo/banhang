@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlClient;
 using Excel;
+using System.Data.OleDb;
 
 namespace PhanMem
 {
@@ -20,32 +21,50 @@ namespace PhanMem
         public BangGia()
         {
             InitializeComponent();
+            lblName.Visible = false;
+            txtName.Visible = false;
+            btnImportDB.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
-
-            MessageBox.Show("de");
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*.xls || *.xlsx", ValidateNames = true })
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*", ValidateNames = true })
             {
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
-                    Excel.IExcelDataReader reader = Excel.ExcelReaderFactory.CreateBinaryReader(fs);
+                    Excel.IExcelDataReader reader = Excel.ExcelReaderFactory.CreateOpenXmlReader(fs);
                     reader.IsFirstRowAsColumnNames = true;
                     DataSet result = reader.AsDataSet();
                     //result.Fill(test);
+
                     dataGridView1.DataSource = result.Tables[0];
                     reader.Close();
                 }
+
             }
+            //using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*xlsx", ValidateNames = true })
+            //{
+            //    if (ofd.ShowDialog() == DialogResult.OK)
+            //    {
+            //        FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
+            //        IExcelDataReader excelReader2007 = ExcelReaderFactory.CreateOpenXmlReader(fs);
+            //        excelReader2007.IsFirstRowAsColumnNames = true;
+            //        //DataSet - The result of each spreadsheet will be created in the result.Tables
+            //        DataSet result = excelReader2007.AsDataSet();
+            //        dataGridView1.DataSource = result.Tables[0];
+
+            //    }
+
+            //}
+            lblName.Visible = true;
+            txtName.Visible = true;
+            btnImportDB.Visible = true;
         }
 
         private void btnImportDB_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show("del");
             int id_bangGia = 0;
             DateTime dateNow = DateTime.Now;
             if (con.State != ConnectionState.Open)
@@ -65,9 +84,10 @@ namespace PhanMem
             {
                 id_bangGia = 1;
             }
-            String querryAdd = "INSERT INTO banggia(date,status) VALUES(@date,@status)";
+            String querryAdd = "INSERT INTO banggia(name,date,status) VALUES(@name,@date,@status)";
             var cmdAdd = new SqlCommand(querryAdd, con);
-
+            string nameBangGia = txtName.Text;
+            cmdAdd.Parameters.AddWithValue("@name", nameBangGia);
             cmdAdd.Parameters.AddWithValue("@date", dateNow);
             cmdAdd.Parameters.AddWithValue("@status", 0);
             cmdAdd.ExecuteNonQuery();
@@ -110,11 +130,14 @@ namespace PhanMem
 
                 cmdRun.ExecuteNonQuery();
             }
-            MessageBox.Show("ad");
+            MessageBox.Show("Thêm thành công!")
             if (con.State == ConnectionState.Open)
             {
                 con.Close();
             }
+            lblName.Visible = false;
+            txtName.Visible = false;
+            btnImportDB.Visible = false;
         }
         public class Gia
         {
@@ -140,12 +163,12 @@ namespace PhanMem
             comboBox1.Items.Clear();
             List<Gia> list = new List<Gia>();
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT id,date FROM banggia", con);
+            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                list.Add(new Gia() { id = Int32.Parse(dr["id"].ToString()), name = dr["date"].ToString() });
+                list.Add(new Gia() { id = Int32.Parse(dr["id"].ToString()), name = dr["name"].ToString() });
             }
             dr.Close();
             comboBox1.DataSource = list;
@@ -265,5 +288,7 @@ namespace PhanMem
                 con.Close();
             }
         }
+
+        public DataTable dsSource { get; set; }
     }
 }

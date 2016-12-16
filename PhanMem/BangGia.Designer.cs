@@ -45,11 +45,13 @@
             this.giaban3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaban4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAccept = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnImportDB = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnAccept = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -186,6 +188,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblName);
+            this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.btnAccept);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label1);
@@ -197,54 +201,81 @@
             this.panel1.Size = new System.Drawing.Size(929, 232);
             this.panel1.TabIndex = 0;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(116, 63);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(173, 26);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Bảng Giá ";
-            // 
-            // btnImportDB
-            // 
-            this.btnImportDB.Location = new System.Drawing.Point(817, 87);
-            this.btnImportDB.Name = "btnImportDB";
-            this.btnImportDB.Size = new System.Drawing.Size(92, 23);
-            this.btnImportDB.TabIndex = 1;
-            this.btnImportDB.Text = "Import DATA";
-            this.btnImportDB.UseVisualStyleBackColor = true;
-            this.btnImportDB.Click += new System.EventHandler(this.btnImportDB_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(834, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Import Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(334, 58);
+            this.btnAccept.Location = new System.Drawing.Point(437, 78);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(111, 31);
             this.btnAccept.TabIndex = 4;
             this.btnAccept.Text = "Sử Dụng";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(138, 80);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(264, 26);
+            this.comboBox1.TabIndex = 3;
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(14, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Chọn Bảng Giá :";
+            // 
+            // btnImportDB
+            // 
+            this.btnImportDB.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnImportDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImportDB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnImportDB.ForeColor = System.Drawing.Color.White;
+            this.btnImportDB.Location = new System.Drawing.Point(795, 173);
+            this.btnImportDB.Name = "btnImportDB";
+            this.btnImportDB.Size = new System.Drawing.Size(114, 38);
+            this.btnImportDB.TabIndex = 1;
+            this.btnImportDB.Text = "THÊM BẢNG";
+            this.btnImportDB.UseVisualStyleBackColor = false;
+            this.btnImportDB.Click += new System.EventHandler(this.btnImportDB_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(795, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 35);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "File Excel";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtName.Location = new System.Drawing.Point(138, 178);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(264, 24);
+            this.txtName.TabIndex = 5;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblName.Location = new System.Drawing.Point(25, 178);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(106, 18);
+            this.lblName.TabIndex = 6;
+            this.lblName.Text = "Tên Bảng Giá :";
             // 
             // BangGia
             // 
@@ -288,5 +319,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn giaban3;
         private System.Windows.Forms.DataGridViewTextBoxColumn giaban4;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

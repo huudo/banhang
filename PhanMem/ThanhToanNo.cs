@@ -24,8 +24,7 @@ namespace PhanMem
         public ThanhToanNo(string name)
         {
             InitializeComponent();
-            customerName = name;
-            
+            customerName = name;            
         }
 
         private void ThanhToanNo_Load(object sender, EventArgs e)
