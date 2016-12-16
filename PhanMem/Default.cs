@@ -46,8 +46,8 @@ namespace PhanMem
 
         private void quànLýTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SanPham sp = new SanPham();
-            sp.Show();
+            BangGia bg = new BangGia();
+            bg.Show();
         }
 
         private void btnSanLuong_Click(object sender, EventArgs e)

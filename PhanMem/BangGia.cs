@@ -130,7 +130,7 @@ namespace PhanMem
 
                 cmdRun.ExecuteNonQuery();
             }
-            MessageBox.Show("Thêm thành công!")
+            MessageBox.Show("Thêm thành công!");
             if (con.State == ConnectionState.Open)
             {
                 con.Close();
@@ -138,6 +138,7 @@ namespace PhanMem
             lblName.Visible = false;
             txtName.Visible = false;
             btnImportDB.Visible = false;
+            loadBangGia();
         }
         public class Gia
         {
@@ -156,14 +157,12 @@ namespace PhanMem
 
             }
         }
-
-        private void BangGia_Load(object sender, EventArgs e)
-        {
-            btnAccept.Visible = false;
-            comboBox1.Items.Clear();
+        void loadBangGia(){
+            //comboBox1.Items.Clear();
             List<Gia> list = new List<Gia>();
+            
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia", con);
+            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia ORDER BY id DESC", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -174,6 +173,11 @@ namespace PhanMem
             comboBox1.DataSource = list;
             comboBox1.ValueMember = "id";
             comboBox1.DisplayMember = "name";
+        }
+        private void BangGia_Load(object sender, EventArgs e)
+        {
+            btnAccept.Visible = false;
+            loadBangGia();
         }
         public class dataGrid
         {
