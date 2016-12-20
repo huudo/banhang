@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Net.Mail;
 using System.IO;
+using System.Drawing.Printing;
+using Excel;
 using Microsoft.Office.Interop.Excel;
 
 namespace PhanMem
@@ -83,7 +85,7 @@ namespace PhanMem
             int weight = Int32.Parse(txtKhoiLuong.Text);
             double giaNetNhap = 0;            
             //double giaDo = double.Parse(decimal.Parse(txtGiaDo.Text, NumberStyles.Currency).ToString());
-            giaNetNhap = giaDo * (100 - ck1) / 100 - (ck2 - ck3) * weight;
+            giaNetNhap = giaDo * (100 - ck1) / 100 - (ck2 + ck3) * weight;
             txtGiaNetNhap.Text = string.Format("{0:n0}", giaNetNhap);
             //double price = double.Parse(decimal.Parse(txtGiaNetNhap.Text, NumberStyles.Currency).ToString());
             txtTotal.Text = string.Format("{0:n0}", giaNetNhap * soLuong);
@@ -95,7 +97,7 @@ namespace PhanMem
             {
                 btnOrder.Visible = false;
                 dataGridView1.AllowUserToAddRows = false;
-                panel4.Visible = false;
+                //panel4.Visible = false;
                 if (con.State != ConnectionState.Open)
                 {
                     con.Open();
@@ -457,6 +459,151 @@ namespace PhanMem
             ResetData();
             btnOrder.Visible = false;
             txtMa.Clear();
+        }
+        void addDataGridView()
+        {
+            
+        }
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*", ValidateNames = true })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    dataGridView1.Rows.Clear();
+                    if(con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+                    Sum = 0;
+                    FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    Excel.IExcelDataReader reader = Excel.ExcelReaderFactory.CreateOpenXmlReader(fs);
+                    reader.IsFirstRowAsColumnNames = true;
+                    DataSet result = reader.AsDataSet();
+                    //result.Fill(test);
+
+                    foreach (DataRow myDataRow in result.Tables[0].Rows)
+                    {                       
+                        string mHang = myDataRow[1].ToString();
+                        double giaDoLoad = 0;
+                        int khoiLuongLoad = 0;
+                        int soLuongLoad = 0;
+                        double ck1Load = 0;
+                        double ck2Load = 0;
+                        double ck3Load = 0;
+                        double giaNetNhapLoad = 0;
+                        double tienHangLoad = 0;
+                        double tienKMLoad = 0;
+                        int TangBaoLoad = 0;
+                        if (myDataRow[2].ToString() == "")
+                        {
+                            MessageBox.Show("Dữ liệu nhập vào không chính xác!");
+                            break;                           
+                        }
+                        else
+                        {
+                            soLuongLoad = Int32.Parse(myDataRow[2].ToString());
+                        }
+                        if(myDataRow[3].ToString() != "" )
+                        {
+                            ck1Load = double.Parse(myDataRow[3].ToString());
+                        }
+                        if (myDataRow[4].ToString() != "")
+                        {
+                            ck2Load = double.Parse(myDataRow[4].ToString());
+                        }
+                        if (myDataRow[5].ToString() != "")
+                        {
+                            ck3Load = double.Parse(myDataRow[5].ToString());
+                        }
+                        if (myDataRow[6].ToString() != "")
+                        {
+                            TangBaoLoad = Int32.Parse(myDataRow[6].ToString());
+                        }
+                        string donviLoad = "";
+                        string firstColum = mHang;
+                        string secondColum = soLuongLoad.ToString();
+                        string threeColum = "";
+                        string fourColum = "";
+                        string fiveColum = "";
+                        string sixColum = "";
+
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia = '" + id_bangGia + "' AND mahang = '" + mHang + "' ", con);
+                        SqlDataReader dr;
+                        dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            giaDoLoad = double.Parse(dr["giado"].ToString());
+                            khoiLuongLoad = Int32.Parse(dr["khoiluong"].ToString());
+                            donviLoad = dr["donvi"].ToString();
+                        }
+                        dr.Close();
+                        giaNetNhapLoad = giaDoLoad * (100 - ck1Load) / 100 -(ck2Load + ck3Load)*khoiLuongLoad;
+                        tienKMLoad = (giaDoLoad - giaNetNhapLoad) * soLuongLoad;
+                        tienHangLoad = giaNetNhapLoad * soLuongLoad;
+                        Sum += tienHangLoad;
+                        threeColum = donviLoad.ToString();
+                        fourColum = string.Format("{0:n0}", tienKMLoad);
+                        fiveColum =  string.Format("{0:n0}", giaNetNhapLoad);
+                        sixColum = string.Format("{0:n0}", tienHangLoad);
+                        string[] rowAdd = { firstColum,secondColum, threeColum, fourColum, fiveColum, sixColum };
+                        dataGridView1.Rows.Add(rowAdd);
+                        if (TangBaoLoad != 0)
+                        {
+                           
+                            int tangbao = (soLuongLoad/TangBaoLoad);
+                            if (tangbao >= 1)
+                            {
+                                firstColum = mHang;
+                                secondColum = tangbao.ToString();
+                                threeColum = donviLoad.ToString();
+                                fourColum = "Tặng Bao";
+                                fiveColum = string.Format("{0:n0}", giaNetNhapLoad);
+                                sixColum = "0";
+                               
+                                //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                                string[] rowAdd2 = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum };
+                                dataGridView1.Rows.Add(rowAdd2);
+                            }
+
+                        }
+                        
+                    }
+                    txtSum.Text = string.Format("{0:n0}", Sum);
+                    reader.Close();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+
+            }
+        }
+        Bitmap bitmap;
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            //Resize DataGridView to full height.
+            int height = dataGridView1.Height;
+            dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
+
+            //Create a Bitmap and draw the DataGridView on it.
+            bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bitmap, new System.Drawing.Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
+
+            //Resize DataGridView back to original height.
+            dataGridView1.Height = height;
+
+            //Show the Print Preview Dialog.
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
+            printPreviewDialog1.ShowDialog();
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bitmap, 0, 0);
         }
 
 

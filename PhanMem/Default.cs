@@ -12,6 +12,7 @@ namespace PhanMem
 {
     public partial class Default : Form
     {
+        
         public Default()
         {
             InitializeComponent();
@@ -89,6 +90,30 @@ namespace PhanMem
             QuanLyNo qln = new QuanLyNo();
             qln.Show();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("asd");
+        }
+
+
+
+        private void panel1_MouseHover(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.Aqua;
+        }
+
+        private void panel1_MouseLeave(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.SteelBlue;
+        }
+
+   
 
     
     }
