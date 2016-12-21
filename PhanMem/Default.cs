@@ -98,7 +98,8 @@ namespace PhanMem
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("asd");
+            NhapHang nh = new NhapHang();
+            nh.Show();
         }
 
 
@@ -113,8 +114,31 @@ namespace PhanMem
             panel1.BackColor = Color.SteelBlue;
         }
 
-   
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            BanHang bh = new BanHang();
+            bh.Show();
+        }
 
-    
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            BangGia bg = new BangGia();
+            bg.Show();
+        }
+
+        private void panel4_Click(object sender, EventArgs e)
+        {
+            QuanLyNo qln = new QuanLyNo();
+            qln.Show();
+        }
+
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            KhachHang kh = new KhachHang();
+            kh.Show();
+        }
+
+
+        
     }
 }
