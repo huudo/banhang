@@ -147,6 +147,7 @@
     <Compile Include="SanPham.Designer.cs">
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="ServerDK.cs" />
     <Compile Include="ThanhToanNo.cs">
       <SubType>Form</SubType>
     </Compile>

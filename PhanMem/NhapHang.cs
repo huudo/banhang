@@ -15,6 +15,7 @@ using System.Drawing.Printing;
 using Excel;
 using Microsoft.Office.Interop.Excel;
 
+
 namespace PhanMem
 {
     public partial class NhapHang : Form
@@ -24,10 +25,13 @@ namespace PhanMem
         {
             InitializeComponent();
         }
+        System.IO.StreamReader fileToPrint ;
+        System.Drawing.Font printFont = new System.Drawing.Font("Arial", 10);
         Boolean check = false;
         double giaDo = 0;
         double Sum = 0;
         double NoConLai = 0;
+        double daThanhToan = 0;
         string type = "";
         string emailNhan = "";
         string passEmail = "";
@@ -56,10 +60,23 @@ namespace PhanMem
             giaDo = 0;
             Sum = 0;
             NoConLai = 0;
+            daThanhToan = 0;
             type = "";
             panel4.Visible = false;
 
         }
+        public class ListItem
+        {
+            public string idHang { get; set; }
+            public string soLuong {get;set;}
+            public string kMai { get; set; }
+            public string giaNet{get;set;}
+            public string tienHang{get;set;}
+        }
+        List<ListItem> gridView = new List<ListItem>();
+        private int numberOfItemPerPage = 0;
+        private int numberOfItemsPrintedSoFar = 0;
+
         void calculatePrice()
         {
             int ck1 = 0;
@@ -267,9 +284,19 @@ namespace PhanMem
 
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
+            // PRINT3
+
+            fileToPrint = new System.IO.StreamReader(root + @"\" + filename);
+            
+
+            PrintDocument printDocument1 = new PrintDocument();
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+            printDocument1.Print();
+            fileToPrint.Close();
+            // PRINT
 
             // SEND MAIL
-
+            
             //try
             //{
             //    MailMessage mail = new MailMessage();
@@ -338,6 +365,15 @@ namespace PhanMem
                 string sevenColum = txtTotal.Text;
                 //string[] row = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                 string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                gridView.Add(new ListItem()
+                {
+                    idHang = firstColum,
+                    soLuong = threeColum,
+                    kMai = fiveColum,
+                    giaNet = sixColum,
+                    tienHang = sevenColum
+
+                });
                 dataGridView1.Rows.Add(row);
                 
                 int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
@@ -356,6 +392,15 @@ namespace PhanMem
                         sevenColum = "0";
                         //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                         string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                        gridView.Add(new ListItem()
+                        {
+                            idHang = firstColum,
+                            soLuong = threeColum,
+                            kMai = fiveColum,
+                            giaNet = sixColum,
+                            tienHang = sevenColum
+
+                        });
                         dataGridView1.Rows.Add(rowAdd);
                     }
                     
@@ -403,6 +448,7 @@ namespace PhanMem
             if (!string.IsNullOrEmpty(txtPay.Text))
             {
                 payment = double.Parse(txtPay.Text);
+                daThanhToan = payment;
             }
             NoConLai = Sum - payment;
             txtNo.Text = string.Format("{0:n0}", NoConLai); 
@@ -472,6 +518,7 @@ namespace PhanMem
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     dataGridView1.Rows.Clear();
+                    gridView.Clear();
                     if(con.State != ConnectionState.Open)
                     {
                         con.Open();
@@ -548,6 +595,15 @@ namespace PhanMem
                         fiveColum =  string.Format("{0:n0}", giaNetNhapLoad);
                         sixColum = string.Format("{0:n0}", tienHangLoad);
                         string[] rowAdd = { firstColum,secondColum, threeColum, fourColum, fiveColum, sixColum };
+                        gridView.Add(new ListItem()
+                        {
+                            idHang = firstColum,
+                            soLuong = secondColum,
+                            kMai = fourColum,
+                            giaNet = fiveColum,
+                            tienHang = sixColum
+
+                        });
                         dataGridView1.Rows.Add(rowAdd);
                         if (TangBaoLoad != 0)
                         {
@@ -564,6 +620,15 @@ namespace PhanMem
                                
                                 //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
                                 string[] rowAdd2 = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum };
+                                gridView.Add(new ListItem()
+                                {
+                                    idHang = firstColum,
+                                    soLuong = secondColum,
+                                    kMai = fourColum,
+                                    giaNet = fiveColum,
+                                    tienHang = sixColum
+
+                                });
                                 dataGridView1.Rows.Add(rowAdd2);
                             }
 
@@ -580,30 +645,77 @@ namespace PhanMem
 
             }
         }
-        Bitmap bitmap;
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            //Resize DataGridView to full height.
-            int height = dataGridView1.Height;
-            dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
-
-            //Create a Bitmap and draw the DataGridView on it.
-            bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-            dataGridView1.DrawToBitmap(bitmap, new System.Drawing.Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
-            //Resize DataGridView back to original height.
-            dataGridView1.Height = height;
-
-            //Show the Print Preview Dialog.
             printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.PrintPreviewControl.Zoom = 1;
             printPreviewDialog1.ShowDialog();
-
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawImage(bitmap, 0, 0);
+            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330,10));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 50));
+            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 70));
+            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 70));
+            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 70));
+            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 70));
+            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 70));
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 90));
+            int yPos = 120;
+            for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
+            {
+                numberOfItemPerPage++;
+                if (numberOfItemPerPage <= 20)
+                {
+                    numberOfItemsPrintedSoFar++;
+                    if (numberOfItemsPrintedSoFar <= gridView.Count)
+                    {
+                        e.Graphics.DrawString(gridView[i].idHang, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, yPos));
+                        e.Graphics.DrawString(gridView[i].soLuong, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, yPos));
+                        e.Graphics.DrawString(gridView[i].kMai, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, yPos));
+                        e.Graphics.DrawString(gridView[i].giaNet, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos));
+                        e.Graphics.DrawString(gridView[i].tienHang, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos));
+                        yPos += 30;
+                    }
+                    else
+                    {
+                        e.HasMorePages = false;
+                    }
+                    
+                }
+                else
+                {
+                    numberOfItemPerPage = 0;
+                    e.HasMorePages = true;
+                    return;
+                }
+            }
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+              new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, yPos+20));
+            e.Graphics.DrawString("Tổng tiền hàng :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 50));
+            e.Graphics.DrawString(string.Format("{0:n0}", Sum),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 50));
+
+            e.Graphics.DrawString("Đã thanh toán :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 80));
+            e.Graphics.DrawString(string.Format("{0:n0}", daThanhToan),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 80));
+
+            e.Graphics.DrawString("Còn nợ :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 110));
+            e.Graphics.DrawString(string.Format("{0:n0}", NoConLai),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 110));
+            numberOfItemPerPage = 0;
+            numberOfItemsPrintedSoFar = 0;
+        }
+
+        private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+           
         }
 
 
