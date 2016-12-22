@@ -511,7 +511,19 @@ namespace PhanMem
             {
                 banhang_id = 1;
             }
-            
+
+            String addQlyNo = "INSERT quanlyno(id_don,customer,total,payment,debt,date,type,tongno) VALUES(@id_don,@customer,@total,@payment,@debt,@date,@type,@tongno)";
+            var cmdqly = new SqlCommand(addQlyNo, con);
+
+            cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
+            cmdqly.Parameters.AddWithValue("@customer", customer);
+            cmdqly.Parameters.AddWithValue("@total", Sum);
+            cmdqly.Parameters.AddWithValue("@payment", payment);
+            cmdqly.Parameters.AddWithValue("@debt", no);
+            cmdqly.Parameters.AddWithValue("@date", d1);
+            cmdqly.Parameters.AddWithValue("@type", 2);
+            cmdqly.Parameters.AddWithValue("@tongno", no);
+            cmdqly.ExecuteNonQuery();
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {

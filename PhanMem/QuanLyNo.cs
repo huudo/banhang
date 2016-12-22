@@ -30,7 +30,6 @@ namespace PhanMem
         void showData(List<kHang> spList)
         {
             
-            SumNo = 0;
             for (int i = 0; i < spList.Count; i++)
             {
                 string firstColumn = "";
@@ -45,7 +44,7 @@ namespace PhanMem
 
 
                 // Tinh tong no
-                SqlCommand cmdTo = new SqlCommand("SELECT SUM(no) as tongno FROM banhang WHERE customer= N'" + name + "' and no > 0 ", con);
+                SqlCommand cmdTo = new SqlCommand("SELECT SUM(tongno) as tongno FROM quanlyno WHERE type =2  AND customer= N'" + name + "' AND tongno > 0 ", con);
                 SqlDataReader readTo = cmdTo.ExecuteReader();
                 double checkNo = 0;
                 while (readTo.Read())

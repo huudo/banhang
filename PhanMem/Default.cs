@@ -53,7 +53,7 @@ namespace PhanMem
 
         private void btnSanLuong_Click(object sender, EventArgs e)
         {
-            BaoCao bc = new BaoCao();
+            BaoCaoSanLuong bc = new BaoCaoSanLuong();
             bc.Show();
         }
 
@@ -101,9 +101,6 @@ namespace PhanMem
             NhapHang nh = new NhapHang();
             nh.Show();
         }
-
-
-
         private void panel1_MouseHover(object sender, EventArgs e)
         {
             panel1.BackColor = Color.Aqua;
@@ -138,7 +135,10 @@ namespace PhanMem
             kh.Show();
         }
 
-
-        
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            BaoCao frame = new BaoCao();
+            frame.Show();
+        }
     }
 }

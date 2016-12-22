@@ -36,7 +36,6 @@ D:\PM\banhang\PhanMem\bin\Debug\PhanMem.exe
 D:\PM\banhang\PhanMem\bin\Debug\PhanMem.pdb
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.csprojResolveAssemblyReference.cache
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BanHang.resources
-D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BaoCao.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BCLoiNhuan.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.Default.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.Welcome.resources
@@ -81,3 +80,7 @@ D:\banhang\PhanMem\obj\Debug\PhanMem.BangGia.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.BanHang2.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.NhapHang2.resources
 D:\banhang\PhanMem\obj\Debug\PhanMem.SanPham2.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BaoCaoSanLuong.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BaoCao.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BCTaiChinh.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.Payment.resources

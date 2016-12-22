@@ -111,11 +111,23 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCaoSanLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCaoSanLuong.Designer.cs">
+      <DependentUpon>BaoCaoSanLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCLoiNhuan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BCLoiNhuan.Designer.cs">
       <DependentUpon>BCLoiNhuan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCTaiChinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BCTaiChinh.Designer.cs">
+      <DependentUpon>BCTaiChinh.cs</DependentUpon>
     </Compile>
     <Compile Include="Default.cs">
       <SubType>Form</SubType>
@@ -134,6 +146,12 @@
     </Compile>
     <Compile Include="NhapHang.Designer.cs">
       <DependentUpon>NhapHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment.Designer.cs">
+      <DependentUpon>Payment.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyNo.cs">
       <SubType>Form</SubType>
@@ -177,8 +195,14 @@
     <EmbeddedResource Include="BaoCao.resx">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCaoSanLuong.resx">
+      <DependentUpon>BaoCaoSanLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BCLoiNhuan.resx">
       <DependentUpon>BCLoiNhuan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCTaiChinh.resx">
+      <DependentUpon>BCTaiChinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Default.resx">
       <DependentUpon>Default.cs</DependentUpon>
@@ -188,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NhapHang.resx">
       <DependentUpon>NhapHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Payment.resx">
+      <DependentUpon>Payment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyNo.resx">
       <DependentUpon>QuanLyNo.cs</DependentUpon>

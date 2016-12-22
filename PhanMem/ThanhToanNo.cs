@@ -16,11 +16,7 @@ namespace PhanMem
     {
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         string customerName = "";
-        int id_don = 0;
-        double tongTienHang = 0;
-        double daTra = 0;
-        double conNo = 0;
-        double traThem = 0;
+
         public ThanhToanNo(string name)
         {
             InitializeComponent();
@@ -35,7 +31,6 @@ namespace PhanMem
         void ShowData()
         {
             dataGridView1.Rows.Clear();
-            txtPayment.Enabled = false;
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
@@ -48,21 +43,23 @@ namespace PhanMem
             string threeColumn = "";
             string fourColumn = "";
             string fiveColum = "";
+            string sixColum = "";
             // Tinh tong no
-            SqlCommand cmdTo = new SqlCommand("SELECT *  FROM banhang WHERE customer= N'" + customerName + "' and no > 0 ", con);
+            SqlCommand cmdTo = new SqlCommand("SELECT *  FROM quanlyno WHERE type = 2 AND customer= N'" + customerName + "' and tongno > 0 ", con);
             SqlDataReader readTo = cmdTo.ExecuteReader();
 
             while (readTo.Read())
             {
-                firstColumn = readTo["id"].ToString();
-                secondColumn = readTo["date"].ToString();
-                threeColumn = string.Format("{0:n0}", readTo["sum"]);
-                fourColumn = string.Format("{0:n0}", readTo["pay"]);
-                fiveColum = string.Format("{0:n0}", readTo["no"]);
-                sumNo += double.Parse(readTo["sum"].ToString());
-                payment += double.Parse(readTo["pay"].ToString());
-                conLai += double.Parse(readTo["no"].ToString());
-                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColum };
+                firstColumn = readTo["id_No"].ToString();
+                secondColumn = readTo["id_don"].ToString();
+                threeColumn = readTo["date"].ToString();
+                fourColumn = string.Format("{0:n0}", readTo["total"]);
+                fiveColum = string.Format("{0:n0}", readTo["payment"]);
+                sixColum = string.Format("{0:n0}", readTo["debt"]);
+                sumNo += double.Parse(readTo["total"].ToString());
+                payment += double.Parse(readTo["payment"].ToString());
+                conLai += double.Parse(readTo["debt"].ToString());
+                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColum,sixColum };
                 dataGridView1.Rows.Add(row);
             }
             readTo.Close();
@@ -80,17 +77,36 @@ namespace PhanMem
         {
             try
             {
-                traThem = 0;
-                txtPayment.Text = "0";
-                txtPayment.Enabled = true;
-                txtThanhToan.Visible = false;
-                id_don = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                lblSumNo.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-                tongTienHang = double.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
-                lblDaTra.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-                daTra = double.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
-                lblConNo.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
-                conNo = double.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                //traThem = 0;
+                //txtPayment.Text = "0";
+                //txtPayment.Enabled = true;
+                //txtThanhToan.Visible = false;
+                //id_don = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                //lblSumNo.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+                //tongTienHang = double.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+                //lblDaTra.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+                //daTra = double.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                //lblConNo.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
+                //conNo = double.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                
+                string id_maNo = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                string id_donHang = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                string total = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+                string debt = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
+                Payment frm = new Payment(id_maNo, id_donHang, customerName, total, debt);
+                frm.ShowDialog();
+                //WHEN SHOWDIALOG() END
+                frm.Dispose();
+                //dataGridView1.Rows.Clear();
+                //if (con.State != ConnectionState.Open)
+                //{
+                //    con.Open();
+                //}
+                //showData(saveList);
+                //if (con.State == ConnectionState.Open)
+                //{
+                //    con.Close();
+                //}
             }
             catch
             {
@@ -102,42 +118,6 @@ namespace PhanMem
         {
 
         }
-
-        private void txtThanhToan_Click(object sender, EventArgs e)
-        {
-            if (con.State != ConnectionState.Open)
-            {
-                con.Open();
-            }
-            double thanhtoan = daTra + traThem;
-            var query = "UPDATE banhang SET sum= '" + tongTienHang + "',pay = '" + thanhtoan + "',no = '" + conNo + "' WHERE id = '" + id_don + "' ";
-            var cmd = new SqlCommand(query, con);
-            //cmd.Parameters.AddWithValue("@ma", 5);
-            //cmd.Parameters.AddWithValue("@tongNo", tongNo);
-            //cmd.Parameters.AddWithValue("@payment", (daTra+traThem));
-            //cmd.Parameters.AddWithValue("@conLai", conNo);
-            //cmd.Parameters.AddWithValue("@id", id_don);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Update thành công! ");
-            if (con.State == ConnectionState.Open)
-            {
-                con.Close();
-            }
-            ShowData();
-            txtThanhToan.Visible = false;
-            txtPayment.Clear();
-        }
-
-        private void txtPayment_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtThanhToan.Visible = true;
-                traThem = double.Parse(txtPayment.Text);
-                conNo = tongTienHang - traThem - daTra;
-                lblConNo.Text = string.Format("{0:n0}", conNo);
-                
-            }
-        }  
+       
     }
 }

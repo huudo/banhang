@@ -34,7 +34,7 @@ namespace PhanMem
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPass.Text) || string.IsNullOrEmpty(txtRePass.Text) || string.IsNullOrEmpty(txtUserName.Text))
+            if (string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtPass.Text) || string.IsNullOrEmpty(txtRePass.Text) || string.IsNullOrEmpty(txtUserName.Text) || string.IsNullOrEmpty(txtNameStore.Text))
             {
                 MessageBox.Show("Thiếu thông tin tài khoản. Nhập lại!");
             }
@@ -50,13 +50,14 @@ namespace PhanMem
                     {
                         con.Open();
                     }                    
-                    var query = "INSERT INTO account (email,username,password)" +
-                    "VALUES(@email,@username,@password)";
+                    var query = "INSERT INTO account (email,username,password,name)" +
+                    "VALUES(@email,@username,@password,@name)";
                     var cmd = new SqlCommand(query, con);
                     //cmd.Parameters.AddWithValue("@ma", 5);
                     cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                     cmd.Parameters.AddWithValue("@password", txtPass.Text);
                     cmd.Parameters.AddWithValue("@username", txtUserName.Text);
+                    cmd.Parameters.AddWithValue("@name", txtNameStore.Text);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Thêm thành công! ");
                     if (con.State == ConnectionState.Open)

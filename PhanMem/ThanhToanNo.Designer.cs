@@ -32,15 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.payment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtThanhToan = new System.Windows.Forms.Button();
-            this.txtPayment = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblConNo = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblDaTra = new System.Windows.Forms.Label();
@@ -49,6 +41,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblKhachHang = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.idNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -85,6 +83,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idNo,
             this.id,
             this.date,
             this.sum,
@@ -98,37 +97,8 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.id.HeaderText = "Mã hóa đơn";
-            this.id.Name = "id";
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Ngày mua";
-            this.date.Name = "date";
-            // 
-            // sum
-            // 
-            this.sum.HeaderText = "Tổng tiền hàng";
-            this.sum.Name = "sum";
-            // 
-            // payment
-            // 
-            this.payment.HeaderText = "Đã thanh toán";
-            this.payment.Name = "payment";
-            // 
-            // no
-            // 
-            this.no.HeaderText = "Còn Nợ";
-            this.no.Name = "no";
-            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtThanhToan);
-            this.panel1.Controls.Add(this.txtPayment);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblConNo);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblDaTra);
@@ -143,43 +113,12 @@
             this.panel1.Size = new System.Drawing.Size(954, 162);
             this.panel1.TabIndex = 0;
             // 
-            // txtThanhToan
-            // 
-            this.txtThanhToan.Location = new System.Drawing.Point(856, 119);
-            this.txtThanhToan.Name = "txtThanhToan";
-            this.txtThanhToan.Size = new System.Drawing.Size(89, 33);
-            this.txtThanhToan.TabIndex = 12;
-            this.txtThanhToan.Text = "Thanh Toán";
-            this.txtThanhToan.UseVisualStyleBackColor = true;
-            this.txtThanhToan.Visible = false;
-            this.txtThanhToan.Click += new System.EventHandler(this.txtThanhToan_Click);
-            // 
-            // txtPayment
-            // 
-            this.txtPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPayment.Location = new System.Drawing.Point(433, 126);
-            this.txtPayment.Name = "txtPayment";
-            this.txtPayment.Size = new System.Drawing.Size(135, 26);
-            this.txtPayment.TabIndex = 11;
-            this.txtPayment.TextChanged += new System.EventHandler(this.txtPayment_TextChanged);
-            this.txtPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPayment_KeyDown);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label5.Location = new System.Drawing.Point(299, 129);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 19);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Thanh toán thêm:";
-            // 
             // lblConNo
             // 
             this.lblConNo.AutoSize = true;
             this.lblConNo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblConNo.ForeColor = System.Drawing.Color.Crimson;
-            this.lblConNo.Location = new System.Drawing.Point(732, 130);
+            this.lblConNo.Location = new System.Drawing.Point(736, 94);
             this.lblConNo.Name = "lblConNo";
             this.lblConNo.Size = new System.Drawing.Size(17, 19);
             this.lblConNo.TabIndex = 9;
@@ -189,7 +128,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label6.Location = new System.Drawing.Point(610, 130);
+            this.label6.Location = new System.Drawing.Point(614, 94);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(99, 19);
             this.label6.TabIndex = 8;
@@ -256,6 +195,38 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Khách Hàng :";
             // 
+            // idNo
+            // 
+            this.idNo.FillWeight = 50F;
+            this.idNo.HeaderText = "Mã nợ";
+            this.idNo.Name = "idNo";
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.id.HeaderText = "Mã hóa đơn";
+            this.id.Name = "id";
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Ngày mua";
+            this.date.Name = "date";
+            // 
+            // sum
+            // 
+            this.sum.HeaderText = "Tổng tiền hàng";
+            this.sum.Name = "sum";
+            // 
+            // payment
+            // 
+            this.payment.HeaderText = "Đã thanh toán";
+            this.payment.Name = "payment";
+            // 
+            // no
+            // 
+            this.no.HeaderText = "Còn Nợ";
+            this.no.Name = "no";
+            // 
             // ThanhToanNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,8 +252,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtPayment;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblConNo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblDaTra;
@@ -291,11 +260,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblKhachHang;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn sum;
         private System.Windows.Forms.DataGridViewTextBoxColumn payment;
         private System.Windows.Forms.DataGridViewTextBoxColumn no;
-        private System.Windows.Forms.Button txtThanhToan;
     }
 }

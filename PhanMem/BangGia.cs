@@ -72,18 +72,7 @@ namespace PhanMem
                 con.Open();
             }
 
-            SqlCommand cmd = new SqlCommand();
-            String query = "select max(id) from banggia";
-            cmd.Connection = con;
-            cmd.CommandText = query;
-            try
-            {
-                id_bangGia = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
-            }
-            catch (Exception ex)
-            {
-                id_bangGia = 1;
-            }
+           
             String querryAdd = "INSERT INTO banggia(name,date,status) VALUES(@name,@date,@status)";
             var cmdAdd = new SqlCommand(querryAdd, con);
             string nameBangGia = txtName.Text;
@@ -91,6 +80,18 @@ namespace PhanMem
             cmdAdd.Parameters.AddWithValue("@date", dateNow);
             cmdAdd.Parameters.AddWithValue("@status", 0);
             cmdAdd.ExecuteNonQuery();
+            SqlCommand cmd = new SqlCommand();
+            String query = "select max(id) from banggia";
+            cmd.Connection = con;
+            cmd.CommandText = query;
+            try
+            {
+                id_bangGia = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                id_bangGia = 1;
+            }
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
                 var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia)" +

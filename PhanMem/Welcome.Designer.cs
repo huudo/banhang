@@ -36,33 +36,34 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtNameStore = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtEmail.Location = new System.Drawing.Point(468, 155);
+            this.txtEmail.Location = new System.Drawing.Point(468, 180);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(248, 26);
-            this.txtEmail.TabIndex = 0;
+            this.txtEmail.TabIndex = 1;
             // 
             // txtPass
             // 
             this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPass.Location = new System.Drawing.Point(468, 238);
+            this.txtPass.Location = new System.Drawing.Point(468, 257);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(248, 26);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 3;
             // 
             // txtRePass
             // 
             this.txtRePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtRePass.Location = new System.Drawing.Point(468, 281);
+            this.txtRePass.Location = new System.Drawing.Point(468, 297);
             this.txtRePass.Name = "txtRePass";
             this.txtRePass.PasswordChar = '*';
             this.txtRePass.Size = new System.Drawing.Size(248, 26);
-            this.txtRePass.TabIndex = 2;
+            this.txtRePass.TabIndex = 4;
             // 
             // button2
             // 
@@ -87,9 +88,9 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(603, 334);
+            this.btnLogin.Location = new System.Drawing.Point(614, 347);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(113, 43);
+            this.btnLogin.Size = new System.Drawing.Size(102, 34);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "ĐĂNG KÝ";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -98,10 +99,18 @@
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtUserName.Location = new System.Drawing.Point(468, 197);
+            this.txtUserName.Location = new System.Drawing.Point(468, 219);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(248, 26);
-            this.txtUserName.TabIndex = 6;
+            this.txtUserName.TabIndex = 2;
+            // 
+            // txtNameStore
+            // 
+            this.txtNameStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtNameStore.Location = new System.Drawing.Point(468, 142);
+            this.txtNameStore.Name = "txtNameStore";
+            this.txtNameStore.Size = new System.Drawing.Size(248, 26);
+            this.txtNameStore.TabIndex = 0;
             // 
             // Welcome
             // 
@@ -110,6 +119,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(801, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.txtNameStore);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.button2);
@@ -134,6 +144,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtNameStore;
 
 
 

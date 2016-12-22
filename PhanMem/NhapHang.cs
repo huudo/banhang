@@ -462,22 +462,14 @@ namespace PhanMem
 
             // MessageBox.Show(d1.ToString());
             int nhaphang_id = 0;
-            con.Open();
-            SqlCommand cmd = new SqlCommand();
-            String query = "select max(id) from nhaphang";
-            cmd.Connection = con;
-            cmd.CommandText = query;
-            try
-            {
-                nhaphang_id = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
-
-            }
-            catch (Exception ex)
-            {
-                nhaphang_id = 1;
-            }
+           
             double payment = double.Parse(txtPay.Text);
             double no = double.Parse(txtNo.Text);
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            
             String querryAdd = "INSERT INTO nhaphang(sum,pay,no,date) VALUES(@sum,@pay,@no,@date)";
             var cmdAdd = new SqlCommand(querryAdd, con);
 
@@ -486,6 +478,31 @@ namespace PhanMem
             cmdAdd.Parameters.AddWithValue("@no", no);
             cmdAdd.Parameters.AddWithValue("@date", d1);
             cmdAdd.ExecuteNonQuery();
+            
+            SqlCommand cmd = new SqlCommand();
+            String query = "select max(id) from nhaphang";
+            cmd.Connection = con;
+            cmd.CommandText = query;
+            try
+            {
+                nhaphang_id = Convert.ToInt32(cmd.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                nhaphang_id = 1;
+            }
+            String addQlyNo = "INSERT quanlyno(id_don,total,payment,debt,date,type,tongno) VALUES(@id_don,@total,@payment,@debt,@date,@type,@tongno)";
+            var cmdqly = new SqlCommand(addQlyNo, con);
+
+            cmdqly.Parameters.AddWithValue("@id_don", nhaphang_id);
+            cmdqly.Parameters.AddWithValue("@total", Sum);
+            cmdqly.Parameters.AddWithValue("@payment", payment);
+            cmdqly.Parameters.AddWithValue("@debt", no);
+            cmdqly.Parameters.AddWithValue("@date", d1);
+            cmdqly.Parameters.AddWithValue("@type", 1);
+            cmdqly.Parameters.AddWithValue("@tongno", no);
+            cmdqly.ExecuteNonQuery();
 
             for (int i = 0; i < dataGridView1.Rows.Count ; i++)
             {
