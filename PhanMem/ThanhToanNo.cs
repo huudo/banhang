@@ -54,11 +54,11 @@ namespace PhanMem
                 secondColumn = readTo["id_don"].ToString();
                 threeColumn = readTo["date"].ToString();
                 fourColumn = string.Format("{0:n0}", readTo["total"]);
-                fiveColum = string.Format("{0:n0}", readTo["payment"]);
-                sixColum = string.Format("{0:n0}", readTo["debt"]);
+                fiveColum = string.Format("{0:n0}", readTo["tongtra"]);
+                sixColum = string.Format("{0:n0}", readTo["tongno"]);
                 sumNo += double.Parse(readTo["total"].ToString());
-                payment += double.Parse(readTo["payment"].ToString());
-                conLai += double.Parse(readTo["debt"].ToString());
+                payment += double.Parse(readTo["tongtra"].ToString());
+                conLai += double.Parse(readTo["tongno"].ToString());
                 string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColum,sixColum };
                 dataGridView1.Rows.Add(row);
             }
@@ -97,16 +97,16 @@ namespace PhanMem
                 frm.ShowDialog();
                 //WHEN SHOWDIALOG() END
                 frm.Dispose();
-                //dataGridView1.Rows.Clear();
-                //if (con.State != ConnectionState.Open)
-                //{
-                //    con.Open();
-                //}
-                //showData(saveList);
-                //if (con.State == ConnectionState.Open)
-                //{
-                //    con.Close();
-                //}
+                dataGridView1.Rows.Clear();
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+                ShowData();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
             catch
             {

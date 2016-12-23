@@ -29,7 +29,7 @@ namespace PhanMem
 
         void showData(List<kHang> spList)
         {
-            
+            SumNo = 0;
             for (int i = 0; i < spList.Count; i++)
             {
                 string firstColumn = "";

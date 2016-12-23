@@ -25,8 +25,7 @@ namespace PhanMem
         {
             InitializeComponent();
         }
-        System.IO.StreamReader fileToPrint ;
-        System.Drawing.Font printFont = new System.Drawing.Font("Arial", 10);
+       
         Boolean check = false;
         double giaDo = 0;
         double Sum = 0;
@@ -285,16 +284,6 @@ namespace PhanMem
 
             objexcelapp.ActiveWorkbook.Saved = true;
             MessageBox.Show(root + @"\" + filename);
-            // PRINT3
-
-            fileToPrint = new System.IO.StreamReader(root + @"\" + filename);
-            
-
-            PrintDocument printDocument1 = new PrintDocument();
-            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
-            printDocument1.Print();
-            fileToPrint.Close();
-            // PRINT
 
             // SEND MAIL
             

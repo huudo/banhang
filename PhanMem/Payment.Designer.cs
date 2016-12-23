@@ -31,24 +31,29 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Payment));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCustomer = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbldonHang = new System.Windows.Forms.Label();
+            this.lblDebt = new System.Windows.Forms.Label();
+            this.btnPayment = new System.Windows.Forms.Button();
+            this.txtPayment = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPayment = new System.Windows.Forms.TextBox();
-            this.btnPayment = new System.Windows.Forms.Button();
-            this.lblDebt = new System.Windows.Forms.Label();
+            this.lbldonHang = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblCustomer = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.payCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.debtCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.btnExcel = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -74,6 +79,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnExcel);
             this.panel1.Controls.Add(this.lblDebt);
             this.panel1.Controls.Add(this.btnPayment);
             this.panel1.Controls.Add(this.txtPayment);
@@ -91,58 +98,62 @@
             this.panel1.Size = new System.Drawing.Size(855, 189);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // lblDebt
             // 
-            this.panel2.Controls.Add(this.tableLayoutPanel2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 198);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(855, 287);
-            this.panel2.TabIndex = 1;
+            this.lblDebt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDebt.AutoSize = true;
+            this.lblDebt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblDebt.Location = new System.Drawing.Point(646, 67);
+            this.lblDebt.Name = "lblDebt";
+            this.lblDebt.Size = new System.Drawing.Size(68, 18);
+            this.lblDebt.TabIndex = 10;
+            this.lblDebt.Text = "Còn Nợ :";
+            this.lblDebt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // btnPayment
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(29, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Khách hàng :";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPayment.Location = new System.Drawing.Point(732, 136);
+            this.btnPayment.Name = "btnPayment";
+            this.btnPayment.Size = new System.Drawing.Size(100, 30);
+            this.btnPayment.TabIndex = 9;
+            this.btnPayment.Text = "THANH TOÁN";
+            this.btnPayment.UseVisualStyleBackColor = true;
+            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
-            // lblCustomer
+            // txtPayment
             // 
-            this.lblCustomer.AutoSize = true;
-            this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblCustomer.Location = new System.Drawing.Point(145, 38);
-            this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(66, 18);
-            this.lblCustomer.TabIndex = 1;
-            this.lblCustomer.Text = "Mã đơn :";
-            this.lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtPayment.Location = new System.Drawing.Point(649, 102);
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.Size = new System.Drawing.Size(183, 24);
+            this.txtPayment.TabIndex = 8;
+            this.txtPayment.TextChanged += new System.EventHandler(this.txtPayment_TextChanged);
             // 
-            // label3
+            // label8
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.Location = new System.Drawing.Point(29, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mã đơn :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.Location = new System.Drawing.Point(483, 67);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 18);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Còn Nợ :";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbldonHang
+            // label7
             // 
-            this.lbldonHang.AutoSize = true;
-            this.lbldonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbldonHang.Location = new System.Drawing.Point(145, 77);
-            this.lbldonHang.Name = "lbldonHang";
-            this.lbldonHang.Size = new System.Drawing.Size(66, 18);
-            this.lbldonHang.TabIndex = 3;
-            this.lbldonHang.Text = "Mã đơn :";
-            this.lbldonHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.Location = new System.Drawing.Point(483, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 18);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Thanh toán thêm :";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblTotal
             // 
@@ -169,62 +180,58 @@
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // label7
+            // lbldonHang
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label7.Location = new System.Drawing.Point(483, 103);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 18);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Thanh toán thêm :";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbldonHang.AutoSize = true;
+            this.lbldonHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbldonHang.Location = new System.Drawing.Point(145, 77);
+            this.lbldonHang.Name = "lbldonHang";
+            this.lbldonHang.Size = new System.Drawing.Size(66, 18);
+            this.lbldonHang.TabIndex = 3;
+            this.lbldonHang.Text = "Mã đơn :";
+            this.lbldonHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label8
+            // label3
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(483, 67);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 18);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Còn Nợ :";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label3.Location = new System.Drawing.Point(29, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Mã đơn :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPayment
+            // lblCustomer
             // 
-            this.txtPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPayment.Location = new System.Drawing.Point(649, 102);
-            this.txtPayment.Name = "txtPayment";
-            this.txtPayment.Size = new System.Drawing.Size(183, 24);
-            this.txtPayment.TabIndex = 8;
-            this.txtPayment.TextChanged += new System.EventHandler(this.txtPayment_TextChanged);
+            this.lblCustomer.AutoSize = true;
+            this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblCustomer.Location = new System.Drawing.Point(145, 38);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(66, 18);
+            this.lblCustomer.TabIndex = 1;
+            this.lblCustomer.Text = "Mã đơn :";
+            this.lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnPayment
+            // label1
             // 
-            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPayment.Location = new System.Drawing.Point(732, 136);
-            this.btnPayment.Name = "btnPayment";
-            this.btnPayment.Size = new System.Drawing.Size(100, 30);
-            this.btnPayment.TabIndex = 9;
-            this.btnPayment.Text = "THANH TOÁN";
-            this.btnPayment.UseVisualStyleBackColor = true;
-            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(29, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Khách hàng :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblDebt
+            // panel2
             // 
-            this.lblDebt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDebt.AutoSize = true;
-            this.lblDebt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblDebt.Location = new System.Drawing.Point(646, 67);
-            this.lblDebt.Name = "lblDebt";
-            this.lblDebt.Size = new System.Drawing.Size(68, 18);
-            this.lblDebt.TabIndex = 10;
-            this.lblDebt.Text = "Còn Nợ :";
-            this.lblDebt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.panel2.Controls.Add(this.tableLayoutPanel2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 198);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(855, 287);
+            this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -279,6 +286,43 @@
             this.debtCol.HeaderText = "Còn nợ";
             this.debtCol.Name = "debtCol";
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Location = new System.Drawing.Point(20, 163);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(75, 23);
+            this.btnExcel.TabIndex = 11;
+            this.btnExcel.Text = "Xuất Excel";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(111, 163);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Print";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
             // Payment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,5 +366,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn payCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn debtCol;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnExcel;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
