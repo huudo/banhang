@@ -53,8 +53,7 @@ namespace PhanMem
             check = false;
         }
         void ResetData()
-        {
-            
+        {            
             dataGridView1.Rows.Clear();
             giaDo = 0;
             Sum = 0;

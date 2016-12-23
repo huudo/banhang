@@ -58,7 +58,7 @@ namespace PhanMem
             string firstColumn = "";
             string secondColumn = "";
             string threeColumn = "";
-            SqlCommand cmdFirst = new SqlCommand("SELECT *  FROM quanlyno WHERE id_No = '" + id_maNo + "' ", con);
+            SqlCommand cmdFirst = new SqlCommand("SELECT *  FROM quanlyno WHERE id_No = '" + id_maNo + "'", con);
             SqlDataReader readFirst = cmdFirst.ExecuteReader();
 
             while (readFirst.Read())
@@ -162,15 +162,16 @@ namespace PhanMem
             e.Graphics.DrawString("PHIẾU GHI CÔNG NỢ", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 10));
             e.Graphics.DrawString("Khách hàng: " + customer_name, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 30));
             e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
+            e.Graphics.DrawString("Tổng tiền hàng: " + total, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 60));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 50));
-            e.Graphics.DrawString("Thời gian ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 80));
-            e.Graphics.DrawString("Thanh toán", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(400, 80));
-            e.Graphics.DrawString("Còn nợ ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 80));
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 80));
+            e.Graphics.DrawString("Thời gian ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 110));
+            e.Graphics.DrawString("Thanh toán", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(400, 110));
+            e.Graphics.DrawString("Còn nợ ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 110));
            
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 100));
-            int yPos = 130;
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 130));
+            int yPos = 160;
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;

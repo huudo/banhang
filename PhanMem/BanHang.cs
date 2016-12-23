@@ -27,12 +27,25 @@ namespace PhanMem
         double giaban3 = 0;
         double giaban4 = 0;
         double totalPay = 0;
+        double NoConLai = 0;
+        double tongTienTra = 0;
         double Sum = 0;
         int quyCach = 0;
         string donviTinh = "";
         string emailNhan = "";
         int id_bangGia = 0;
         List<double> LoiNhuan = new List<double>();
+        public class ListItem
+        {
+            public string idHang { get; set; }
+            public string soLuong { get; set; }
+            public string kMai { get; set; }
+            public string donGia { get; set; }
+            public string tienHang { get; set; }
+        }
+        List<ListItem> gridView = new List<ListItem>();
+        private int numberOfItemPerPage = 0;
+        private int numberOfItemsPrintedSoFar = 0;
         public BanHang()
         {
             InitializeComponent();
@@ -67,6 +80,8 @@ namespace PhanMem
             donviTinh = "";
             emailNhan = "";
             Sum = 0;
+            NoConLai = 0;
+            giaLuaChon = 0;
             LoiNhuan.Clear();
             panel4.Visible = false;
             dataGridView1.Rows.Clear();
@@ -95,7 +110,7 @@ namespace PhanMem
                 soLuong = Int32.Parse(txtSoLuong.Text);
             }
 
-            giaBanRa = giaLuaChon * (100 - ck1) / 100 - (ck2 - ck3)*quyCach;
+            giaBanRa = giaLuaChon * (100 - ck1) / 100 - (ck2 + ck3)*quyCach;
             txtGiaBan.Text = string.Format("{0:n0}", giaBanRa);
             totalPay = giaBanRa * soLuong;
             txtTotal.Text = string.Format("{0:n0}", totalPay);
@@ -240,14 +255,16 @@ namespace PhanMem
                     {
                         giaban1 = giaNet + 5000;
                     }
+
                     if (dr["giaban2"].ToString() != "")
                     {
-                        giaban1 = double.Parse(dr["giaban2"].ToString());
+                        giaban2 = double.Parse(dr["giaban2"].ToString());
                     }
                     else
                     {
                         giaban2 = giaNet + 10000;
                     }
+
                     if (dr["giaban3"].ToString() != "")
                     {
                         giaban3 = double.Parse(dr["giaban3"].ToString());
@@ -256,6 +273,7 @@ namespace PhanMem
                     {
                         giaban3 = giaNet + 15000;
                     }
+
                     if (dr["giaban4"].ToString() != "")
                     {
                         giaban4 = double.Parse(dr["giaban4"].ToString());
@@ -469,12 +487,14 @@ namespace PhanMem
             if (!string.IsNullOrEmpty(txtPay.Text))
             {
                 payment = double.Parse(txtPay.Text);
+                tongTienTra = payment;
             }
             else
             {
                 button1.Visible = false;
             }
 
+            NoConLai = Sum - payment;
             txtNo.Text = string.Format("{0:n0}", (Sum - payment));
         }
 
@@ -550,6 +570,227 @@ namespace PhanMem
             clearText();
             txtMa.Clear();
             button1.Visible = false;
+        }
+
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Exel WorkBook|*", ValidateNames = true })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    dataGridView1.Rows.Clear();
+                    LoiNhuan.Clear();
+                    gridView.Clear();
+                    if (con.State != ConnectionState.Open)
+                    {
+                        con.Open();
+                    }
+                    Sum = 0;
+                    FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
+                    Excel.IExcelDataReader reader = Excel.ExcelReaderFactory.CreateOpenXmlReader(fs);
+                    reader.IsFirstRowAsColumnNames = true;
+                    DataSet result = reader.AsDataSet();
+                    //result.Fill(test);
+
+                    foreach (DataRow myDataRow in result.Tables[0].Rows)
+                    {
+                        string mHang = myDataRow[1].ToString();
+                        int khoiLuongLoad = 0;
+                        int soLuongLoad = 0;
+                        double ck1Load = 0;
+                        double ck2Load = 0;
+                        double ck3Load = 0;
+                        double giaBanCuoi = 0;
+                        double tienHangLoad = 0;
+                        double tienKMLoad = 0;
+                        double giaNetNhapLoad = 0;
+                        int typePrice = 1;
+                        double giaChon = 0;
+                        int TangBaoLoad = 0;
+                        if (myDataRow[2].ToString() != "")
+                        {
+                            soLuongLoad = Int32.Parse(myDataRow[2].ToString());
+                        }                     
+                        if (myDataRow[3].ToString() != "")
+                        {
+                            ck1Load = double.Parse(myDataRow[3].ToString());
+                        }
+                        if (myDataRow[4].ToString() != "")
+                        {
+                            ck2Load = double.Parse(myDataRow[4].ToString());
+                        }
+                        if (myDataRow[5].ToString() != "")
+                        {
+                            ck3Load = double.Parse(myDataRow[5].ToString());
+                        }
+                        if (myDataRow[7].ToString() != "")
+                        {
+                            TangBaoLoad = Int32.Parse(myDataRow[7].ToString());
+                        }
+                        if (myDataRow[6].ToString() != "")
+                        {
+                            typePrice = Int32.Parse(myDataRow[6].ToString());
+                        }
+                        string donviLoad = "";
+                        string firstColum = mHang;
+                        string secondColum = soLuongLoad.ToString();
+                        string threeColum = "";
+                        string fourColum = "";
+                        string fiveColum = "";
+                        string sixColum = "";
+
+                        SqlCommand cmd = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia = '" + id_bangGia + "' AND mahang = '" + mHang + "' ", con);
+                        SqlDataReader dr;
+                        dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            giaNetNhapLoad = double.Parse(dr["gianet"].ToString());
+                            khoiLuongLoad = Int32.Parse(dr["khoiluong"].ToString());
+                            donviLoad = dr["donvi"].ToString();
+                            switch (typePrice)
+                            {
+                                case 1: giaChon = double.Parse(dr["giaban1"].ToString());
+                                    break;
+                                case 2: giaChon = double.Parse(dr["giaban2"].ToString());
+                                    break;
+                                case 3: giaChon = double.Parse(dr["giaban3"].ToString());
+                                    break;
+                                case 4: giaChon = double.Parse(dr["giaban4"].ToString());
+                                    break;
+                            }
+                        }
+                        dr.Close();
+                        
+                        giaBanCuoi = giaChon *(100 - ck1Load)/100 - (ck2Load + ck3Load) * khoiLuongLoad;
+                        //Console.WriteLine(ck1Load.ToString()+"CK1" +ck2Load.ToString()+"CK2"+ ck3Load.ToString() + "GIA CHON");
+                        tienKMLoad = (giaChon - giaBanCuoi) * soLuongLoad;
+                        tienHangLoad = giaBanCuoi * soLuongLoad;
+                        double loinhuanBan = (giaBanCuoi - giaNetNhapLoad) * soLuongLoad;
+                        LoiNhuan.Add(loinhuanBan);
+                        Sum += tienHangLoad;
+                        NoConLai = Sum;
+                        threeColum = donviLoad.ToString();
+                        fourColum = string.Format("{0:n0}", tienKMLoad);
+                        fiveColum = string.Format("{0:n0}", giaBanCuoi);
+                        sixColum = string.Format("{0:n0}", tienHangLoad);
+                        string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum };
+                        gridView.Add(new ListItem()
+                        {
+                            idHang = firstColum,
+                            soLuong = secondColum,
+                            kMai = fourColum,
+                            donGia = fiveColum,
+                            tienHang = sixColum
+
+                        });
+                        dataGridView1.Rows.Add(rowAdd);
+                        if (TangBaoLoad != 0)
+                        {
+
+                            int tangbao = (soLuongLoad / TangBaoLoad);
+                            if (tangbao >= 1)
+                            {
+                                firstColum = mHang;
+                                secondColum = tangbao.ToString();
+                                threeColum = donviLoad.ToString();
+                                fourColum = "Tặng Bao";
+                                fiveColum = string.Format("{0:n0}", giaBanCuoi);
+                                sixColum = "0";
+                                LoiNhuan.Add(0);
+                                //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                                string[] rowAdd2 = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum };
+                                gridView.Add(new ListItem()
+                                {
+                                    idHang = firstColum,
+                                    soLuong = secondColum,
+                                    kMai = fourColum,
+                                    donGia = fiveColum,
+                                    tienHang = sixColum
+
+                                });
+                                dataGridView1.Rows.Add(rowAdd2);
+                            }
+
+                        }
+
+                    }
+                    txtSum.Text = string.Format("{0:n0}", Sum);
+                    reader.Close();
+                    if (con.State == ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 10));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 50));
+            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 80));
+            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 80));
+            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 80));
+            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 80));
+            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 80));
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 100));
+            int yPos = 130;
+            for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
+            {
+                numberOfItemPerPage++;
+                if (numberOfItemPerPage <= 20)
+                {
+                    numberOfItemsPrintedSoFar++;
+                    if (numberOfItemsPrintedSoFar <= gridView.Count)
+                    {
+                        e.Graphics.DrawString(gridView[i].idHang, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, yPos));
+                        e.Graphics.DrawString(gridView[i].soLuong, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, yPos));
+                        e.Graphics.DrawString(gridView[i].kMai, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, yPos));
+                        e.Graphics.DrawString(gridView[i].donGia, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos));
+                        e.Graphics.DrawString(gridView[i].tienHang, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos));
+                        yPos += 30;
+                    }
+                    else
+                    {
+                        e.HasMorePages = false;
+                    }
+
+                }
+                else
+                {
+                    numberOfItemPerPage = 0;
+                    e.HasMorePages = true;
+                    return;
+                }
+            }
+            e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
+              new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, yPos + 20));
+            e.Graphics.DrawString("Tổng tiền hàng :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 50));
+            e.Graphics.DrawString(string.Format("{0:n0}", Sum),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 50));
+
+            e.Graphics.DrawString("Đã thanh toán :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 80));
+            e.Graphics.DrawString(string.Format("{0:n0}", tongTienTra),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 80));
+
+            e.Graphics.DrawString("Còn nợ :",
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, yPos + 110));
+            e.Graphics.DrawString(string.Format("{0:n0}", NoConLai),
+             new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 110));
+            numberOfItemPerPage = 0;
+            numberOfItemsPrintedSoFar = 0;
         }
     }
 }

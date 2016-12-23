@@ -51,6 +51,12 @@
             this.label13 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.mahang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.donvi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kmai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSum = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -66,18 +72,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.txtNo = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnImportExcel = new System.Windows.Forms.Button();
             this.txtPay = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtKhuyenMai = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.mahang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.donvi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kmai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -320,6 +324,41 @@
             this.dataGridView1.Size = new System.Drawing.Size(1096, 271);
             this.dataGridView1.TabIndex = 87;
             // 
+            // mahang
+            // 
+            this.mahang.HeaderText = "Mã SP";
+            this.mahang.Name = "mahang";
+            // 
+            // soluong
+            // 
+            this.soluong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.soluong.HeaderText = "Số Lượng";
+            this.soluong.Name = "soluong";
+            // 
+            // donvi
+            // 
+            this.donvi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.donvi.HeaderText = "Đơn vị";
+            this.donvi.Name = "donvi";
+            // 
+            // kmai
+            // 
+            this.kmai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.kmai.HeaderText = "Khuyến mãi";
+            this.kmai.Name = "kmai";
+            // 
+            // dongia
+            // 
+            this.dongia.HeaderText = "Đơn giá";
+            this.dongia.Name = "dongia";
+            this.dongia.Width = 150;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Tiền Hàng ";
+            this.total.Name = "total";
+            this.total.Width = 140;
+            // 
             // txtSum
             // 
             this.txtSum.Enabled = false;
@@ -457,6 +496,8 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnPrint);
+            this.panel4.Controls.Add(this.btnImportExcel);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.txtNo);
             this.panel4.Controls.Add(this.txtPay);
@@ -469,7 +510,26 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1096, 99);
             this.panel4.TabIndex = 3;
-            this.panel4.Visible = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(126, 11);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 164;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnImportExcel
+            // 
+            this.btnImportExcel.Location = new System.Drawing.Point(16, 11);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(91, 23);
+            this.btnImportExcel.TabIndex = 163;
+            this.btnImportExcel.Text = "Nhập từ Excel";
+            this.btnImportExcel.UseVisualStyleBackColor = true;
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // txtPay
             // 
@@ -509,7 +569,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 305F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1096, 305);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -555,40 +615,19 @@
             this.label5.TabIndex = 158;
             this.label5.Text = "Tặng 1 khi mua :";
             // 
-            // mahang
+            // printDocument1
             // 
-            this.mahang.HeaderText = "Mã SP";
-            this.mahang.Name = "mahang";
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // soluong
+            // printPreviewDialog1
             // 
-            this.soluong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.soluong.HeaderText = "Số Lượng";
-            this.soluong.Name = "soluong";
-            // 
-            // donvi
-            // 
-            this.donvi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.donvi.HeaderText = "Đơn vị";
-            this.donvi.Name = "donvi";
-            // 
-            // kmai
-            // 
-            this.kmai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.kmai.HeaderText = "Khuyến mãi";
-            this.kmai.Name = "kmai";
-            // 
-            // dongia
-            // 
-            this.dongia.HeaderText = "Đơn giá";
-            this.dongia.Name = "dongia";
-            this.dongia.Width = 150;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Tiền Hàng ";
-            this.total.Name = "total";
-            this.total.Width = 140;
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // BanHang
             // 
@@ -666,5 +705,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn kmai;
         private System.Windows.Forms.DataGridViewTextBoxColumn dongia;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnImportExcel;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

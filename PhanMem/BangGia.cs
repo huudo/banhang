@@ -94,8 +94,48 @@ namespace PhanMem
             }
             for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
             {
-                var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia)" +
-               "VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia)";
+                double giabanRa1 = 0;
+                double giabanRa2 = 0;
+                double giabanRa3 = 0;
+                double giabanRa4 = 0;
+                if (dataGridView1.Rows[i].Cells[10].Value.ToString() == "")
+                {
+                    giabanRa1 = float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()) + 5000;
+                }
+                else
+                {
+                    giabanRa1 = float.Parse(dataGridView1.Rows[i].Cells[10].Value.ToString());
+                }
+
+                if (dataGridView1.Rows[i].Cells[11].Value.ToString() == "")
+                {
+                    giabanRa2 = float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()) + 10000;
+                }
+                else
+                {
+                    giabanRa2 = float.Parse(dataGridView1.Rows[i].Cells[11].Value.ToString());
+                }
+
+                if (dataGridView1.Rows[i].Cells[12].Value.ToString() == "")
+                {
+                    giabanRa3 = float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()) + 15000;
+                }
+                else
+                {
+                    giabanRa3 = float.Parse(dataGridView1.Rows[i].Cells[12].Value.ToString());
+                }
+
+                if (dataGridView1.Rows[i].Cells[13].Value.ToString() == "")
+                {
+                    giabanRa4 = float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()) + 20000;
+                }
+                else
+                {
+                    giabanRa4 = float.Parse(dataGridView1.Rows[i].Cells[13].Value.ToString());
+                }
+
+                var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia,giaban1,giaban2,giaban3,giaban4)" +
+               "VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia,@giaban1,@giaban2,@giaban3,@giaban4)";
                 var cmdRun = new SqlCommand(stringQr, con);
                 cmdRun.Parameters.AddWithValue("@mahang", dataGridView1.Rows[i].Cells[1].Value.ToString());
                 cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
@@ -128,6 +168,10 @@ namespace PhanMem
                 }
                 cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
                 cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
+                cmdRun.Parameters.AddWithValue("@giaban1", giabanRa1);
+                cmdRun.Parameters.AddWithValue("@giaban2", giabanRa2);
+                cmdRun.Parameters.AddWithValue("@giaban3", giabanRa3);
+                cmdRun.Parameters.AddWithValue("@giaban4", giabanRa4);
 
                 cmdRun.ExecuteNonQuery();
             }
