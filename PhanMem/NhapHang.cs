@@ -60,8 +60,6 @@ namespace PhanMem
             NoConLai = 0;
             daThanhToan = 0;
             type = "";
-            panel4.Visible = false;
-
         }
         public class ListItem
         {
@@ -319,83 +317,92 @@ namespace PhanMem
         {
             try
             {
-                panel4.Visible = true;
-                int ck1 = 0;
-                int ck2 = 0;
-                int ck3 = 0;
-                int soLuong = 0;
-                if (!string.IsNullOrEmpty(txtCK1.Text))
+                if (txtSoLuong.Text == "")
                 {
-                    ck1 = Int32.Parse(txtCK1.Text);
+                    MessageBox.Show("Nhập số lượng hàng!");
+                    txtSoLuong.Focus();
                 }
-                if (!string.IsNullOrEmpty(txtCK2.Text))
+                else
                 {
-                    ck2 = Int32.Parse(txtCK2.Text);
-                }
-                if (!string.IsNullOrEmpty(txtCK3.Text))
-                {
-                    ck3 = Int32.Parse(txtCK3.Text);
-                }
-                if (!string.IsNullOrEmpty(txtSoLuong.Text))
-                {
-                    soLuong = Int32.Parse(txtSoLuong.Text);
-                }
-                Sum += double.Parse(txtTotal.Text);
-                NoConLai = Sum;
-                int weight = Int32.Parse(txtKhoiLuong.Text);
-                double total = double.Parse(decimal.Parse(txtTotal.Text, NumberStyles.Currency).ToString());
-                double price = double.Parse(decimal.Parse(txtGiaDo.Text, NumberStyles.Currency).ToString());
-                double khuyenmai = price * soLuong - total;
-                string firstColum = txtMa.Text;
-                //string secondColum = txtName.Text;
-                string threeColum = txtSoLuong.Text;
-                string fourColum = type;
-                string fiveColum = khuyenmai.ToString();
-                string sixColum = txtGiaNetNhap.Text;
-                string sevenColum = txtTotal.Text;
-                //string[] row = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                gridView.Add(new ListItem()
-                {
-                    idHang = firstColum,
-                    soLuong = threeColum,
-                    kMai = fiveColum,
-                    giaNet = sixColum,
-                    tienHang = sevenColum
-
-                });
-                dataGridView1.Rows.Add(row);
-                
-                int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
-                if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
-                {
-                    kmBao = Int32.Parse(txtKhuyenMai.Text);
-                    int tangbao = (soLuong / kmBao);
-                    if (tangbao >= 1)
+                    panel4.Visible = true;
+                    int ck1 = 0;
+                    int ck2 = 0;
+                    int ck3 = 0;
+                    int soLuong = 0;
+                    if (!string.IsNullOrEmpty(txtCK1.Text))
                     {
-                        firstColum = txtMa.Text;
-                        //secondColum = txtName.Text;
-                        threeColum = tangbao.ToString();
-                        fourColum = type;
-                        fiveColum = "Tặng Bao";
-                        sixColum = txtGiaNetNhap.Text;
-                        sevenColum = "0";
-                        //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                        string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                        gridView.Add(new ListItem()
-                        {
-                            idHang = firstColum,
-                            soLuong = threeColum,
-                            kMai = fiveColum,
-                            giaNet = sixColum,
-                            tienHang = sevenColum
-
-                        });
-                        dataGridView1.Rows.Add(rowAdd);
+                        ck1 = Int32.Parse(txtCK1.Text);
                     }
-                    
+                    if (!string.IsNullOrEmpty(txtCK2.Text))
+                    {
+                        ck2 = Int32.Parse(txtCK2.Text);
+                    }
+                    if (!string.IsNullOrEmpty(txtCK3.Text))
+                    {
+                        ck3 = Int32.Parse(txtCK3.Text);
+                    }
+                    if (!string.IsNullOrEmpty(txtSoLuong.Text))
+                    {
+                        soLuong = Int32.Parse(txtSoLuong.Text);
+                    }
+                    Sum += double.Parse(txtTotal.Text);
+                    NoConLai = Sum;
+                    int weight = Int32.Parse(txtKhoiLuong.Text);
+                    double total = double.Parse(decimal.Parse(txtTotal.Text, NumberStyles.Currency).ToString());
+                    double price = double.Parse(decimal.Parse(txtGiaDo.Text, NumberStyles.Currency).ToString());
+                    double khuyenmai = price * soLuong - total;
+                    string firstColum = txtMa.Text;
+                    //string secondColum = txtName.Text;
+                    string threeColum = txtSoLuong.Text;
+                    string fourColum = type;
+                    string fiveColum = khuyenmai.ToString();
+                    string sixColum = txtGiaNetNhap.Text;
+                    string sevenColum = txtTotal.Text;
+                    //string[] row = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                    string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                    gridView.Add(new ListItem()
+                    {
+                        idHang = firstColum,
+                        soLuong = threeColum,
+                        kMai = fiveColum,
+                        giaNet = sixColum,
+                        tienHang = sevenColum
+
+                    });
+                    dataGridView1.Rows.Add(row);
+
+                    int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
+                    if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
+                    {
+                        kmBao = Int32.Parse(txtKhuyenMai.Text);
+                        int tangbao = (soLuong / kmBao);
+                        if (tangbao >= 1)
+                        {
+                            firstColum = txtMa.Text;
+                            //secondColum = txtName.Text;
+                            threeColum = tangbao.ToString();
+                            fourColum = type;
+                            fiveColum = "Tặng Bao";
+                            sixColum = txtGiaNetNhap.Text;
+                            sevenColum = "0";
+                            //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                            string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                            gridView.Add(new ListItem()
+                            {
+                                idHang = firstColum,
+                                soLuong = threeColum,
+                                kMai = fiveColum,
+                                giaNet = sixColum,
+                                tienHang = sevenColum
+
+                            });
+                            dataGridView1.Rows.Add(rowAdd);
+                        }
+
+                    }
+                    txtSum.Text = string.Format("{0:n0}", Sum);
                 }
-                txtSum.Text = string.Format("{0:n0}", Sum);
+                
 
             }
             catch
@@ -480,7 +487,7 @@ namespace PhanMem
             {
                 nhaphang_id = 1;
             }
-            String addQlyNo = "INSERT quanlyno(id_don,total,payment,debt,date,type,tongno) VALUES(@id_don,@total,@payment,@debt,@date,@type,@tongno)";
+            String addQlyNo = "INSERT quanlyno(id_don,total,payment,debt,date,type,tongtra,tongno) VALUES(@id_don,@total,@payment,@debt,@date,@type,@tongtra,@tongno)";
             var cmdqly = new SqlCommand(addQlyNo, con);
 
             cmdqly.Parameters.AddWithValue("@id_don", nhaphang_id);
@@ -489,6 +496,7 @@ namespace PhanMem
             cmdqly.Parameters.AddWithValue("@debt", no);
             cmdqly.Parameters.AddWithValue("@date", d1);
             cmdqly.Parameters.AddWithValue("@type", 1);
+            cmdqly.Parameters.AddWithValue("@tongtra", payment);
             cmdqly.Parameters.AddWithValue("@tongno", no);
             cmdqly.ExecuteNonQuery();
 

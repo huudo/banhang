@@ -135,6 +135,12 @@
     <Compile Include="Default.Designer.cs">
       <DependentUpon>Default.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetailTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailTraNo.Designer.cs">
+      <DependentUpon>DetailTraNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,11 +153,23 @@
     <Compile Include="NhapHang.Designer.cs">
       <DependentUpon>NhapHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoPhaiTra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoPhaiTra.Designer.cs">
+      <DependentUpon>NoPhaiTra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Payment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Payment.Designer.cs">
       <DependentUpon>Payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyCongNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyCongNo.Designer.cs">
+      <DependentUpon>QuanLyCongNo.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyNo.cs">
       <SubType>Form</SubType>
@@ -207,14 +225,23 @@
     <EmbeddedResource Include="Default.resx">
       <DependentUpon>Default.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetailTraNo.resx">
+      <DependentUpon>DetailTraNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhapHang.resx">
       <DependentUpon>NhapHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NoPhaiTra.resx">
+      <DependentUpon>NoPhaiTra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payment.resx">
       <DependentUpon>Payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyCongNo.resx">
+      <DependentUpon>QuanLyCongNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyNo.resx">
       <DependentUpon>QuanLyNo.cs</DependentUpon>

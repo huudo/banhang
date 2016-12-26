@@ -27,7 +27,7 @@ namespace PhanMem
             check.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                Application.Run(new Login());
+                Application.Run(new SanPham());
             }
             else
             {

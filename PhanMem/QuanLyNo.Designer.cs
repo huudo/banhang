@@ -41,6 +41,7 @@
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -130,7 +131,8 @@
             this.name,
             this.phone,
             this.address,
-            this.total});
+            this.total,
+            this.customerId});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -159,6 +161,12 @@
             // 
             this.total.HeaderText = "Tổng tiền nợ";
             this.total.Name = "total";
+            // 
+            // customerId
+            // 
+            this.customerId.HeaderText = "customerId";
+            this.customerId.Name = "customerId";
+            this.customerId.Visible = false;
             // 
             // QuanLyNo
             // 
@@ -193,5 +201,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerId;
     }
 }

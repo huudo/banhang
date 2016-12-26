@@ -17,6 +17,7 @@ namespace PhanMem
         double SumNo = 0;
          public class kHang
         {
+            public int customerId { get; set; }
             public string name { get; set; }
             public string phone { get; set; }
             public string address { get; set; }
@@ -36,15 +37,15 @@ namespace PhanMem
                 string secondColumn = "";
                 string threeColumn = "";
                 string fourColumn = "";
-
-                string name = spList[i].name;
+                string fiveColumn = "";
+                int customerId = spList[i].customerId;
                 firstColumn = spList[i].name;
                 secondColumn = spList[i].phone;
                 threeColumn = spList[i].address;
-
+                fiveColumn = customerId.ToString();
 
                 // Tinh tong no
-                SqlCommand cmdTo = new SqlCommand("SELECT SUM(tongno) as tongno FROM quanlyno WHERE type =2  AND customer= N'" + name + "' AND tongno > 0 ", con);
+                SqlCommand cmdTo = new SqlCommand("SELECT SUM(tongno) as tongno FROM quanlyno WHERE type =2  AND customerId= '" + customerId + "' AND tongno > 0 ", con);
                 SqlDataReader readTo = cmdTo.ExecuteReader();
                 double checkNo = 0;
                 while (readTo.Read())
@@ -64,7 +65,7 @@ namespace PhanMem
 
                 }
                 readTo.Close();
-                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn };
+                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn,fiveColumn };
                 if (checkNo != 0)
                 {
                     dataGridView1.Rows.Add(row);
@@ -87,7 +88,7 @@ namespace PhanMem
             dataGridView1.Rows.Clear();
             var spList = new List<kHang>();
 
-            SqlCommand cmd = new SqlCommand("SELECT name,address,phone FROM customer", con);
+            SqlCommand cmd = new SqlCommand("SELECT id,name,address,phone FROM customer", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
 
@@ -95,6 +96,7 @@ namespace PhanMem
             {
                 spList.Add(new kHang
                 {
+                    customerId = Int32.Parse(dr["id"].ToString()),
                     name = dr["name"].ToString(),
                     address = dr["address"].ToString(),
                     phone = dr["phone"].ToString()
@@ -125,7 +127,8 @@ namespace PhanMem
             try
             {
                 string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                ThanhToanNo frm = new ThanhToanNo(name);
+                int customerId = Int32.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                ThanhToanNo frm = new ThanhToanNo(name, customerId);
                 frm.ShowDialog();
 
                 //WHEN SHOWDIALOG() END

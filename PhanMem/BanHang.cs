@@ -83,7 +83,6 @@ namespace PhanMem
             NoConLai = 0;
             giaLuaChon = 0;
             LoiNhuan.Clear();
-            panel4.Visible = false;
             dataGridView1.Rows.Clear();
 
         }
@@ -155,7 +154,7 @@ namespace PhanMem
                 dr2 = cmd2.ExecuteReader();
                 while (dr2.Read())
                 {
-                    txtCustomer.AutoCompleteCustomSource.Add(dr2["name"].ToString());
+                    txtCustomer.AutoCompleteCustomSource.Add(dr2["name"].ToString());                    
                 }
                 dr2.Close();
                 SqlCommand cmd3 = new SqlCommand("SELECT email,password FROM account", con);
@@ -181,53 +180,60 @@ namespace PhanMem
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            panel4.Visible = true;
-            int soBao = 0;
-            string firstColum = txtMa.Text;
-            //string secondColum = txtName.Text;
-            string threeColum = "";
-            string fiveColum = "";
-            string fourColum = "";
-            string sixColum = "";
-            if (!string.IsNullOrEmpty(txtSoLuong.Text))
+            if (txtSoLuong.Text == "")
             {
-                threeColum = txtSoLuong.Text;
-                fourColum = donviTinh;
-                sixColum = txtGiaBan.Text;
-                double lai = Int32.Parse(txtSoLuong.Text) * (giaBanRa - giaNet);
-                LoiNhuan.Add(lai);
-                soBao = Int32.Parse(txtSoLuong.Text);
-                //khuyenMai = (gia)
+                MessageBox.Show("Nhập số lượng cần mua!");
+                txtSoLuong.Focus();
             }
-           
-
-            fiveColum = "Khuyến mãi";
-            string sevenColum = txtTotal.Text;
-            Sum += double.Parse(txtTotal.Text);
-            txtSum.Text = string.Format("{0:n0}", Sum);
-            string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-            dataGridView1.Rows.Add(row);
-            int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
-            if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
+            else
             {
-                kmBao = Int32.Parse(txtKhuyenMai.Text);
-                int tangbao = (soBao / kmBao);
-                if (tangbao >= 1)
+                panel4.Visible = true;
+                int soBao = 0;
+                string firstColum = txtMa.Text;
+                //string secondColum = txtName.Text;
+                string threeColum = "";
+                string fiveColum = "";
+                string fourColum = "";
+                string sixColum = "";
+                if (!string.IsNullOrEmpty(txtSoLuong.Text))
                 {
-                    firstColum = txtMa.Text;
-                    //secondColum = txtName.Text;
-                    threeColum = tangbao.ToString();
+                    threeColum = txtSoLuong.Text;
                     fourColum = donviTinh;
-                    fiveColum = "Tặng Bao";
-                    sixColum = "0";
-                    sevenColum = "0";
-                    //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                    string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
-                    LoiNhuan.Add(0);
-                    dataGridView1.Rows.Add(rowAdd);
+                    sixColum = txtGiaBan.Text;
+                    double lai = Int32.Parse(txtSoLuong.Text) * (giaBanRa - giaNet);
+                    LoiNhuan.Add(lai);
+                    soBao = Int32.Parse(txtSoLuong.Text);
+                    //khuyenMai = (gia)
                 }
-            }
-            
+
+
+                fiveColum = "Khuyến mãi";
+                string sevenColum = txtTotal.Text;
+                Sum += double.Parse(txtTotal.Text);
+                txtSum.Text = string.Format("{0:n0}", Sum);
+                string[] row = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                dataGridView1.Rows.Add(row);
+                int kmBao = 0;// Int32.Parse(txtKhuyenMai.Text);
+                if (!string.IsNullOrEmpty(txtKhuyenMai.Text))
+                {
+                    kmBao = Int32.Parse(txtKhuyenMai.Text);
+                    int tangbao = (soBao / kmBao);
+                    if (tangbao >= 1)
+                    {
+                        firstColum = txtMa.Text;
+                        //secondColum = txtName.Text;
+                        threeColum = tangbao.ToString();
+                        fourColum = donviTinh;
+                        fiveColum = "Tặng Bao";
+                        sixColum = "0";
+                        sevenColum = "0";
+                        //string[] rowAdd = { firstColum, secondColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                        string[] rowAdd = { firstColum, threeColum, fourColum, fiveColum, sixColum, sevenColum };
+                        LoiNhuan.Add(0);
+                        dataGridView1.Rows.Add(rowAdd);
+                    }
+                }
+            }            
         }
 
         private void txtMa_KeyDown(object sender, KeyEventArgs e)
@@ -500,76 +506,101 @@ namespace PhanMem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime d1 = DateTime.Now;
-            int banhang_id = 0;
-            string customer = "";
-            if (!string.IsNullOrEmpty(txtCustomer.Text))
-            {
-                customer = txtCustomer.Text;
-            }
-            con.Open();
             double payment = double.Parse(txtPay.Text);
             double no = double.Parse(txtNo.Text);
-            String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customer) VALUES(@sum,@pay,@no,@date,@customer)";
-            var cmdAdd = new SqlCommand(querryAdd, con);
-
-            cmdAdd.Parameters.AddWithValue("@sum", Sum);
-            cmdAdd.Parameters.AddWithValue("@pay", payment);
-            cmdAdd.Parameters.AddWithValue("@no", no);
-            cmdAdd.Parameters.AddWithValue("@date", d1);
-            cmdAdd.Parameters.AddWithValue("@customer", customer);
-            cmdAdd.ExecuteNonQuery();
-            SqlCommand cmd = new SqlCommand();
-            String query = "select max(id) from banhang";
-            cmd.Connection = con;
-            cmd.CommandText = query;
-            try
+            if (no != 0 && txtCustomer.Text == "")
             {
-                banhang_id = Convert.ToInt32(cmd.ExecuteScalar());
+                MessageBox.Show("Không cho khách lẻ ghi nợ!");
             }
-            catch (Exception ex)
+            else 
             {
-                banhang_id = 1;
+                DateTime d1 = DateTime.Now;
+                int banhang_id = 0;
+                string customer = "";
+                if (!string.IsNullOrEmpty(txtCustomer.Text))
+                {
+                    customer = txtCustomer.Text;
+                }
+                con.Open();
+                int idCustomer = 0;
+                SqlCommand cmdCustomer = new SqlCommand();
+                String queryCustomer = "SELECT id from customer WHERE name = N'" + customer + "' ";
+                cmdCustomer.Connection = con;
+                cmdCustomer.CommandText = queryCustomer;
+                try
+                {
+                    idCustomer = Convert.ToInt32(cmdCustomer.ExecuteScalar());
+                    MessageBox.Show(idCustomer.ToString() + "KHACH HANG");
+                    String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customerId) VALUES(@sum,@pay,@no,@date,@customerId)";
+                    var cmdAdd = new SqlCommand(querryAdd, con);
+
+                    cmdAdd.Parameters.AddWithValue("@sum", Sum);
+                    cmdAdd.Parameters.AddWithValue("@pay", payment);
+                    cmdAdd.Parameters.AddWithValue("@no", no);
+                    cmdAdd.Parameters.AddWithValue("@date", d1);
+                    cmdAdd.Parameters.AddWithValue("@customerId", idCustomer);
+                    cmdAdd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand();
+                    String query = "select max(id) from banhang";
+                    cmd.Connection = con;
+                    cmd.CommandText = query;
+                    try
+                    {
+                        banhang_id = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        banhang_id = 1;
+                    }
+
+                    String addQlyNo = "INSERT quanlyno(id_don,customerId,total,payment,debt,date,type,tongno,tongtra) VALUES(@id_don,@customerId,@total,@payment,@debt,@date,@type,@tongno,@tongtra)";
+                    var cmdqly = new SqlCommand(addQlyNo, con);
+
+                    cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
+                    cmdqly.Parameters.AddWithValue("@customerId", idCustomer);
+                    cmdqly.Parameters.AddWithValue("@total", Sum);
+                    cmdqly.Parameters.AddWithValue("@payment", payment);
+                    cmdqly.Parameters.AddWithValue("@debt", no);
+                    cmdqly.Parameters.AddWithValue("@date", d1);
+                    cmdqly.Parameters.AddWithValue("@type", 2);
+                    cmdqly.Parameters.AddWithValue("@tongno", no);
+                    cmdqly.Parameters.AddWithValue("@tongtra", payment);
+                    cmdqly.ExecuteNonQuery();
+
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customerId,loinhuan)" +
+                       "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customerId,@loinhuan)";
+                        var cmdRun = new SqlCommand(stringQr, con);
+                        cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
+                        cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
+                        cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
+                        cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
+                        cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
+                        cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
+                        cmdRun.Parameters.AddWithValue("@date", d1);
+                        cmdRun.Parameters.AddWithValue("@customerId", idCustomer);
+                        cmdRun.Parameters.AddWithValue("@loinhuan", LoiNhuan[i]);
+                        cmdRun.ExecuteNonQuery();
+                    }
+                    con.Close();
+                    //MessageBox.Show("Thanh toán hoàn tất !");
+                    ExportExcel(banhang_id, customer, payment, no);
+                    // ClearTextBox();
+                    resetVariable();
+                    clearText();
+                    txtMa.Clear();
+                    button1.Visible = false;
+                    
+                }
+                catch
+                {
+                   
+                }
+
+                
             }
-
-            String addQlyNo = "INSERT quanlyno(id_don,customer,total,payment,debt,date,type,tongno,tongtra) VALUES(@id_don,@customer,@total,@payment,@debt,@date,@type,@tongno,@tongtra)";
-            var cmdqly = new SqlCommand(addQlyNo, con);
-
-            cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
-            cmdqly.Parameters.AddWithValue("@customer", customer);
-            cmdqly.Parameters.AddWithValue("@total", Sum);
-            cmdqly.Parameters.AddWithValue("@payment", payment);
-            cmdqly.Parameters.AddWithValue("@debt", no);
-            cmdqly.Parameters.AddWithValue("@date", d1);
-            cmdqly.Parameters.AddWithValue("@type", 2);
-            cmdqly.Parameters.AddWithValue("@tongno", no);
-            cmdqly.Parameters.AddWithValue("@tongtra", payment);
-            cmdqly.ExecuteNonQuery();
-
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customer,loinhuan)" +
-               "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customer,@loinhuan)";
-                var cmdRun = new SqlCommand(stringQr, con);
-                cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
-                cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
-                cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
-                cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
-                cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
-                cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
-                cmdRun.Parameters.AddWithValue("@date", d1);
-                cmdRun.Parameters.AddWithValue("@customer", customer);
-                cmdRun.Parameters.AddWithValue("@loinhuan", LoiNhuan[i]);
-                cmdRun.ExecuteNonQuery();
-            }
-            con.Close();
-            //MessageBox.Show("Thanh toán hoàn tất !");
-            ExportExcel(banhang_id, customer, payment, no);
-            // ClearTextBox();
-            resetVariable();
-            clearText();
-            txtMa.Clear();
-            button1.Visible = false;
+            
         }
 
         private void btnImportExcel_Click(object sender, EventArgs e)
@@ -792,5 +823,8 @@ namespace PhanMem
             numberOfItemPerPage = 0;
             numberOfItemsPrintedSoFar = 0;
         }
+
+   
+      
     }
 }

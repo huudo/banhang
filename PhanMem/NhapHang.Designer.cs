@@ -62,6 +62,8 @@
             this.txtMa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblBangGia = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -80,8 +82,6 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
-            this.label14 = new System.Windows.Forms.Label();
-            this.lblBangGia = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -399,7 +399,6 @@
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(308, 26);
             this.txtMa.TabIndex = 3;
-            this.txtMa.TextChanged += new System.EventHandler(this.txtMa_TextChanged);
             this.txtMa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMa_KeyDown);
             // 
             // label1
@@ -436,6 +435,27 @@
             this.panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.panel2.Size = new System.Drawing.Size(545, 269);
             this.panel2.TabIndex = 1;
+            // 
+            // lblBangGia
+            // 
+            this.lblBangGia.AutoSize = true;
+            this.lblBangGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblBangGia.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblBangGia.Location = new System.Drawing.Point(261, 11);
+            this.lblBangGia.Name = "lblBangGia";
+            this.lblBangGia.Size = new System.Drawing.Size(0, 16);
+            this.lblBangGia.TabIndex = 166;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label14.ForeColor = System.Drawing.Color.DarkRed;
+            this.label14.Location = new System.Drawing.Point(178, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 16);
+            this.label14.TabIndex = 165;
+            this.label14.Text = "BẢNG GIÁ: ";
             // 
             // btnAdd
             // 
@@ -603,27 +623,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label14.ForeColor = System.Drawing.Color.DarkRed;
-            this.label14.Location = new System.Drawing.Point(178, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 16);
-            this.label14.TabIndex = 165;
-            this.label14.Text = "BẢNG GIÁ: ";
-            // 
-            // lblBangGia
-            // 
-            this.lblBangGia.AutoSize = true;
-            this.lblBangGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblBangGia.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblBangGia.Location = new System.Drawing.Point(261, 11);
-            this.lblBangGia.Name = "lblBangGia";
-            this.lblBangGia.Size = new System.Drawing.Size(0, 16);
-            this.lblBangGia.TabIndex = 166;
             // 
             // NhapHang
             // 

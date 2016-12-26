@@ -125,8 +125,8 @@ namespace PhanMem
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            QuanLyNo qln = new QuanLyNo();
-            qln.Show();
+            QuanLyCongNo frame = new QuanLyCongNo();
+            frame.Show();
         }
 
         private void panel6_Click(object sender, EventArgs e)

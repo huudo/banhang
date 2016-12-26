@@ -16,11 +16,13 @@ namespace PhanMem
     {
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         string customerName = "";
+        int idCustomer = 0;
 
-        public ThanhToanNo(string name)
+        public ThanhToanNo(string name,int customerId)
         {
             InitializeComponent();
-            customerName = name;            
+            customerName = name;
+            idCustomer = customerId;
         }
 
         private void ThanhToanNo_Load(object sender, EventArgs e)
@@ -45,7 +47,7 @@ namespace PhanMem
             string fiveColum = "";
             string sixColum = "";
             // Tinh tong no
-            SqlCommand cmdTo = new SqlCommand("SELECT *  FROM quanlyno WHERE type = 2 AND customer= N'" + customerName + "' and tongno > 0 ", con);
+            SqlCommand cmdTo = new SqlCommand("SELECT *  FROM quanlyno WHERE type = 2 AND customerId= '" + idCustomer + "' and tongno > 0 ", con);
             SqlDataReader readTo = cmdTo.ExecuteReader();
 
             while (readTo.Read())
@@ -77,17 +79,6 @@ namespace PhanMem
         {
             try
             {
-                //traThem = 0;
-                //txtPayment.Text = "0";
-                //txtPayment.Enabled = true;
-                //txtThanhToan.Visible = false;
-                //id_don = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                //lblSumNo.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-                //tongTienHang = double.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
-                //lblDaTra.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-                //daTra = double.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
-                //lblConNo.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
-                //conNo = double.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
                 
                 string id_maNo = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                 string id_donHang = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
