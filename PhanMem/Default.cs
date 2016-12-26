@@ -140,5 +140,11 @@ namespace PhanMem
             BaoCao frame = new BaoCao();
             frame.Show();
         }
+
+        private void panel9_Click(object sender, EventArgs e)
+        {
+            SanPham frame = new SanPham();
+            frame.Show();
+        }
     }
 }

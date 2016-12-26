@@ -46,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtGiaDo = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.txtGiaNet = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtGiaban4 = new System.Windows.Forms.TextBox();
@@ -65,8 +67,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtGiaDo = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -274,6 +274,25 @@
             this.panel2.Size = new System.Drawing.Size(614, 333);
             this.panel2.TabIndex = 1;
             // 
+            // txtGiaDo
+            // 
+            this.txtGiaDo.Enabled = false;
+            this.txtGiaDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGiaDo.Location = new System.Drawing.Point(320, 32);
+            this.txtGiaDo.Name = "txtGiaDo";
+            this.txtGiaDo.Size = new System.Drawing.Size(262, 26);
+            this.txtGiaDo.TabIndex = 109;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(130, 36);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 20);
+            this.label14.TabIndex = 108;
+            this.label14.Text = "Giá HĐĐ :";
+            // 
             // txtGiaNet
             // 
             this.txtGiaNet.Enabled = false;
@@ -300,6 +319,7 @@
             this.txtGiaban4.Name = "txtGiaban4";
             this.txtGiaban4.Size = new System.Drawing.Size(260, 26);
             this.txtGiaban4.TabIndex = 11;
+            this.txtGiaban4.TextChanged += new System.EventHandler(this.txtGiaban4_TextChanged);
             // 
             // txtGiaban3
             // 
@@ -308,6 +328,7 @@
             this.txtGiaban3.Name = "txtGiaban3";
             this.txtGiaban3.Size = new System.Drawing.Size(260, 26);
             this.txtGiaban3.TabIndex = 10;
+            this.txtGiaban3.TextChanged += new System.EventHandler(this.txtGiaban3_TextChanged);
             // 
             // txtGiaban2
             // 
@@ -316,6 +337,7 @@
             this.txtGiaban2.Name = "txtGiaban2";
             this.txtGiaban2.Size = new System.Drawing.Size(260, 26);
             this.txtGiaban2.TabIndex = 9;
+            this.txtGiaban2.TextChanged += new System.EventHandler(this.txtGiaban2_TextChanged);
             // 
             // txtGiaban1
             // 
@@ -324,6 +346,7 @@
             this.txtGiaban1.Name = "txtGiaban1";
             this.txtGiaban1.Size = new System.Drawing.Size(260, 26);
             this.txtGiaban1.TabIndex = 8;
+            this.txtGiaban1.TextChanged += new System.EventHandler(this.txtGiaban1_TextChanged);
             // 
             // label10
             // 
@@ -374,6 +397,7 @@
             this.btnUpdate.Text = "CẬP NHẬT";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // dataGridView1
             // 
@@ -444,25 +468,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1246, 690);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // txtGiaDo
-            // 
-            this.txtGiaDo.Enabled = false;
-            this.txtGiaDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaDo.Location = new System.Drawing.Point(320, 32);
-            this.txtGiaDo.Name = "txtGiaDo";
-            this.txtGiaDo.Size = new System.Drawing.Size(262, 26);
-            this.txtGiaDo.TabIndex = 109;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(130, 36);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(82, 20);
-            this.label14.TabIndex = 108;
-            this.label14.Text = "Giá HĐĐ :";
             // 
             // SanPham
             // 
