@@ -53,6 +53,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnImportDB = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblBangGia = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -189,6 +192,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Controls.Add(this.lblBangGia);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblName);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.btnAccept);
@@ -206,7 +212,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblName.Location = new System.Drawing.Point(25, 178);
+            this.lblName.Location = new System.Drawing.Point(14, 193);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(106, 18);
             this.lblName.TabIndex = 6;
@@ -215,14 +221,14 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtName.Location = new System.Drawing.Point(138, 178);
+            this.txtName.Location = new System.Drawing.Point(138, 191);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(264, 24);
             this.txtName.TabIndex = 5;
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(437, 78);
+            this.btnAccept.Location = new System.Drawing.Point(138, 126);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(111, 31);
             this.btnAccept.TabIndex = 4;
@@ -278,6 +284,38 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.ForeColor = System.Drawing.Color.Coral;
+            this.label2.Location = new System.Drawing.Point(14, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(165, 18);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Bảng giá đang sử dụng :";
+            // 
+            // lblBangGia
+            // 
+            this.lblBangGia.AutoSize = true;
+            this.lblBangGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblBangGia.ForeColor = System.Drawing.Color.Coral;
+            this.lblBangGia.Location = new System.Drawing.Point(197, 27);
+            this.lblBangGia.Name = "lblBangGia";
+            this.lblBangGia.Size = new System.Drawing.Size(165, 18);
+            this.lblBangGia.TabIndex = 8;
+            this.lblBangGia.Text = "Bảng giá đang sử dụng :";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(291, 126);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(111, 31);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Xóa Bảng";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // BangGia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,5 +361,8 @@
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblBangGia;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

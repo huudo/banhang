@@ -33,6 +33,12 @@ namespace PhanMem
         {
         }
 
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            BCTaiChinh fr = new BCTaiChinh();
+            fr.Show();
+        }
+
 
 
     }

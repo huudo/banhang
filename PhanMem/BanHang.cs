@@ -506,6 +506,12 @@ namespace PhanMem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            double tongLoiNhuan = 0;
+            for (int i = 0; i < LoiNhuan.Count; i++)
+            {
+                tongLoiNhuan += LoiNhuan[i];
+            }
+            //MessageBox.Show(tongLoiNhuan.ToString() + "Lai");
             double payment = double.Parse(txtPay.Text);
             double no = double.Parse(txtNo.Text);
             if (no != 0 && txtCustomer.Text == "")
@@ -553,7 +559,7 @@ namespace PhanMem
                         banhang_id = 1;
                     }
 
-                    String addQlyNo = "INSERT quanlyno(id_don,customerId,total,payment,debt,date,type,tongno,tongtra) VALUES(@id_don,@customerId,@total,@payment,@debt,@date,@type,@tongno,@tongtra)";
+                    String addQlyNo = "INSERT quanlyno(id_don,customerId,total,payment,debt,date,type,tongno,tongtra,profit) VALUES(@id_don,@customerId,@total,@payment,@debt,@date,@type,@tongno,@tongtra,@profit)";
                     var cmdqly = new SqlCommand(addQlyNo, con);
 
                     cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
@@ -565,6 +571,7 @@ namespace PhanMem
                     cmdqly.Parameters.AddWithValue("@type", 2);
                     cmdqly.Parameters.AddWithValue("@tongno", no);
                     cmdqly.Parameters.AddWithValue("@tongtra", payment);
+                    cmdqly.Parameters.AddWithValue("@profit", tongLoiNhuan);
                     cmdqly.ExecuteNonQuery();
 
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
