@@ -42,7 +42,10 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -50,6 +53,7 @@
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel16.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -77,7 +81,7 @@
             // 
             // panel8
             // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Controls.Add(this.panel6);
             this.panel8.Location = new System.Drawing.Point(3, 235);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(305, 133);
@@ -197,6 +201,7 @@
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(305, 133);
             this.panel16.TabIndex = 1;
+            this.panel16.Click += new System.EventHandler(this.panel16_Click);
             // 
             // label4
             // 
@@ -209,6 +214,31 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Báo cáo cuối ngày";
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel6.BackgroundImage")));
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Controls.Add(this.label5);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.ForeColor = System.Drawing.Color.SteelBlue;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(305, 133);
+            this.panel6.TabIndex = 2;
+            this.panel6.Click += new System.EventHandler(this.panel6_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(15, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(127, 16);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Sản phẩm bán chạy";
+            // 
             // BaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +249,7 @@
             this.Name = "BaoCao";
             this.Text = "BÁO CÁO & THỐNG KÊ";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -230,6 +261,8 @@
             this.panel4.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,5 +282,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label5;
     }
 }

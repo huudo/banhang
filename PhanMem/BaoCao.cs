@@ -39,6 +39,18 @@ namespace PhanMem
             fr.Show();
         }
 
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            TieuBieu fr = new TieuBieu();
+            fr.Show();
+        }
+
+        private void panel16_Click(object sender, EventArgs e)
+        {
+            BCCuoiNgay fr = new BCCuoiNgay();
+            fr.Show();
+        }
+
 
 
     }

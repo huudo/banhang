@@ -87,3 +87,5 @@ D:\PM\banhang\PhanMem\obj\Debug\PhanMem.Payment.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.QuanLyCongNo.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.NoPhaiTra.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.DetailTraNo.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.TieuBieu.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BCCuoiNgay.resources
