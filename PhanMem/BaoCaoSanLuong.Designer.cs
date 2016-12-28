@@ -149,7 +149,6 @@
             this.timeFrom.Name = "timeFrom";
             this.timeFrom.Size = new System.Drawing.Size(122, 26);
             this.timeFrom.TabIndex = 3;
-            this.timeFrom.ValueChanged += new System.EventHandler(this.timeFrom_ValueChanged);
             // 
             // label3
             // 
@@ -244,10 +243,9 @@
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(141, 26);
             this.txtMa.TabIndex = 10;
-            this.txtMa.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.txtMa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMa_KeyDown);
             // 
-            // BaoCao
+            // BaoCaoSanLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,7 +261,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "BaoCao";
+            this.Name = "BaoCaoSanLuong";
             this.Text = "BÁO CÁO SẢN LƯỢNG";
             this.Load += new System.EventHandler(this.BaoCao_Load);
             this.menuStrip1.ResumeLayout(false);

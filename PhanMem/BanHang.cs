@@ -648,7 +648,11 @@ namespace PhanMem
                         if (myDataRow[2].ToString() != "")
                         {
                             soLuongLoad = Int32.Parse(myDataRow[2].ToString());
-                        }                     
+                        }
+                        else
+                        {
+                            break;
+                        }
                         if (myDataRow[3].ToString() != "")
                         {
                             ck1Load = double.Parse(myDataRow[3].ToString());
@@ -786,7 +790,7 @@ namespace PhanMem
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;
-                if (numberOfItemPerPage <= 20)
+                if (numberOfItemPerPage <= 25)
                 {
                     numberOfItemsPrintedSoFar++;
                     if (numberOfItemsPrintedSoFar <= gridView.Count)

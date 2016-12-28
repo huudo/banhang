@@ -559,8 +559,7 @@ namespace PhanMem
                         double tienKMLoad = 0;
                         int TangBaoLoad = 0;
                         if (myDataRow[2].ToString() == "")
-                        {
-                            MessageBox.Show("Dữ liệu nhập vào không chính xác!");
+                        {                           
                             break;                           
                         }
                         else
@@ -684,7 +683,7 @@ namespace PhanMem
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;
-                if (numberOfItemPerPage <= 20)
+                if (numberOfItemPerPage <= 25)
                 {
                     numberOfItemsPrintedSoFar++;
                     if (numberOfItemsPrintedSoFar <= gridView.Count)

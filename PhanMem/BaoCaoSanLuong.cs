@@ -114,141 +114,147 @@ namespace PhanMem
         }
         public void searData(List<sPham> spList)
         {
-            string firstColumn1 = "";
-            string secondColumn1 = "";
-            string threeColumn1 = "";
-            string fourColumn1 = "";
-            string fiveColumn1 = "";
-            string sixColumn1 = "0";
-            double tongNhap = 0;
-            double tongBan = 0;
-            double tongTonKho = 0;
             string dateFrom = timeFrom.Value.ToString("yyy/MM/dd");
             string dateTo = timeTo.Value.ToString("yyy/MM/dd");
-            for (int i = 0; i < spList.Count; i++)
+            DateTime d1 = DateTime.Parse(dateFrom);
+            DateTime d2 = DateTime.Parse(dateTo);
+            TimeSpan totalDays = (d2 - d1);
+            if (totalDays.TotalDays < 0)
             {
-                string firstColumn = "";
-                string secondColumn = "";
-                string threeColumn = "";
-                string fourColumn = "";
-                string fiveColumn = "";
-                string sixColumn = "0";
-                int sumNhap = 0;
-                int sumBan = 0;
-                int hangTonKho = 0;
-                string maSP = spList[i].maSP;
-                firstColumn = spList[i].maSP;
-                secondColumn = spList[i].name;
-                threeColumn = spList[i].type;
-
-                double kthuocBao = spList[i].khoiluong;
-                // Tinh so luong nhap den dateTo
-               // MessageBox.Show(dateTo);
-                SqlCommand cmdTo = new SqlCommand("SELECT SUM(soluong) as soluong FROM nhaphang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' ", con);
-                SqlDataReader readTo = cmdTo.ExecuteReader();
-
-                while (readTo.Read())
-                {
-                    if (readTo["soluong"].ToString() != "")
-                    {
-                        sumNhap += Int32.Parse(readTo["soluong"].ToString());
-                    }
-                    else
-                    {
-                        sumNhap += 0;
-                        //MessageBox.Show("asd");
-
-                    }
-
-                }
-                readTo.Close();
-                // Tinh so luong ban den dateTo
-                SqlCommand cmdFrom = new SqlCommand("SELECT SUM(soluong) as soluong FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' ", con);
-                SqlDataReader readFrom = cmdFrom.ExecuteReader();
-
-                while (readFrom.Read())
-                {
-                    if (readFrom["soluong"].ToString() != "")
-                    {
-                        sumBan += Int32.Parse(readFrom["soluong"].ToString());
-                    }
-                    else
-                    {
-                        sumBan += 0;
-                        //MessageBox.Show("asd");
-
-                    }
-
-                }
-                readFrom.Close();
-
-                SqlCommand cmdQr = new SqlCommand("SELECT SUM(soluong) as soluong FROM nhaphang_list WHERE id_mahang= '" + maSP + "' and date <= '"+ dateTo +"' and date >= '"+ dateFrom +"' ", con);
-                SqlDataReader read = cmdQr.ExecuteReader();
-
-                while (read.Read())
-                {
-                    if (read["soluong"].ToString() != "")
-                    {
-                        fourColumn = read["soluong"].ToString();
-                        
-                    }
-                    else
-                    {
-                        fourColumn = "0";
-                        //MessageBox.Show("asd");
-
-                    }
-
-                }
-                read.Close();
-                SqlCommand cmdQr2 = new SqlCommand("SELECT SUM(soluong) as soluong FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "' ", con);
-                SqlDataReader read2 = cmdQr2.ExecuteReader();
-
-                while (read2.Read())
-                {
-                    if (read2["soluong"].ToString() != "")
-                    {
-                        //hangTonKho = sumNhap - Int32.Parse(read2["soluong"].ToString());
-                        fiveColumn = read2["soluong"].ToString();                                   
-                    }
-                    else
-                    {
-                        fiveColumn = "0";
-                        //hangTonKho = sumNhap;
-                        //MessageBox.Show("asd");
-                    }
-                }
-                hangTonKho = sumNhap - sumBan;
-                tongNhap += sumNhap;
-                tongBan += sumBan;
-                tongTonKho += hangTonKho;
-                sixColumn = hangTonKho.ToString();
-                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn };
-                dataGridView1.Rows.Add(row);
-                read2.Close();
-                
-               // MessageBox.Show(hangTonKho.ToString());                
+                MessageBox.Show("Thời gian nhập vào không hợp lệ!");
             }
-            firstColumn1 = "Tổng";
-            secondColumn1 = "";
-            threeColumn1 = "bao";
-            fourColumn1 = tongNhap.ToString();
-            fiveColumn1 = tongBan.ToString();
-            sixColumn1 = tongTonKho.ToString();
-            string[] rows = { firstColumn1, secondColumn1, threeColumn1, fourColumn1, fiveColumn1, sixColumn1 };
-            dataGridView1.Rows.Add(rows);
-            con.Close();
+            else
+            {
+                string firstColumn1 = "";
+                string secondColumn1 = "";
+                string threeColumn1 = "";
+                string fourColumn1 = "";
+                string fiveColumn1 = "";
+                string sixColumn1 = "0";
+                double tongNhap = 0;
+                double tongBan = 0;
+                double tongTonKho = 0;
+
+                for (int i = 0; i < spList.Count; i++)
+                {
+                    string firstColumn = "";
+                    string secondColumn = "";
+                    string threeColumn = "";
+                    string fourColumn = "";
+                    string fiveColumn = "";
+                    string sixColumn = "0";
+                    int sumNhap = 0;
+                    int sumBan = 0;
+                    int hangTonKho = 0;
+                    int totalInput = 0;
+                    int totalOutput = 0;
+                    string maSP = spList[i].maSP;
+                    firstColumn = spList[i].maSP;
+                    secondColumn = spList[i].name;
+                    threeColumn = spList[i].type;
+
+                    double kthuocBao = spList[i].khoiluong;
+                    // Tinh so luong nhap den dateTo
+                    // MessageBox.Show(dateTo);
+                    SqlCommand cmdTo = new SqlCommand("SELECT SUM(soluong) as soluong FROM nhaphang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' ", con);
+                    SqlDataReader readTo = cmdTo.ExecuteReader();
+
+                    while (readTo.Read())
+                    {
+                        if (readTo["soluong"].ToString() != "")
+                        {
+                            sumNhap += Int32.Parse(readTo["soluong"].ToString());
+                        }
+                        else
+                        {
+                            sumNhap += 0;
+                            //MessageBox.Show("asd");
+
+                        }
+
+                    }
+                    readTo.Close();
+                    // Tinh so luong ban den dateTo
+                    SqlCommand cmdFrom = new SqlCommand("SELECT SUM(soluong) as soluong FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' ", con);
+                    SqlDataReader readFrom = cmdFrom.ExecuteReader();
+
+                    while (readFrom.Read())
+                    {
+                        if (readFrom["soluong"].ToString() != "")
+                        {
+                            sumBan += Int32.Parse(readFrom["soluong"].ToString());
+                        }
+                        else
+                        {
+                            sumBan += 0;
+                            //MessageBox.Show("asd");
+
+                        }
+
+                    }
+                    readFrom.Close();
+
+                    SqlCommand cmdQr = new SqlCommand("SELECT SUM(soluong) as soluong FROM nhaphang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "' ", con);
+                    SqlDataReader read = cmdQr.ExecuteReader();
+
+                    while (read.Read())
+                    {
+                        if (read["soluong"].ToString() != "")
+                        {
+                            fourColumn = read["soluong"].ToString();
+                            totalInput += Int32.Parse(read["soluong"].ToString());
+                        }
+                        else
+                        {
+                            fourColumn = "0";
+                            //MessageBox.Show("asd");
+
+                        }
+
+                    }
+                    read.Close();
+                    SqlCommand cmdQr2 = new SqlCommand("SELECT SUM(soluong) as soluong FROM banhang_list WHERE id_mahang= '" + maSP + "' and date <= '" + dateTo + "' and date >= '" + dateFrom + "' ", con);
+                    SqlDataReader read2 = cmdQr2.ExecuteReader();
+
+                    while (read2.Read())
+                    {
+                        if (read2["soluong"].ToString() != "")
+                        {
+                            //hangTonKho = sumNhap - Int32.Parse(read2["soluong"].ToString());
+                            fiveColumn = read2["soluong"].ToString();
+                            totalOutput += Int32.Parse(read2["soluong"].ToString());
+                        }
+                        else
+                        {
+                            fiveColumn = "0";
+                            //hangTonKho = sumNhap;
+                            //MessageBox.Show("asd");
+                        }
+                    }
+                    hangTonKho = sumNhap - sumBan;
+                    tongNhap += totalInput;
+                    tongBan += totalOutput;
+                    tongTonKho += hangTonKho;
+                    sixColumn = hangTonKho.ToString();
+                    string[] row = { firstColumn, secondColumn, threeColumn, fourColumn, fiveColumn, sixColumn };
+                    dataGridView1.Rows.Add(row);
+                    read2.Close();
+
+                    // MessageBox.Show(hangTonKho.ToString());                
+                }
+                firstColumn1 = "Tổng";
+                secondColumn1 = "";
+                threeColumn1 = "bao";
+                fourColumn1 = tongNhap.ToString();
+                fiveColumn1 = tongBan.ToString();
+                sixColumn1 = tongTonKho.ToString();
+                string[] rows = { firstColumn1, secondColumn1, threeColumn1, fourColumn1, fiveColumn1, sixColumn1 };
+                dataGridView1.Rows.Add(rows);
+                con.Close();
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void timeFrom_ValueChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void txtMa_KeyDown(object sender, KeyEventArgs e)
         {
