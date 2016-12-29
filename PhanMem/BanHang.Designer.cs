@@ -191,6 +191,7 @@
             this.txtSoLuong.Size = new System.Drawing.Size(308, 24);
             this.txtSoLuong.TabIndex = 121;
             this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
+            this.txtSoLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoLuong_KeyPress);
             // 
             // label14
             // 
@@ -553,6 +554,7 @@
             this.txtPay.Size = new System.Drawing.Size(113, 24);
             this.txtPay.TabIndex = 161;
             this.txtPay.TextChanged += new System.EventHandler(this.txtPay_TextChanged);
+            this.txtPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPay_KeyPress);
             // 
             // tableLayoutPanel1
             // 
@@ -653,6 +655,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BanHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BÁN HÀNG";
             this.Load += new System.EventHandler(this.BanHang_Load);
             this.panel2.ResumeLayout(false);

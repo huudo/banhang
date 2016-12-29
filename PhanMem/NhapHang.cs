@@ -668,18 +668,37 @@ namespace PhanMem
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330,10));
-            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
+            string nameCompany = "";
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            SqlCommand cmd = new SqlCommand("SELECT name FROM account", con);
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nameCompany = dr["name"].ToString();
+            }
+            dr.Close();
+
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+            e.Graphics.DrawString("CỬA HÀNG " + nameCompany.ToUpper(), new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(20, 10));
+            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 13, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330,40));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 70));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 50));
-            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 80));
-            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 80));
-            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 80));
-            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 80));
-            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 80));
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 90));
+            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 120));
+            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 120));
+            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 120));
+            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 120));
+            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 120));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 100));
-            int yPos = 130;
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 140));
+            int yPos = 170;
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;
@@ -732,6 +751,13 @@ namespace PhanMem
         {
            
         }
+
+        private void txtPay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+
+
 
 
     }

@@ -27,6 +27,7 @@ namespace PhanMem
         private int numberOfItemsPrintedSoFar = 0;
         public class ListItem
         {
+            public string stt { get; set; }
             public string date { get; set; }
             public string payment { get; set; }
             public string debt { get; set; }
@@ -59,45 +60,52 @@ namespace PhanMem
             string firstColumn = "";
             string secondColumn = "";
             string threeColumn = "";
+            string fourColumn = "";
             SqlCommand cmdFirst = new SqlCommand("SELECT *  FROM quanlyno WHERE id_No = '" + id_maNo + "'", con);
             SqlDataReader readFirst = cmdFirst.ExecuteReader();
-
+            
             while (readFirst.Read())
             {
-                firstColumn = readFirst["date"].ToString();
-                secondColumn = string.Format("{0:n0}", readFirst["payment"]);
-                threeColumn = string.Format("{0:n0}", readFirst["debt"]);
+                firstColumn = "1";
+                secondColumn = readFirst["date"].ToString();
+                threeColumn = string.Format("{0:n0}", readFirst["payment"]);
+                fourColumn = string.Format("{0:n0}", readFirst["debt"]);
                 lblDebt.Text = string.Format("{0:n0}", readFirst["tongno"]);
                 totalPayment = float.Parse(readFirst["payment"].ToString());
-                string[] row = { firstColumn, secondColumn, threeColumn };
+                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn };
                 gridView.Add(new ListItem()
                 {
-                    date = firstColumn,
-                    payment = secondColumn,
-                    debt = threeColumn,
+                    stt = firstColumn,
+                    date = secondColumn,
+                    payment = threeColumn,
+                    debt = fourColumn,
                 });
                 
                 dataGridView1.Rows.Add(row);
+             
             }
             readFirst.Close();
             // Tinh tong no
             SqlCommand cmdTo = new SqlCommand("SELECT *  FROM detailNo WHERE id_No = '"+ id_maNo +"' ", con);
             SqlDataReader readTo = cmdTo.ExecuteReader();
-
+            int i = 2;
             while (readTo.Read())
             {
-                firstColumn = readTo["date"].ToString();
-                secondColumn = string.Format("{0:n0}", readTo["payment"]);  
-                threeColumn = string.Format("{0:n0}", readTo["debt"]);
-      
-                string[] row = { firstColumn, secondColumn, threeColumn };
+                firstColumn = i.ToString();
+                secondColumn = readTo["date"].ToString();
+                threeColumn = string.Format("{0:n0}", readTo["payment"]);
+                fourColumn = string.Format("{0:n0}", readTo["debt"]);
+
+                string[] row = { firstColumn, secondColumn, threeColumn, fourColumn };
                 gridView.Add(new ListItem()
                 {
-                    date = firstColumn,
-                    payment = secondColumn,
-                    debt = threeColumn,
+                    stt = firstColumn,
+                    date = secondColumn,
+                    payment = threeColumn,
+                    debt = fourColumn,
                 });
                 dataGridView1.Rows.Add(row);
+                i++;
             }
             readTo.Close();
             if (con.State != ConnectionState.Open)
@@ -160,19 +168,39 @@ namespace PhanMem
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("PHIẾU GHI CÔNG NỢ", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 10));
-            e.Graphics.DrawString("Khách hàng: " + customer_name, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 30));
-            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
-            e.Graphics.DrawString("Tổng tiền hàng: " + total, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 60));
+            string nameCompany = "";
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            SqlCommand cmd = new SqlCommand("SELECT name FROM account", con);
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nameCompany = dr["name"].ToString();
+            }
+            dr.Close();
+
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+            e.Graphics.DrawString("CỬA HÀNG " + nameCompany.ToUpper(), new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(20, 10));
+            e.Graphics.DrawString("PHIẾU GHI CÔNG NỢ", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 40));
+            e.Graphics.DrawString("Khách hàng: " + customer_name, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 80));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 80));
+            e.Graphics.DrawString("Tổng tiền hàng: " + total, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 110));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 80));
-            e.Graphics.DrawString("Thời gian ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 110));
-            e.Graphics.DrawString("Thanh toán", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(400, 110));
-            e.Graphics.DrawString("Còn nợ ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 110));
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 140));
+            e.Graphics.DrawString("Lần ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 160));
+            e.Graphics.DrawString("Thời gian ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(80, 160));
+            e.Graphics.DrawString("Thanh toán", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(400, 160));
+            e.Graphics.DrawString("Còn nợ ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 160));
            
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 130));
-            int yPos = 160;
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 180));
+            int yPos = 200;
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;
@@ -181,7 +209,8 @@ namespace PhanMem
                     numberOfItemsPrintedSoFar++;
                     if (numberOfItemsPrintedSoFar <= gridView.Count)
                     {
-                        e.Graphics.DrawString(gridView[i].date, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, yPos));
+                        e.Graphics.DrawString(gridView[i].stt, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, yPos));
+                        e.Graphics.DrawString(gridView[i].date, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(80, yPos));
                         e.Graphics.DrawString(gridView[i].payment, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(400, yPos));
                         e.Graphics.DrawString(gridView[i].debt, new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos));
                       

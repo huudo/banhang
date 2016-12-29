@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTongNo = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.maHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maDonNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.payment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.debt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTongNo = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,6 +66,43 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // maHang
+            // 
+            this.maHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.maHang.HeaderText = "Mã Hàng";
+            this.maHang.Name = "maHang";
+            this.maHang.ReadOnly = true;
+            // 
+            // maDonNo
+            // 
+            this.maDonNo.HeaderText = "Mã Đơn Nợ";
+            this.maDonNo.Name = "maDonNo";
+            this.maDonNo.Visible = false;
+            // 
+            // time
+            // 
+            this.time.HeaderText = "Thời gian";
+            this.time.Name = "time";
+            this.time.ReadOnly = true;
+            // 
+            // total
+            // 
+            this.total.HeaderText = "Tổng tiền hàng";
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            // 
+            // payment
+            // 
+            this.payment.HeaderText = "Đã thanh toán";
+            this.payment.Name = "payment";
+            this.payment.ReadOnly = true;
+            // 
+            // debt
+            // 
+            this.debt.HeaderText = "Còn nợ";
+            this.debt.Name = "debt";
+            this.debt.ReadOnly = true;
             // 
             // panel1
             // 
@@ -133,43 +170,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(932, 579);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // maHang
-            // 
-            this.maHang.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.maHang.HeaderText = "Mã Hàng";
-            this.maHang.Name = "maHang";
-            this.maHang.ReadOnly = true;
-            // 
-            // maDonNo
-            // 
-            this.maDonNo.HeaderText = "Mã Đơn Nợ";
-            this.maDonNo.Name = "maDonNo";
-            this.maDonNo.Visible = false;
-            // 
-            // time
-            // 
-            this.time.HeaderText = "Thời gian";
-            this.time.Name = "time";
-            this.time.ReadOnly = true;
-            // 
-            // total
-            // 
-            this.total.HeaderText = "Tổng tiền hàng";
-            this.total.Name = "total";
-            this.total.ReadOnly = true;
-            // 
-            // payment
-            // 
-            this.payment.HeaderText = "Đã thanh toán";
-            this.payment.Name = "payment";
-            this.payment.ReadOnly = true;
-            // 
-            // debt
-            // 
-            this.debt.HeaderText = "Còn nợ";
-            this.debt.Name = "debt";
-            this.debt.ReadOnly = true;
-            // 
             // NoPhaiTra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,6 +177,7 @@
             this.ClientSize = new System.Drawing.Size(932, 579);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NoPhaiTra";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NỢ PHẢI TRẢ";
             this.Load += new System.EventHandler(this.NoPhaiTra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -21,6 +21,10 @@ namespace PhanMem
 
         private void QuanLyCongNo_Load(object sender, EventArgs e)
         {
+            loadData();
+        }
+        private void loadData()
+        {
             if (con.State != ConnectionState.Open)
             {
                 con.Open();
@@ -33,7 +37,7 @@ namespace PhanMem
                 if (readTo["tongno"].ToString() != "")
                 {
                     lblCanThu.Text = string.Format("{0:n0}", readTo["tongno"]);
-                  
+
                 }
                 else
                 {
@@ -64,17 +68,29 @@ namespace PhanMem
                 con.Close();
             }
         }
-
         private void panel1_Click(object sender, EventArgs e)
         {
-            NoPhaiTra fram = new NoPhaiTra();
-            fram.Show();
+            this.Hide();
+            NoPhaiTra frm = new NoPhaiTra();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            loadData();
+            this.Show();
         }
 
         private void panel2_Click(object sender, EventArgs e)
         {
-            QuanLyNo fram = new QuanLyNo();
-            fram.Show();
+            this.Hide();
+            QuanLyNo frm = new QuanLyNo();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            loadData();
+            frm.Dispose();
+            this.Show();
+           
         }
     }
 }

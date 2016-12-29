@@ -35,7 +35,6 @@
             this.payCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.debtCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.lblDebt = new System.Windows.Forms.Label();
             this.btnPayment = new System.Windows.Forms.Button();
             this.txtPayment = new System.Windows.Forms.TextBox();
@@ -100,22 +99,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(111, 163);
+            this.button2.Location = new System.Drawing.Point(20, 163);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 12;
             this.button2.Text = "Print";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Location = new System.Drawing.Point(20, 163);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnExcel.TabIndex = 11;
-            this.btnExcel.Text = "Xuất Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
             // 
             // lblDebt
             // 
@@ -265,7 +255,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.btnExcel);
             this.panel1.Controls.Add(this.lblDebt);
             this.panel1.Controls.Add(this.btnPayment);
             this.panel1.Controls.Add(this.txtPayment);
@@ -303,6 +292,7 @@
             this.ClientSize = new System.Drawing.Size(902, 516);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DetailTraNo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DetailTraNo";
             this.Load += new System.EventHandler(this.DetailTraNo_Load);
             this.panel3.ResumeLayout(false);
@@ -324,7 +314,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn payCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn debtCol;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Label lblDebt;
         private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.TextBox txtPayment;

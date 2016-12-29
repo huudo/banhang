@@ -32,7 +32,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.lblDebt = new System.Windows.Forms.Label();
             this.btnPayment = new System.Windows.Forms.Button();
             this.txtPayment = new System.Windows.Forms.TextBox();
@@ -48,12 +47,13 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.payCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.debtCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.lan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.debtCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -80,7 +80,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.btnExcel);
             this.panel1.Controls.Add(this.lblDebt);
             this.panel1.Controls.Add(this.btnPayment);
             this.panel1.Controls.Add(this.txtPayment);
@@ -100,22 +99,17 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(111, 163);
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button2.Location = new System.Drawing.Point(20, 160);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(63, 26);
             this.button2.TabIndex = 12;
             this.button2.Text = "Print";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Location = new System.Drawing.Point(20, 163);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnExcel.TabIndex = 11;
-            this.btnExcel.Text = "Xuất Excel";
-            this.btnExcel.UseVisualStyleBackColor = true;
             // 
             // lblDebt
             // 
@@ -282,6 +276,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.lan,
             this.date,
             this.payCol,
             this.debtCol});
@@ -290,21 +285,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(814, 281);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Thời Gian";
-            this.date.Name = "date";
-            // 
-            // payCol
-            // 
-            this.payCol.HeaderText = "Thanh Toán";
-            this.payCol.Name = "payCol";
-            // 
-            // debtCol
-            // 
-            this.debtCol.HeaderText = "Còn nợ";
-            this.debtCol.Name = "debtCol";
             // 
             // printDocument1
             // 
@@ -324,6 +304,28 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // lan
+            // 
+            this.lan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.lan.HeaderText = "Lần";
+            this.lan.Name = "lan";
+            this.lan.Width = 50;
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Thời Gian";
+            this.date.Name = "date";
+            // 
+            // payCol
+            // 
+            this.payCol.HeaderText = "Thanh Toán";
+            this.payCol.Name = "payCol";
+            // 
+            // debtCol
+            // 
+            this.debtCol.HeaderText = "Còn nợ";
+            this.debtCol.Name = "debtCol";
+            // 
             // Payment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,7 +334,8 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Payment";
-            this.Text = "Payment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "CHI TIẾT THANH TOÁN";
             this.Load += new System.EventHandler(this.Payment_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -364,13 +367,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn payCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn debtCol;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnExcel;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn payCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn debtCol;
     }
 }

@@ -128,11 +128,13 @@ namespace PhanMem
             {
                 string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                 int customerId = Int32.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                this.Hide();
                 ThanhToanNo frm = new ThanhToanNo(name, customerId);
                 frm.ShowDialog();
 
                 //WHEN SHOWDIALOG() END
                 frm.Dispose();
+                this.Show();
                 dataGridView1.Rows.Clear();
                 if (con.State != ConnectionState.Open)
                 {

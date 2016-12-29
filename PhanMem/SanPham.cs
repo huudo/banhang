@@ -291,6 +291,15 @@ namespace PhanMem
         private void txtGiaban4_TextChanged(object sender, EventArgs e)
         {
         }
+        void checkNumber(KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
+        }
+        private void txtKhoiLuong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+
 
     }
 }

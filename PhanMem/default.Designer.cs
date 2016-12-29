@@ -375,6 +375,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Default";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Default";
             this.Load += new System.EventHandler(this.Default_Load);
             this.menuStrip1.ResumeLayout(false);

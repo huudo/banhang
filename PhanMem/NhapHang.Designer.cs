@@ -148,6 +148,7 @@
             this.txtPay.Size = new System.Drawing.Size(132, 26);
             this.txtPay.TabIndex = 167;
             this.txtPay.TextChanged += new System.EventHandler(this.txtPay_TextChanged);
+            this.txtPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPay_KeyPress);
             // 
             // txtSum
             // 
@@ -648,6 +649,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NhapHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NhapHang";
             this.Load += new System.EventHandler(this.NhapHang_Load);
             this.panel4.ResumeLayout(false);

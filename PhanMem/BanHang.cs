@@ -117,6 +117,8 @@ namespace PhanMem
         }
         private void BanHang_Load(object sender, EventArgs e)
         {
+            
+            
             try
             {
                 button1.Visible = false;
@@ -506,6 +508,10 @@ namespace PhanMem
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
             double tongLoiNhuan = 0;
             for (int i = 0; i < LoiNhuan.Count; i++)
             {
@@ -520,6 +526,7 @@ namespace PhanMem
             }
             else 
             {
+
                 DateTime d1 = DateTime.Now;
                 int banhang_id = 0;
                 string customer = "";
@@ -527,82 +534,97 @@ namespace PhanMem
                 {
                     customer = txtCustomer.Text;
                 }
-                con.Open();
+                
                 int idCustomer = 0;
-                SqlCommand cmdCustomer = new SqlCommand();
-                String queryCustomer = "SELECT id from customer WHERE name = N'" + customer + "' ";
-                cmdCustomer.Connection = con;
-                cmdCustomer.CommandText = queryCustomer;
-                try
+                SqlDataAdapter check = new SqlDataAdapter("SELECT id from customer WHERE name = N'" + customer + "'  ", con);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                check.Fill(dt);
+                if (dt.Rows.Count > 0)
                 {
-                    idCustomer = Convert.ToInt32(cmdCustomer.ExecuteScalar());
-                    MessageBox.Show(idCustomer.ToString() + "KHACH HANG");
-                    String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customerId) VALUES(@sum,@pay,@no,@date,@customerId)";
-                    var cmdAdd = new SqlCommand(querryAdd, con);
-
-                    cmdAdd.Parameters.AddWithValue("@sum", Sum);
-                    cmdAdd.Parameters.AddWithValue("@pay", payment);
-                    cmdAdd.Parameters.AddWithValue("@no", no);
-                    cmdAdd.Parameters.AddWithValue("@date", d1);
-                    cmdAdd.Parameters.AddWithValue("@customerId", idCustomer);
-                    cmdAdd.ExecuteNonQuery();
-                    SqlCommand cmd = new SqlCommand();
-                    String query = "select max(id) from banhang";
-                    cmd.Connection = con;
-                    cmd.CommandText = query;
+                    SqlCommand cmdCustomer = new SqlCommand();
+                    String queryCustomer = "SELECT id from customer WHERE name = N'" + customer + "' ";
+                    cmdCustomer.Connection = con;
+                    cmdCustomer.CommandText = queryCustomer;
                     try
                     {
-                        banhang_id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        idCustomer = Convert.ToInt32(cmdCustomer.ExecuteScalar());
+                        MessageBox.Show(cmdCustomer.ExecuteScalar() + "KHACH HANG");
+                        String querryAdd = "INSERT INTO banhang(sum,pay,no,date,customerId) VALUES(@sum,@pay,@no,@date,@customerId)";
+                        var cmdAdd = new SqlCommand(querryAdd, con);
+
+                        cmdAdd.Parameters.AddWithValue("@sum", Sum);
+                        cmdAdd.Parameters.AddWithValue("@pay", payment);
+                        cmdAdd.Parameters.AddWithValue("@no", no);
+                        cmdAdd.Parameters.AddWithValue("@date", d1);
+                        cmdAdd.Parameters.AddWithValue("@customerId", idCustomer);
+                        cmdAdd.ExecuteNonQuery();
+                        SqlCommand cmd = new SqlCommand();
+                        String query = "select max(id) from banhang";
+                        cmd.Connection = con;
+                        cmd.CommandText = query;
+                        try
+                        {
+                            banhang_id = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
+                        catch (Exception ex)
+                        {
+                            banhang_id = 1;
+                        }
+
+                        String addQlyNo = "INSERT quanlyno(id_don,customerId,total,payment,debt,date,type,tongno,tongtra,profit) VALUES(@id_don,@customerId,@total,@payment,@debt,@date,@type,@tongno,@tongtra,@profit)";
+                        var cmdqly = new SqlCommand(addQlyNo, con);
+
+                        cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
+                        cmdqly.Parameters.AddWithValue("@customerId", idCustomer);
+                        cmdqly.Parameters.AddWithValue("@total", Sum);
+                        cmdqly.Parameters.AddWithValue("@payment", payment);
+                        cmdqly.Parameters.AddWithValue("@debt", no);
+                        cmdqly.Parameters.AddWithValue("@date", d1);
+                        cmdqly.Parameters.AddWithValue("@type", 2);
+                        cmdqly.Parameters.AddWithValue("@tongno", no);
+                        cmdqly.Parameters.AddWithValue("@tongtra", payment);
+                        cmdqly.Parameters.AddWithValue("@profit", tongLoiNhuan);
+                        cmdqly.ExecuteNonQuery();
+
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customerId,loinhuan)" +
+                           "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customerId,@loinhuan)";
+                            var cmdRun = new SqlCommand(stringQr, con);
+                            cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
+                            cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
+                            cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
+                            cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
+                            cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
+                            cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
+                            cmdRun.Parameters.AddWithValue("@date", d1);
+                            cmdRun.Parameters.AddWithValue("@customerId", idCustomer);
+                            cmdRun.Parameters.AddWithValue("@loinhuan", LoiNhuan[i]);
+                            cmdRun.ExecuteNonQuery();
+                        }
+                       
+                        //MessageBox.Show("Thanh toán hoàn tất !");
+                        ExportExcel(banhang_id, customer, payment, no);
+                        // ClearTextBox();
+                        resetVariable();
+                        clearText();
+                        txtMa.Clear();
+                        button1.Visible = false;
+
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        banhang_id = 1;
+                        MessageBox.Show("Không tồn tại khách hàng!");
                     }
-
-                    String addQlyNo = "INSERT quanlyno(id_don,customerId,total,payment,debt,date,type,tongno,tongtra,profit) VALUES(@id_don,@customerId,@total,@payment,@debt,@date,@type,@tongno,@tongtra,@profit)";
-                    var cmdqly = new SqlCommand(addQlyNo, con);
-
-                    cmdqly.Parameters.AddWithValue("@id_don", banhang_id);
-                    cmdqly.Parameters.AddWithValue("@customerId", idCustomer);
-                    cmdqly.Parameters.AddWithValue("@total", Sum);
-                    cmdqly.Parameters.AddWithValue("@payment", payment);
-                    cmdqly.Parameters.AddWithValue("@debt", no);
-                    cmdqly.Parameters.AddWithValue("@date", d1);
-                    cmdqly.Parameters.AddWithValue("@type", 2);
-                    cmdqly.Parameters.AddWithValue("@tongno", no);
-                    cmdqly.Parameters.AddWithValue("@tongtra", payment);
-                    cmdqly.Parameters.AddWithValue("@profit", tongLoiNhuan);
-                    cmdqly.ExecuteNonQuery();
-
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        var stringQr = "INSERT INTO banhang_list (id_don,id_mahang,soluong,donvi,dongia,tienhang,date,customerId,loinhuan)" +
-                       "VALUES(@id_don,@id_mahang,@soluong,@donvi,@dongia,@tienhang,@date,@customerId,@loinhuan)";
-                        var cmdRun = new SqlCommand(stringQr, con);
-                        cmdRun.Parameters.AddWithValue("@id_don", banhang_id);
-                        cmdRun.Parameters.AddWithValue("@id_mahang", dataGridView1.Rows[i].Cells["mahang"].Value);
-                        cmdRun.Parameters.AddWithValue("@soluong", float.Parse(dataGridView1.Rows[i].Cells["soluong"].Value.ToString()));
-                        cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells["donvi"].Value.ToString());
-                        cmdRun.Parameters.AddWithValue("@dongia", float.Parse(dataGridView1.Rows[i].Cells["dongia"].Value.ToString()));
-                        cmdRun.Parameters.AddWithValue("@tienhang", float.Parse(dataGridView1.Rows[i].Cells["total"].Value.ToString()));
-                        cmdRun.Parameters.AddWithValue("@date", d1);
-                        cmdRun.Parameters.AddWithValue("@customerId", idCustomer);
-                        cmdRun.Parameters.AddWithValue("@loinhuan", LoiNhuan[i]);
-                        cmdRun.ExecuteNonQuery();
-                    }
-                    con.Close();
-                    //MessageBox.Show("Thanh toán hoàn tất !");
-                    ExportExcel(banhang_id, customer, payment, no);
-                    // ClearTextBox();
-                    resetVariable();
-                    clearText();
-                    txtMa.Clear();
-                    button1.Visible = false;
-                    
                 }
-                catch
+                else
                 {
-                   
+                    MessageBox.Show("Không tồn tại khách hàng!");
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
                 }
 
                 
@@ -775,18 +797,37 @@ namespace PhanMem
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 10));
-            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 30));
+            string nameCompany = "";
+            if (con.State != ConnectionState.Open)
+            {
+                con.Open();
+            }
+            SqlCommand cmd = new SqlCommand("SELECT name FROM account", con);
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                nameCompany = dr["name"].ToString();
+            }
+            dr.Close();
+
+            if (con.State == ConnectionState.Open)
+            {
+                con.Close();
+            }
+            e.Graphics.DrawString("CỬA HÀNG " + nameCompany.ToUpper(), new System.Drawing.Font("Arial", 15, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(20, 10));
+            e.Graphics.DrawString("HÓA ĐƠN NHẬP HÀNG", new System.Drawing.Font("Arial", 13, FontStyle.Bold), Brushes.Black, new System.Drawing.Point(330, 40));
+            e.Graphics.DrawString("Ngày: " + DateTime.Now.ToString("dd/MM/yyyy"), new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(600, 70));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 50));
-            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 80));
-            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 80));
-            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 80));
-            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 80));
-            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 80));
+                new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 90));
+            e.Graphics.DrawString("Mã Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(20, 120));
+            e.Graphics.DrawString("Số Lượng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(150, 120));
+            e.Graphics.DrawString("Khuyễn mãi ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(350, 120));
+            e.Graphics.DrawString("Giá Nét Nhập ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(500, 120));
+            e.Graphics.DrawString("Tiền Hàng ", new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, 120));
             e.Graphics.DrawString("---------------------------------------------------------------------------------------------------------------------------------------------------------",
-               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 100));
-            int yPos = 130;
+               new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(0, 140));
+            int yPos = 170;
             for (int i = numberOfItemsPrintedSoFar; i < gridView.Count; i++)
             {
                 numberOfItemPerPage++;
@@ -833,6 +874,19 @@ namespace PhanMem
              new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new System.Drawing.Point(650, yPos + 110));
             numberOfItemPerPage = 0;
             numberOfItemsPrintedSoFar = 0;
+        }
+        void checkNumber(KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
+        }
+        private void txtSoLuong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+
+        private void txtPay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
         }
 
    

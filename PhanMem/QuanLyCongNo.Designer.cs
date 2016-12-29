@@ -189,6 +189,7 @@
             this.ClientSize = new System.Drawing.Size(884, 508);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "QuanLyCongNo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QUẢN LÝ CÔNG NỢ";
             this.Load += new System.EventHandler(this.QuanLyCongNo_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

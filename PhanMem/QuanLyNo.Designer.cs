@@ -176,6 +176,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QuanLyNo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QUẢN LÝ CÔNG NỢ";
             this.Load += new System.EventHandler(this.QuanLyNo_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

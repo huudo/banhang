@@ -177,6 +177,7 @@
             this.txtKhoiLuong.Size = new System.Drawing.Size(305, 26);
             this.txtKhoiLuong.TabIndex = 4;
             this.txtKhoiLuong.TextChanged += new System.EventHandler(this.txtKhoiLuong_TextChanged);
+            this.txtKhoiLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKhoiLuong_KeyPress);
             // 
             // txtDonVi
             // 
@@ -476,6 +477,7 @@
             this.ClientSize = new System.Drawing.Size(1246, 690);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SanPham";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SanPham";
             this.Load += new System.EventHandler(this.SanPham_Load);
             this.tableLayoutPanel2.ResumeLayout(false);

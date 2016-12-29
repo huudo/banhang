@@ -212,6 +212,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BCLoiNhuan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BÁO CÁO LỢI NHUẬN";
             this.Load += new System.EventHandler(this.BCLoiNhuan_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

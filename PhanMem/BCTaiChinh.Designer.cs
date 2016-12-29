@@ -31,6 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCTaiChinh));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBaoCao = new System.Windows.Forms.Button();
+            this.timeTo = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.timeFrom = new System.Windows.Forms.DateTimePicker();
             this.lblDaThu = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,11 +63,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnBaoCao = new System.Windows.Forms.Button();
-            this.timeTo = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.timeFrom = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -130,6 +130,58 @@
             this.panel1.Size = new System.Drawing.Size(923, 343);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // btnBaoCao
+            // 
+            this.btnBaoCao.Location = new System.Drawing.Point(604, 12);
+            this.btnBaoCao.Name = "btnBaoCao";
+            this.btnBaoCao.Size = new System.Drawing.Size(89, 34);
+            this.btnBaoCao.TabIndex = 47;
+            this.btnBaoCao.Text = "BÁO CÁO";
+            this.btnBaoCao.UseVisualStyleBackColor = true;
+            this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click);
+            // 
+            // timeTo
+            // 
+            this.timeTo.CustomFormat = "dd-MM-yyyy";
+            this.timeTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.timeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.timeTo.Location = new System.Drawing.Point(439, 16);
+            this.timeTo.Name = "timeTo";
+            this.timeTo.Size = new System.Drawing.Size(122, 24);
+            this.timeTo.TabIndex = 46;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Location = new System.Drawing.Point(373, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 18);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Đến :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label11.Location = new System.Drawing.Point(149, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 18);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Từ :";
+            // 
+            // timeFrom
+            // 
+            this.timeFrom.CustomFormat = "dd-MM-yyyy";
+            this.timeFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.timeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.timeFrom.Location = new System.Drawing.Point(196, 16);
+            this.timeFrom.Name = "timeFrom";
+            this.timeFrom.Size = new System.Drawing.Size(122, 24);
+            this.timeFrom.TabIndex = 43;
             // 
             // lblDaThu
             // 
@@ -418,58 +470,6 @@
             this.label5.TabIndex = 25;
             this.label5.Text = "ĐÁNH GIÁ";
             // 
-            // btnBaoCao
-            // 
-            this.btnBaoCao.Location = new System.Drawing.Point(604, 12);
-            this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Size = new System.Drawing.Size(89, 34);
-            this.btnBaoCao.TabIndex = 47;
-            this.btnBaoCao.Text = "BÁO CÁO";
-            this.btnBaoCao.UseVisualStyleBackColor = true;
-            this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // timeTo
-            // 
-            this.timeTo.CustomFormat = "dd-MM-yyyy";
-            this.timeTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.timeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timeTo.Location = new System.Drawing.Point(439, 16);
-            this.timeTo.Name = "timeTo";
-            this.timeTo.Size = new System.Drawing.Size(122, 24);
-            this.timeTo.TabIndex = 46;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(373, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 18);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "Đến :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label11.Location = new System.Drawing.Point(149, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 18);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Từ :";
-            // 
-            // timeFrom
-            // 
-            this.timeFrom.CustomFormat = "dd-MM-yyyy";
-            this.timeFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.timeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.timeFrom.Location = new System.Drawing.Point(196, 16);
-            this.timeFrom.Name = "timeFrom";
-            this.timeFrom.Size = new System.Drawing.Size(122, 24);
-            this.timeFrom.TabIndex = 43;
-            // 
             // BCTaiChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,6 +478,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BCTaiChinh";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BÁO CÁO TÀI CHÍNH";
             this.Load += new System.EventHandler(this.BCTaiChinh_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

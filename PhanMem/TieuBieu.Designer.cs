@@ -135,6 +135,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TieuBieu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SẢN PHẨM TIÊU BIỂU";
             this.Load += new System.EventHandler(this.TieuBieu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

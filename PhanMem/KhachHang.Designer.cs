@@ -129,7 +129,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 35);
             this.button1.TabIndex = 8;
-            this.button1.Text = "THÊM";
+            this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -140,7 +140,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(101, 35);
             this.btnUpdate.TabIndex = 9;
-            this.btnUpdate.Text = "SỬA";
+            this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDel
@@ -150,7 +150,7 @@
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(101, 35);
             this.btnDel.TabIndex = 10;
-            this.btnDel.Text = "XÓA";
+            this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
@@ -285,6 +285,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KhachHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KhachHang";
             this.Load += new System.EventHandler(this.KhachHang_Load);
             this.menuStrip1.ResumeLayout(false);

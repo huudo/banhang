@@ -65,6 +65,7 @@ namespace PhanMem
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
+
             BanHang bh = new BanHang ();
             bh.Show();
         }
@@ -98,8 +99,14 @@ namespace PhanMem
 
         private void panel1_Click(object sender, EventArgs e)
         {
-            NhapHang nh = new NhapHang();
-            nh.Show();
+            this.Hide();
+            NhapHang frm = new NhapHang();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+           
         }
         private void panel1_MouseHover(object sender, EventArgs e)
         {
@@ -113,38 +120,73 @@ namespace PhanMem
 
         private void panel2_Click(object sender, EventArgs e)
         {
-            BanHang bh = new BanHang();
-            bh.Show();
+            this.Hide();
+            BanHang frm = new BanHang();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+           
         }
 
         private void panel3_Click(object sender, EventArgs e)
         {
-            BangGia bg = new BangGia();
-            bg.Show();
+            this.Hide();
+            BangGia frm = new BangGia();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+          
         }
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            QuanLyCongNo frame = new QuanLyCongNo();
-            frame.Show();
+            this.Hide();
+            QuanLyCongNo frm = new QuanLyCongNo();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+           
         }
 
         private void panel6_Click(object sender, EventArgs e)
         {
-            KhachHang kh = new KhachHang();
-            kh.Show();
+            this.Hide();
+            KhachHang frm = new KhachHang();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
         }
 
         private void panel5_Click(object sender, EventArgs e)
         {
-            BaoCao frame = new BaoCao();
-            frame.Show();
+            this.Hide();
+            BaoCao frm = new BaoCao();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+
         }
 
         private void panel9_Click(object sender, EventArgs e)
         {
-            SanPham frame = new SanPham();
-            frame.Show();
+            this.Hide();
+            SanPham frm = new SanPham();
+            frm.ShowDialog();
+
+            //WHEN SHOWDIALOG() END
+            frm.Dispose();
+            this.Show();
+           
         }
     }
 }
