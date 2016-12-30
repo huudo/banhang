@@ -35,7 +35,7 @@ namespace PhanMem
         string emailNhan = "";
         string passEmail = "";
         int id_bangGia = 0;
-        void ClearTextBox()
+        private void ClearTextBox()
         {
             txtGiaDo.Clear();
             txtDonVi.Clear();
@@ -52,7 +52,7 @@ namespace PhanMem
             txtKhuyenMai.Clear();
             check = false;
         }
-        void ResetData()
+        private void ResetData()
         {            
             dataGridView1.Rows.Clear();
             giaDo = 0;
@@ -73,15 +73,15 @@ namespace PhanMem
         private int numberOfItemPerPage = 0;
         private int numberOfItemsPrintedSoFar = 0;
 
-        void calculatePrice()
+        private void calculatePrice()
         {
-            int ck1 = 0;
+            float ck1 = 0;
             int ck2 = 0;
             int ck3 = 0;
             int soLuong = 0;
             if (!string.IsNullOrEmpty(txtCK1.Text))
             {
-                ck1 = Int32.Parse(txtCK1.Text);
+                ck1 = float.Parse(txtCK1.Text);
             }
             if (!string.IsNullOrEmpty(txtCK2.Text))
             {
@@ -187,7 +187,7 @@ namespace PhanMem
                 calculatePrice();
             }
         }
-        void checkNumber(KeyPressEventArgs e)
+        private void checkNumber(KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
         }
@@ -196,7 +196,7 @@ namespace PhanMem
         {
             checkNumber(e);
         }
-        void ExportExcel(int nhaphang_id, double payment, double no)
+        private void ExportExcel(int nhaphang_id, double payment, double no)
         {
             string date = DateTime.Now.ToString("dd-MM-yyy");
             Microsoft.Office.Interop.Excel.Application objexcelapp = new Microsoft.Office.Interop.Excel.Application();
@@ -521,7 +521,7 @@ namespace PhanMem
             btnOrder.Visible = false;
             txtMa.Clear();
         }
-        void addDataGridView()
+        private void addDataGridView()
         {
             
         }
@@ -757,6 +757,32 @@ namespace PhanMem
             checkNumber(e);
         }
 
+        private void txtKhuyenMai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+
+        private void txtCK2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+
+        private void txtCK3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkNumber(e);
+        }
+        private void checkFloat(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCK1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            checkFloat(e);
+        }
 
 
 

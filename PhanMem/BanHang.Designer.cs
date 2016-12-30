@@ -182,6 +182,7 @@
             this.txtQuyCach.Name = "txtQuyCach";
             this.txtQuyCach.Size = new System.Drawing.Size(308, 24);
             this.txtQuyCach.TabIndex = 122;
+            this.txtQuyCach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuyCach_KeyPress);
             // 
             // txtSoLuong
             // 
@@ -436,6 +437,7 @@
             this.txtCK3.Size = new System.Drawing.Size(89, 24);
             this.txtCK3.TabIndex = 148;
             this.txtCK3.TextChanged += new System.EventHandler(this.txtCK3_TextChanged);
+            this.txtCK3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCK3_KeyPress);
             // 
             // txtCK2
             // 
@@ -446,6 +448,7 @@
             this.txtCK2.Size = new System.Drawing.Size(89, 24);
             this.txtCK2.TabIndex = 147;
             this.txtCK2.TextChanged += new System.EventHandler(this.txtCK2_TextChanged);
+            this.txtCK2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCK2_KeyPress);
             // 
             // txtCK1
             // 
@@ -456,6 +459,7 @@
             this.txtCK1.Size = new System.Drawing.Size(89, 24);
             this.txtCK1.TabIndex = 146;
             this.txtCK1.TextChanged += new System.EventHandler(this.txtCK1_TextChanged);
+            this.txtCK1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCK1_KeyPress);
             // 
             // label7
             // 
@@ -621,6 +625,7 @@
             this.txtKhuyenMai.Name = "txtKhuyenMai";
             this.txtKhuyenMai.Size = new System.Drawing.Size(309, 26);
             this.txtKhuyenMai.TabIndex = 159;
+            this.txtKhuyenMai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKhuyenMai_KeyPress);
             // 
             // label5
             // 

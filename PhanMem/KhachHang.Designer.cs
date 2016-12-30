@@ -51,6 +51,7 @@
             this.quànLýTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýNợToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataList = new System.Windows.Forms.DataGridView();
+            this.id_customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,6 +143,7 @@
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDel
             // 
@@ -239,6 +241,7 @@
             // 
             this.dataList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_customer,
             this.name,
             this.address,
             this.phone});
@@ -248,6 +251,12 @@
             this.dataList.Size = new System.Drawing.Size(1041, 354);
             this.dataList.TabIndex = 20;
             this.dataList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataList_MouseClick);
+            // 
+            // id_customer
+            // 
+            this.id_customer.HeaderText = "Id";
+            this.id_customer.Name = "id_customer";
+            this.id_customer.Visible = false;
             // 
             // name
             // 
@@ -320,6 +329,7 @@
         private System.Windows.Forms.ToolStripMenuItem quànLýTàiKhoảnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýNợToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_customer;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private System.Windows.Forms.DataGridViewTextBoxColumn phone;
