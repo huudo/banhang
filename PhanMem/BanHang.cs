@@ -918,13 +918,7 @@ namespace PhanMem
 
         private void txtQuyCach_KeyPress(object sender, KeyPressEventArgs e)
         {
-            checkNumber(e);
-        }
-
-
-
-
-   
-      
+             checkNumber(e);
+        }  
     }
 }
