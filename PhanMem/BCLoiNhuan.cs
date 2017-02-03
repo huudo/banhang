@@ -14,7 +14,7 @@ using System.IO;
 
 namespace PhanMem
 {
-    public partial class BCLoiNhuan : Form
+    public partial class BCLoiNhuan : MetroFramework.Forms.MetroForm 
     {
         SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
         int id_bangGia = 0;

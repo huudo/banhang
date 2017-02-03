@@ -34,7 +34,6 @@ D:\PM\banhang\PhanMem\obj\Debug\PhanMem.exe
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.pdb
 D:\PM\banhang\PhanMem\bin\Debug\PhanMem.exe
 D:\PM\banhang\PhanMem\bin\Debug\PhanMem.pdb
-D:\PM\banhang\PhanMem\obj\Debug\PhanMem.csprojResolveAssemblyReference.cache
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BanHang.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BCLoiNhuan.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.Default.resources
@@ -89,3 +88,10 @@ D:\PM\banhang\PhanMem\obj\Debug\PhanMem.NoPhaiTra.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.DetailTraNo.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.TieuBieu.resources
 D:\PM\banhang\PhanMem\obj\Debug\PhanMem.BCCuoiNgay.resources
+D:\PM\banhang\PhanMem\bin\Debug\MetroFramework.Design.dll
+D:\PM\banhang\PhanMem\bin\Debug\MetroFramework.dll
+D:\PM\banhang\PhanMem\bin\Debug\MetroFramework.Fonts.dll
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.csprojResolveAssemblyReference.cache
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.ucDasboard.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.frmMain.resources
+D:\PM\banhang\PhanMem\obj\Debug\PhanMem.ucNhapHang.resources

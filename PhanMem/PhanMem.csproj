@@ -77,6 +77,15 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -147,6 +156,12 @@
     <Compile Include="DetailTraNo.Designer.cs">
       <DependentUpon>DetailTraNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +217,18 @@
     <Compile Include="TieuBieu.Designer.cs">
       <DependentUpon>TieuBieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucDasboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucDasboard.Designer.cs">
+      <DependentUpon>ucDasboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucNhapHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucNhapHang.Designer.cs">
+      <DependentUpon>ucNhapHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +270,9 @@
     <EmbeddedResource Include="DetailTraNo.resx">
       <DependentUpon>DetailTraNo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,6 +300,12 @@
     <EmbeddedResource Include="TieuBieu.resx">
       <DependentUpon>TieuBieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucDasboard.resx">
+      <DependentUpon>ucDasboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucNhapHang.resx">
+      <DependentUpon>ucNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,6 +322,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Fonts\metro.eot" />
+    <None Include="Fonts\metro.ttf" />
+    <None Include="Fonts\metro.woff" />
+    <None Include="Fonts\selection.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -299,6 +340,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\metro-colors.css" />
+    <Content Include="Content\metro-colors.min.css" />
+    <Content Include="Content\metro-icons.css" />
+    <Content Include="Content\metro-icons.min.css" />
+    <Content Include="Content\metro-responsive.css" />
+    <Content Include="Content\metro-responsive.min.css" />
+    <Content Include="Content\metro-rtl.css" />
+    <Content Include="Content\metro-rtl.min.css" />
+    <Content Include="Content\metro-schemes.css" />
+    <Content Include="Content\metro-schemes.min.css" />
+    <Content Include="Content\metro.css" />
+    <Content Include="Content\metro.min.css" />
+    <Content Include="Fonts\metro.svg" />
+    <Content Include="Scripts\metro.js" />
+    <Content Include="Scripts\metro.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
