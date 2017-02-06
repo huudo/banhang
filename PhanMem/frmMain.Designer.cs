@@ -56,6 +56,7 @@
             this.mlBack.Size = new System.Drawing.Size(40, 34);
             this.mlBack.TabIndex = 1;
             this.mlBack.UseSelectable = true;
+            this.mlBack.UseWaitCursor = true;
             this.mlBack.Click += new System.EventHandler(this.mlBack_Click);
             // 
             // frmMain
@@ -65,8 +66,10 @@
             this.ClientSize = new System.Drawing.Size(1209, 715);
             this.Controls.Add(this.mlBack);
             this.Controls.Add(this.mPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.Text = "      PHẦN MỀM QUẢN LÝ BÁN HÀNG";
+            this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
 
