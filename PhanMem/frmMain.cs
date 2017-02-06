@@ -50,6 +50,8 @@ namespace PhanMem
 
         private void mlBack_Click(object sender, EventArgs e)
         {
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "PHẦN MỀM QUẢN LÝ BÁN HÀNG";
             mPanel.Controls["ucDasboard"].BringToFront();
             mlBack.Visible = false;
         }

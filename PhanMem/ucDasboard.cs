@@ -27,6 +27,8 @@ namespace PhanMem
             }
             frmMain.Instance.MetroContainer.Controls["ucNhapHang"].BringToFront();
             frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "      NHẬP HÀNG";
         }
 
         private void metroTile2_Click(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace PhanMem
             }
             frmMain.Instance.MetroContainer.Controls["ucBanHang"].BringToFront();
             frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "      BÁN HÀNG";
         }
     }
 }
