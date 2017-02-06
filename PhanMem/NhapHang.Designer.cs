@@ -401,6 +401,7 @@
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(308, 26);
             this.txtMa.TabIndex = 3;
+            this.txtMa.TextChanged += new System.EventHandler(this.txtMa_TextChanged_1);
             this.txtMa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMa_KeyDown);
             // 
             // label1

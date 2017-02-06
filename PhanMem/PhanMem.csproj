@@ -217,6 +217,12 @@
     <Compile Include="TieuBieu.Designer.cs">
       <DependentUpon>TieuBieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBanHang.Designer.cs">
+      <DependentUpon>ucBanHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucDasboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TieuBieu.resx">
       <DependentUpon>TieuBieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucBanHang.resx">
+      <DependentUpon>ucBanHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucDasboard.resx">
       <DependentUpon>ucDasboard.cs</DependentUpon>

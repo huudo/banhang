@@ -28,5 +28,17 @@ namespace PhanMem
             frmMain.Instance.MetroContainer.Controls["ucNhapHang"].BringToFront();
             frmMain.Instance.MetroBack.Visible = true;
         }
+
+        private void metroTile2_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucBanHang"))
+            {
+                ucBanHang uc = new ucBanHang();
+                uc.Dock = DockStyle.Fill;
+                frmMain.Instance.MetroContainer.Controls.Add(uc);
+            }
+            frmMain.Instance.MetroContainer.Controls["ucBanHang"].BringToFront();
+            frmMain.Instance.MetroBack.Visible = true;
+        }
     }
 }

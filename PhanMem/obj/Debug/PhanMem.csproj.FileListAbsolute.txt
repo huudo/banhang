@@ -132,3 +132,4 @@ D:\PHANMEM\banhang\PhanMem\obj\Debug\PhanMem.Welcome.resources
 D:\PHANMEM\banhang\PhanMem\obj\Debug\PhanMem.KhachHang.resources
 D:\PHANMEM\banhang\PhanMem\obj\Debug\PhanMem.Properties.Resources.resources
 D:\PHANMEM\banhang\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
+D:\PHANMEM\banhang\PhanMem\obj\Debug\PhanMem.ucBanHang.resources

@@ -41,7 +41,7 @@
             this.mPanel.HorizontalScrollbarSize = 10;
             this.mPanel.Location = new System.Drawing.Point(20, 60);
             this.mPanel.Name = "mPanel";
-            this.mPanel.Size = new System.Drawing.Size(1061, 445);
+            this.mPanel.Size = new System.Drawing.Size(1169, 635);
             this.mPanel.TabIndex = 0;
             this.mPanel.VerticalScrollbarBarColor = true;
             this.mPanel.VerticalScrollbarHighlightOnWheel = false;
@@ -62,7 +62,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 525);
+            this.ClientSize = new System.Drawing.Size(1209, 715);
             this.Controls.Add(this.mlBack);
             this.Controls.Add(this.mPanel);
             this.Name = "frmMain";

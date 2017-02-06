@@ -784,6 +784,11 @@ namespace PhanMem
             checkFloat(e);
         }
 
+        private void txtMa_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }
