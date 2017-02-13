@@ -223,6 +223,12 @@
     <Compile Include="ucBanHang.Designer.cs">
       <DependentUpon>ucBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucBaoCao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBaoCao.Designer.cs">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucDasboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -309,6 +315,9 @@
     <EmbeddedResource Include="ucBanHang.resx">
       <DependentUpon>ucBanHang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucBaoCao.resx">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucDasboard.resx">
       <DependentUpon>ucDasboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -364,6 +373,9 @@
     <Content Include="Content\metro.css" />
     <Content Include="Content\metro.min.css" />
     <Content Include="Fonts\metro.svg" />
+    <None Include="Resources\Image1.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\closeBlack.png" />
     <Content Include="Scripts\metro.js" />
     <Content Include="Scripts\metro.min.js" />
   </ItemGroup>

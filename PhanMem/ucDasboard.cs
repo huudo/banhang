@@ -44,5 +44,19 @@ namespace PhanMem
             frmMain.Instance.Text = "";
             frmMain.Instance.Text = "      BÁN HÀNG";
         }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucBaoCao"))
+            {
+                ucBaoCao uc = new ucBaoCao();
+                uc.Dock = DockStyle.Fill;
+                frmMain.Instance.MetroContainer.Controls.Add(uc);
+            }
+            frmMain.Instance.MetroContainer.Controls["ucBaoCao"].BringToFront();
+            frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "      BÁO CÁO";
+        }
     }
 }
