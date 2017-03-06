@@ -43,7 +43,7 @@ namespace PhanMem
         }
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            AddTabPage(new BCTaiChinh());
+            AddTabPage(new QuanLyCongNo());
         }
        
         private void metroTile2_Click(object sender, EventArgs e)

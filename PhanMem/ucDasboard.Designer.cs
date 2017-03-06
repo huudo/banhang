@@ -104,7 +104,9 @@
             this.metroTile5.Name = "metroTile5";
             this.metroTile5.Size = new System.Drawing.Size(320, 139);
             this.metroTile5.TabIndex = 6;
+            this.metroTile5.Text = "QUẢN LÝ CÔNG NỢ";
             this.metroTile5.UseSelectable = true;
+            this.metroTile5.Click += new System.EventHandler(this.metroTile5_Click);
             // 
             // metroTile1
             // 

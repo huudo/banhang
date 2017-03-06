@@ -71,11 +71,7 @@ namespace PhanMem
             lblDaThu.Text = string.Format("{0:n0}", tongTra);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+  
         private void btnBaoCao_Click(object sender, EventArgs e)
         {
             string dateFrom = timeFrom.Value.ToString("yyy/MM/dd");

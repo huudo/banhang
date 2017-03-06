@@ -173,3 +173,4 @@ D:\git\banhang\PhanMem\obj\Debug\PhanMem.Welcome.resources
 D:\git\banhang\PhanMem\obj\Debug\PhanMem.KhachHang.resources
 D:\git\banhang\PhanMem\obj\Debug\PhanMem.Properties.Resources.resources
 D:\git\banhang\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
+D:\git\banhang\PhanMem\obj\Debug\PhanMem.ucQuanLyNo.resources

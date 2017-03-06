@@ -63,5 +63,19 @@ namespace PhanMem
         {
 
         }
+
+        private void metroTile5_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucQuanLyNo"))
+            {
+                ucQuanLyNo uc = new ucQuanLyNo();
+                uc.Dock = DockStyle.Fill;
+                frmMain.Instance.MetroContainer.Controls.Add(uc);
+            }
+            frmMain.Instance.MetroContainer.Controls["ucQuanLyNo"].BringToFront();
+            frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "      QUẢN LÝ CÔNG NỢ";
+        }
     }
 }
