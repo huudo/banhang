@@ -23,44 +23,48 @@ namespace PhanMem
         {
 
         }
-
-        
-
-        private void tabcontrol1_DrawItem(object sender, DrawItemEventArgs e)
+        public void themPage(Form frm)
         {
-            Rectangle rect = tabcontrol1.GetTabRect(e.Index);
-            Rectangle imageRec = new Rectangle(rect.Right - closeImage.Width, rect.Top + (closeImage.Height - closeImage.Width / 2),
-                closeImage.Width, closeImage.Height);
-            rect.Size = new Size(rect.Width + 24, 38);
-            Font f;
-            Brush br = Brushes.Black;
-            StringFormat strF = new StringFormat(StringFormat.GenericDefault);
-            if (tabcontrol1.SelectedTab == tabcontrol1.TabPages[e.Index])
+            
+            //BaoCaoSanLuong frm = new BaoCaoSanLuong();
+            int index = kiemtratontai(tabcontrol1, frm);
+            if (index >= 0)
             {
-                e.Graphics.DrawImage(closeImageAct, imageRec);
-                f = new Font("Arial", 10, FontStyle.Bold);
-                e.Graphics.DrawString(tabcontrol1.TabPages[e.Index].Text, f, br, rect, strF);
+                tabcontrol1.TabIndex = index;
             }
             else
             {
-                e.Graphics.DrawImage(closeImage, imageRec);
-                f = new Font("Arial", 10, FontStyle.Strikeout);
-                e.Graphics.DrawString(tabcontrol1.TabPages[e.Index].Text, f, br, rect, strF);
-            }
-        }
-        private void tabcontrol1_MouseClick(object sender, MouseEventArgs e)
-        {
-            //SU kien click dong tab
-            for (int i = 0; i < tabcontrol1.TabCount; i++)
-            {
-                Rectangle rect = tabcontrol1.GetTabRect(i);
-                Rectangle imageRec = new Rectangle(rect.Right - closeImage.Width, rect.Top + (closeImage.Height - closeImage.Width / 2),
-                closeImage.Width, closeImage.Height);
-                if (imageRec.Contains(e.Location))
-                    tabcontrol1.TabPages.Remove(tabcontrol1.SelectedTab);
-            }
+                TabPage tabPage = new TabPage();
+                tabPage.BorderStyle = BorderStyle.Fixed3D;
+                tabcontrol1.TabPages.Add(tabPage);
+                frm.TopLevel = false;
+                frm.Parent = tabPage;
+                frm.Show();
+                frm.Dock = DockStyle.Fill;
+            }           
         }
 
-        
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            BaoCaoSanLuong frm = new BaoCaoSanLuong();
+            themPage(frm);
+        }
+        public int kiemtratontai(TabControl tabform, Form frm)
+        {
+            for (int i = 0; i < tabform.TabCount; i++)
+            {
+                if (tabform.TabPages[i].Text.Trim() == frm.Text.Trim())
+                {
+                    return i;
+                }              
+            }
+            return -1;
+        }
+
+        private void metroTile2_Click(object sender, EventArgs e)
+        {
+            BCLoiNhuan frm = new BCLoiNhuan();
+            themPage(frm);
+        }
     }
 }
