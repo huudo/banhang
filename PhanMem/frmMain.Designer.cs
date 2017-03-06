@@ -43,6 +43,7 @@
             this.mPanel.Name = "mPanel";
             this.mPanel.Size = new System.Drawing.Size(1169, 635);
             this.mPanel.TabIndex = 0;
+            this.mPanel.UseWaitCursor = true;
             this.mPanel.VerticalScrollbarBarColor = true;
             this.mPanel.VerticalScrollbarHighlightOnWheel = false;
             this.mPanel.VerticalScrollbarSize = 10;

@@ -35,11 +35,9 @@
             this.metroTile3 = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
-            this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-            this.tabcontrol1 = new MetroFramework.Controls.MetroTabControl();
+            this.tabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.metroPanel1.SuspendLayout();
-            this.metroPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -48,7 +46,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel1.Controls.Add(this.metroPanel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.metroPanel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -79,9 +77,9 @@
             // metroTile5
             // 
             this.metroTile5.ActiveControl = null;
-            this.metroTile5.Location = new System.Drawing.Point(0, 439);
+            this.metroTile5.Location = new System.Drawing.Point(2, 462);
             this.metroTile5.Name = "metroTile5";
-            this.metroTile5.Size = new System.Drawing.Size(120, 114);
+            this.metroTile5.Size = new System.Drawing.Size(118, 109);
             this.metroTile5.TabIndex = 6;
             this.metroTile5.Text = "SP Bán chạy";
             this.metroTile5.UseSelectable = true;
@@ -89,7 +87,7 @@
             // metroTile4
             // 
             this.metroTile4.ActiveControl = null;
-            this.metroTile4.Location = new System.Drawing.Point(3, 327);
+            this.metroTile4.Location = new System.Drawing.Point(3, 350);
             this.metroTile4.Name = "metroTile4";
             this.metroTile4.Size = new System.Drawing.Size(117, 109);
             this.metroTile4.TabIndex = 5;
@@ -99,7 +97,7 @@
             // metroTile3
             // 
             this.metroTile3.ActiveControl = null;
-            this.metroTile3.Location = new System.Drawing.Point(3, 217);
+            this.metroTile3.Location = new System.Drawing.Point(3, 240);
             this.metroTile3.Name = "metroTile3";
             this.metroTile3.Size = new System.Drawing.Size(117, 107);
             this.metroTile3.TabIndex = 4;
@@ -109,7 +107,7 @@
             // metroTile2
             // 
             this.metroTile2.ActiveControl = null;
-            this.metroTile2.Location = new System.Drawing.Point(3, 113);
+            this.metroTile2.Location = new System.Drawing.Point(3, 136);
             this.metroTile2.Name = "metroTile2";
             this.metroTile2.Size = new System.Drawing.Size(117, 101);
             this.metroTile2.TabIndex = 3;
@@ -120,7 +118,7 @@
             // metroTile1
             // 
             this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(3, 3);
+            this.metroTile1.Location = new System.Drawing.Point(3, 26);
             this.metroTile1.Name = "metroTile1";
             this.metroTile1.Size = new System.Drawing.Size(117, 107);
             this.metroTile1.TabIndex = 2;
@@ -128,30 +126,17 @@
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
-            // metroPanel2
+            // tabControl1
             // 
-            this.metroPanel2.Controls.Add(this.tabcontrol1);
-            this.metroPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroPanel2.HorizontalScrollbarBarColor = true;
-            this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(129, 3);
-            this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(1133, 685);
-            this.metroPanel2.TabIndex = 1;
-            this.metroPanel2.VerticalScrollbarBarColor = true;
-            this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel2.VerticalScrollbarSize = 10;
-            // 
-            // tabcontrol1
-            // 
-            this.tabcontrol1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabcontrol1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabcontrol1.Location = new System.Drawing.Point(0, 0);
-            this.tabcontrol1.Name = "tabcontrol1";
-            this.tabcontrol1.Size = new System.Drawing.Size(1133, 685);
-            this.tabcontrol1.TabIndex = 2;
-            this.tabcontrol1.UseSelectable = true;
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.Location = new System.Drawing.Point(129, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Size = new System.Drawing.Size(1133, 685);
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.UseSelectable = true;
+            this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem_1);
+            this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick_1);
             // 
             // ucBaoCao
             // 
@@ -163,7 +148,6 @@
             this.Load += new System.EventHandler(this.ucBaoCao_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.metroPanel1.ResumeLayout(false);
-            this.metroPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -173,11 +157,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroTile metroTile1;
-        private MetroFramework.Controls.MetroPanel metroPanel2;
-        private MetroFramework.Controls.MetroTabControl tabcontrol1;
         private MetroFramework.Controls.MetroTile metroTile5;
         private MetroFramework.Controls.MetroTile metroTile4;
         private MetroFramework.Controls.MetroTile metroTile3;
         private MetroFramework.Controls.MetroTile metroTile2;
+        private MetroFramework.Controls.MetroTabControl tabControl1;
     }
 }

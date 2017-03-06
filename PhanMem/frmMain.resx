@@ -120,11 +120,10 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="mlBack.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAAA3NCSVQICAjb4U/gAAAAAXNSR0IArs4c
-        6QAAAARnQU1BAACxjwv8YQUAAAAbUExURWh0kmt3lGx3lXF8mIyVrJ6mubS6yd7h5////925IGcAAAAJ
-        cEhZcwAAEGQAABBkAQNpyvUAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAQElE
-        QVRIx2MYBbQEKgL45ZkrEvArMO8IIGBAGyEDEkYNGDWAcgMIKiBoxagRo0aQbUQAISMI2EGwKB4FpAMG
-        BgCXrCx/8jbWuQAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAABGdBTUEAALGPC/xhBQAAABtQTFRFaHSS
+        a3eUbHeVcXyYjJWsnqa5tLrJ3uHn////3bkgZwAAAAlwSFlzAAAQZAAAEGQBA2nK9QAAABl0RVh0U29m
+        dHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABASURBVEjHYxgFtAQqAvjlmSsS8Csw7wggYEAbIQMS
+        Rg0YNYByAwgqIGjFqBGjRpBtRAAhIwjYQbAoHgWkAwYGAJesLH/yNta5AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -37,6 +37,7 @@ namespace PhanMem
         public frmMain()
         {
             InitializeComponent();
+            UseWaitCursor = false;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
