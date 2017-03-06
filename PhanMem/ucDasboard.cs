@@ -58,5 +58,10 @@ namespace PhanMem
             frmMain.Instance.Text = "";
             frmMain.Instance.Text = "      BÁO CÁO";
         }
+
+        private void metroPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

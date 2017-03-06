@@ -33,6 +33,10 @@
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.tabcontrol1 = new MetroFramework.Controls.MetroTabControl();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.metroTile3 = new MetroFramework.Controls.MetroTile();
+            this.metroTile4 = new MetroFramework.Controls.MetroTile();
+            this.metroTile5 = new MetroFramework.Controls.MetroTile();
             this.tableLayoutPanel1.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -55,6 +59,10 @@
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.metroTile5);
+            this.metroPanel1.Controls.Add(this.metroTile4);
+            this.metroPanel1.Controls.Add(this.metroTile3);
+            this.metroPanel1.Controls.Add(this.metroTile2);
             this.metroPanel1.Controls.Add(this.metroTile1);
             this.metroPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -75,7 +83,7 @@
             this.metroTile1.Name = "metroTile1";
             this.metroTile1.Size = new System.Drawing.Size(117, 107);
             this.metroTile1.TabIndex = 2;
-            this.metroTile1.Text = "metroTile1";
+            this.metroTile1.Text = "BC Sản lượng";
             this.metroTile1.UseSelectable = true;
             // 
             // metroPanel2
@@ -105,6 +113,46 @@
             this.tabcontrol1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabcontrol1_DrawItem);
             this.tabcontrol1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabcontrol1_MouseClick);
             // 
+            // metroTile2
+            // 
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Location = new System.Drawing.Point(3, 113);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(117, 101);
+            this.metroTile2.TabIndex = 3;
+            this.metroTile2.Text = "BC Tài chính";
+            this.metroTile2.UseSelectable = true;
+            // 
+            // metroTile3
+            // 
+            this.metroTile3.ActiveControl = null;
+            this.metroTile3.Location = new System.Drawing.Point(3, 217);
+            this.metroTile3.Name = "metroTile3";
+            this.metroTile3.Size = new System.Drawing.Size(117, 107);
+            this.metroTile3.TabIndex = 4;
+            this.metroTile3.Text = "BC Lợi nhuận";
+            this.metroTile3.UseSelectable = true;
+            // 
+            // metroTile4
+            // 
+            this.metroTile4.ActiveControl = null;
+            this.metroTile4.Location = new System.Drawing.Point(3, 327);
+            this.metroTile4.Name = "metroTile4";
+            this.metroTile4.Size = new System.Drawing.Size(117, 109);
+            this.metroTile4.TabIndex = 5;
+            this.metroTile4.Text = "BC Cuối ngày";
+            this.metroTile4.UseSelectable = true;
+            // 
+            // metroTile5
+            // 
+            this.metroTile5.ActiveControl = null;
+            this.metroTile5.Location = new System.Drawing.Point(0, 439);
+            this.metroTile5.Name = "metroTile5";
+            this.metroTile5.Size = new System.Drawing.Size(120, 114);
+            this.metroTile5.TabIndex = 6;
+            this.metroTile5.Text = "SP Bán chạy";
+            this.metroTile5.UseSelectable = true;
+            // 
             // ucBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,5 +175,9 @@
         private MetroFramework.Controls.MetroTile metroTile1;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         private MetroFramework.Controls.MetroTabControl tabcontrol1;
+        private MetroFramework.Controls.MetroTile metroTile5;
+        private MetroFramework.Controls.MetroTile metroTile4;
+        private MetroFramework.Controls.MetroTile metroTile3;
+        private MetroFramework.Controls.MetroTile metroTile2;
     }
 }
