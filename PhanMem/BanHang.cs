@@ -17,7 +17,8 @@ namespace PhanMem
 {
     public partial class BanHang : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        //SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        SqlConnection con = ConnectDatabase.querryConnect();
         Boolean check = false;
         double giaNet = 0;
         double giaLuaChon = 0;

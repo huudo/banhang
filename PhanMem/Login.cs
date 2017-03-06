@@ -13,7 +13,7 @@ namespace PhanMem
 {
     public partial class Login : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        SqlConnection con = ConnectDatabase.querryConnect();
         public Login()
         {
             InitializeComponent();

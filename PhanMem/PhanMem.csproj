@@ -147,6 +147,7 @@
     <Compile Include="BCTaiChinh.Designer.cs">
       <DependentUpon>BCTaiChinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectDatabase.cs" />
     <Compile Include="Default.cs">
       <SubType>Form</SubType>
     </Compile>
