@@ -214,3 +214,7 @@ D:\Coding\banhang\PhanMem\obj\Debug\PhanMem.Welcome.resources
 D:\Coding\banhang\PhanMem\obj\Debug\PhanMem.KhachHang.resources
 D:\Coding\banhang\PhanMem\obj\Debug\PhanMem.Properties.Resources.resources
 D:\Coding\banhang\PhanMem\obj\Debug\PhanMem.csproj.GenerateResource.Cache
+D:\git\banhang\PhanMem\bin\Debug\quanly.mdf
+D:\git\banhang\PhanMem\bin\Debug\quanly_log.ldf
+D:\git\banhang\PhanMem\obj\Debug\PhanMem.ucBangGia.resources
+D:\git\banhang\PhanMem\obj\Debug\PhanMem.ucSanPham.resources

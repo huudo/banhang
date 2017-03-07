@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -196,6 +211,11 @@
     <Compile Include="QuanLyCongNo.Designer.cs">
       <DependentUpon>QuanLyCongNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="quanlyDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>quanlyDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyNo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +240,12 @@
     </Compile>
     <Compile Include="TieuBieu.Designer.cs">
       <DependentUpon>TieuBieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucBangGia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucBangGia.Designer.cs">
+      <DependentUpon>ucBangGia.cs</DependentUpon>
     </Compile>
     <Compile Include="ucBanHang.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +276,12 @@
     </Compile>
     <Compile Include="ucQuanLyNo.Designer.cs">
       <DependentUpon>ucQuanLyNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucSanPham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucSanPham.Designer.cs">
+      <DependentUpon>ucSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
@@ -322,6 +354,9 @@
     <EmbeddedResource Include="TieuBieu.resx">
       <DependentUpon>TieuBieu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucBangGia.resx">
+      <DependentUpon>ucBangGia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucBanHang.resx">
       <DependentUpon>ucBanHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucQuanLyNo.resx">
       <DependentUpon>ucQuanLyNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucSanPham.resx">
+      <DependentUpon>ucSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
@@ -386,12 +424,47 @@
     <Content Include="Content\metro.css" />
     <Content Include="Content\metro.min.css" />
     <Content Include="Fonts\metro.svg" />
+    <None Include="quanlyDataSet.xsc">
+      <DependentUpon>quanlyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="quanlyDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>quanlyDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="quanlyDataSet.xss">
+      <DependentUpon>quanlyDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Image1.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\closeBlack.png" />
+    <Content Include="quanly.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="quanly_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>quanly.mdf</DependentUpon>
+    </Content>
     <Content Include="Resources\Image1.jpg" />
     <Content Include="Scripts\metro.js" />
     <Content Include="Scripts\metro.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

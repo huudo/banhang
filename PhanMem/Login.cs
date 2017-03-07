@@ -23,7 +23,11 @@ namespace PhanMem
         {
             Application.Exit();
         }
-
+        public static class MyStaticValues
+        {
+            public static string username { get; set; }
+            public static int account_id { get; set; }
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtUserName.Text) || string.IsNullOrEmpty(txtPass.Text))
@@ -37,14 +41,19 @@ namespace PhanMem
                     con.Open();
                 }
 
-                SqlDataAdapter check = new SqlDataAdapter("Select username from account where username= '" + txtUserName.Text + "' and password= '" + txtPass.Text + "' ", con);
+                SqlDataAdapter check = new SqlDataAdapter("Select id,username from users where username= '" + txtUserName.Text + "' and password= '" + txtPass.Text + "' ", con);
                 DataTable dt = new DataTable();
                 check.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
                     this.Hide();
-                    Default df = new Default();
-                    df.Show();
+                    MyStaticValues.username = txtUserName.Text;
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        MyStaticValues.account_id = Int32.Parse(item["id"].ToString());
+                    }
+                    frmMain frm = new frmMain();
+                    frm.Show();
                 }
                 else
                 {

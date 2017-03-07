@@ -65,12 +65,13 @@
             this.metroPanel2.Controls.Add(this.metroTile4);
             this.metroPanel2.Controls.Add(this.metroTile2);
             this.metroPanel2.Controls.Add(this.metroTile3);
+            this.metroPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(14, 12);
+            this.metroPanel2.Location = new System.Drawing.Point(0, 0);
             this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(659, 444);
+            this.metroPanel2.Size = new System.Drawing.Size(1026, 607);
             this.metroPanel2.TabIndex = 6;
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
@@ -84,8 +85,9 @@
             this.metroTile7.Name = "metroTile7";
             this.metroTile7.Size = new System.Drawing.Size(156, 144);
             this.metroTile7.TabIndex = 8;
-            this.metroTile7.Text = "metroTile7";
+            this.metroTile7.Text = "Sản phẩm";
             this.metroTile7.UseSelectable = true;
+            this.metroTile7.Click += new System.EventHandler(this.metroTile7_Click);
             // 
             // metroTile6
             // 
@@ -94,8 +96,9 @@
             this.metroTile6.Name = "metroTile6";
             this.metroTile6.Size = new System.Drawing.Size(158, 144);
             this.metroTile6.TabIndex = 7;
-            this.metroTile6.Text = "metroTile6";
+            this.metroTile6.Text = "Bảng giá";
             this.metroTile6.UseSelectable = true;
+            this.metroTile6.Click += new System.EventHandler(this.metroTile6_Click);
             // 
             // metroTile5
             // 
@@ -128,7 +131,7 @@
             this.metroTile4.Name = "metroTile4";
             this.metroTile4.Size = new System.Drawing.Size(147, 137);
             this.metroTile4.TabIndex = 5;
-            this.metroTile4.Text = "metroTile4";
+            this.metroTile4.Text = "Khách hàng";
             this.metroTile4.UseSelectable = true;
             // 
             // metroTile2

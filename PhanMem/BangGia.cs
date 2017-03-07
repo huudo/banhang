@@ -16,10 +16,11 @@ namespace PhanMem
 {
     public partial class BangGia : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+        SqlConnection con = ConnectDatabase.querryConnect();
         int id_bangGiaChon = 0;
         int id_using = 0;
         string nameBang = "";
+        int user_id = Login.MyStaticValues.account_id;
         public BangGia()
         {
             InitializeComponent();
@@ -127,44 +128,47 @@ namespace PhanMem
                         giabanRa4 = float.Parse(dataGridView1.Rows[i].Cells[13].Value.ToString());
                     }
 
-                    var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia,giaban1,giaban2,giaban3,giaban4)" +
-                   "VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia,@giaban1,@giaban2,@giaban3,@giaban4)";
+                   // var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia,giaban1,giaban2,giaban3,giaban4)" +
+                   //"VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia,@giaban1,@giaban2,@giaban3,@giaban4)";
+                    var stringQr = "INSERT INTO sanpham (mahang,donvi,khoiluong,giado)" +
+                    "VALUES(@mahang,@donvi,@khoiluong,@giado)";
                     var cmdRun = new SqlCommand(stringQr, con);
                     cmdRun.Parameters.AddWithValue("@mahang", dataGridView1.Rows[i].Cells[1].Value.ToString());
-                    cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
+                   // cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
                     cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells[3].Value.ToString());
                     cmdRun.Parameters.AddWithValue("@khoiluong", Int32.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString()));
                     cmdRun.Parameters.AddWithValue("@giado", float.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString()));
-                    if (dataGridView1.Rows[i].Cells[6].Value.ToString() != "")
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck1", Int32.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString()));
-                    }
-                    else
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck1", 0);
-                    }
-                    if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck2", Int32.Parse(dataGridView1.Rows[i].Cells[7].Value.ToString()));
-                    }
-                    else
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck2", 0);
-                    }
-                    if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck3", Int32.Parse(dataGridView1.Rows[i].Cells[8].Value.ToString()));
-                    }
-                    else
-                    {
-                        cmdRun.Parameters.AddWithValue("@ck3", 0);
-                    }
-                    cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
-                    cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
-                    cmdRun.Parameters.AddWithValue("@giaban1", giabanRa1);
-                    cmdRun.Parameters.AddWithValue("@giaban2", giabanRa2);
-                    cmdRun.Parameters.AddWithValue("@giaban3", giabanRa3);
-                    cmdRun.Parameters.AddWithValue("@giaban4", giabanRa4);
+                    //if (dataGridView1.Rows[i].Cells[6].Value.ToString() != "")
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck1", float.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString()));
+                    //}
+                    //else
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck1", 0);
+                    //}
+                    //if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck2", float.Parse(dataGridView1.Rows[i].Cells[7].Value.ToString()));
+                    //}
+                    //else
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck2", 0);
+                    //}
+                    //if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck3", float.Parse(dataGridView1.Rows[i].Cells[8].Value.ToString()));
+                    //}
+                    //else
+                    //{
+                    //    cmdRun.Parameters.AddWithValue("@ck3", 0);
+                    //}
+
+                    //cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
+                    //cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
+                    //cmdRun.Parameters.AddWithValue("@giaban1", giabanRa1);
+                    //cmdRun.Parameters.AddWithValue("@giaban2", giabanRa2);
+                    //cmdRun.Parameters.AddWithValue("@giaban3", giabanRa3);
+                    //cmdRun.Parameters.AddWithValue("@giaban4", giabanRa4);
 
                     cmdRun.ExecuteNonQuery();
                 }
@@ -199,7 +203,8 @@ namespace PhanMem
 
             }
         }
-        void loadBangGia(){
+        void loadBangGia()
+        {
             //comboBox1.Items.Clear();
             
             List<Gia> list = new List<Gia>();
