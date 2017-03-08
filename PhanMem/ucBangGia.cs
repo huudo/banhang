@@ -35,7 +35,7 @@ namespace PhanMem
             {
                 con.Open();
             }
-            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia WHERE status = 1", con);
+            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia WHERE status = 1 AND user_id ='"+ user_id +"' ", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -91,15 +91,16 @@ namespace PhanMem
                 {
                     con.Open();
                 }
-                String querryAdd = "INSERT INTO banggia(name,date,status) VALUES(@name,@date,@status)";
+                String querryAdd = "INSERT INTO banggia(name,date,status,user_id) VALUES(@name,@date,@status,@user_id)";
                 var cmdAdd = new SqlCommand(querryAdd, con);
                 string nameBangGia = txtName.Text;
                 cmdAdd.Parameters.AddWithValue("@name", nameBangGia);
                 cmdAdd.Parameters.AddWithValue("@date", dateNow);
                 cmdAdd.Parameters.AddWithValue("@status", 0);
+                cmdAdd.Parameters.AddWithValue("@user_id", user_id);
                 cmdAdd.ExecuteNonQuery();
                 SqlCommand cmd = new SqlCommand();
-                String query = "select max(id) from banggia";
+                String query = "select max(id) from banggia WHERE user_id = '"+ user_id +"' ";
                 cmd.Connection = con;
                 cmd.CommandText = query;
                 try
@@ -152,47 +153,48 @@ namespace PhanMem
                         giabanRa4 = float.Parse(dataGridView1.Rows[i].Cells[13].Value.ToString());
                     }
 
-                    // var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia,giaban1,giaban2,giaban3,giaban4)" +
-                    //"VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia,@giaban1,@giaban2,@giaban3,@giaban4)";
-                    var stringQr = "INSERT INTO sanpham (mahang,donvi,khoiluong,giado)" +
-                    "VALUES(@mahang,@donvi,@khoiluong,@giado)";
+                    var stringQr = "INSERT INTO sanpham (mahang,name,donvi,khoiluong,giado,ck1,ck2,ck3,gianet,id_banggia,giaban1,giaban2,giaban3,giaban4,user_id)" +
+                   "VALUES(@mahang,@name,@donvi,@khoiluong,@giado,@ck1,@ck2,@ck3,@gianet,@id_banggia,@giaban1,@giaban2,@giaban3,@giaban4,@user_id)";
+                    //var stringQr = "INSERT INTO sanpham (mahang,donvi,khoiluong,giado)" +
+                    //"VALUES(@mahang,@donvi,@khoiluong,@giado)";
                     var cmdRun = new SqlCommand(stringQr, con);
                     cmdRun.Parameters.AddWithValue("@mahang", dataGridView1.Rows[i].Cells[1].Value.ToString());
-                    // cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
+                    cmdRun.Parameters.AddWithValue("@name", dataGridView1.Rows[i].Cells[2].Value.ToString());
                     cmdRun.Parameters.AddWithValue("@donvi", dataGridView1.Rows[i].Cells[3].Value.ToString());
                     cmdRun.Parameters.AddWithValue("@khoiluong", Int32.Parse(dataGridView1.Rows[i].Cells[4].Value.ToString()));
                     cmdRun.Parameters.AddWithValue("@giado", float.Parse(dataGridView1.Rows[i].Cells[5].Value.ToString()));
-                    //if (dataGridView1.Rows[i].Cells[6].Value.ToString() != "")
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck1", float.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString()));
-                    //}
-                    //else
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck1", 0);
-                    //}
-                    //if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck2", float.Parse(dataGridView1.Rows[i].Cells[7].Value.ToString()));
-                    //}
-                    //else
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck2", 0);
-                    //}
-                    //if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck3", float.Parse(dataGridView1.Rows[i].Cells[8].Value.ToString()));
-                    //}
-                    //else
-                    //{
-                    //    cmdRun.Parameters.AddWithValue("@ck3", 0);
-                    //}
+                    if (dataGridView1.Rows[i].Cells[6].Value.ToString() != "")
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck1", float.Parse(dataGridView1.Rows[i].Cells[6].Value.ToString()));
+                    }
+                    else
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck1", 0);
+                    }
+                    if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck2", float.Parse(dataGridView1.Rows[i].Cells[7].Value.ToString()));
+                    }
+                    else
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck2", 0);
+                    }
+                    if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck3", float.Parse(dataGridView1.Rows[i].Cells[8].Value.ToString()));
+                    }
+                    else
+                    {
+                        cmdRun.Parameters.AddWithValue("@ck3", 0);
+                    }
 
-                    //cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
-                    //cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
-                    //cmdRun.Parameters.AddWithValue("@giaban1", giabanRa1);
-                    //cmdRun.Parameters.AddWithValue("@giaban2", giabanRa2);
-                    //cmdRun.Parameters.AddWithValue("@giaban3", giabanRa3);
-                    //cmdRun.Parameters.AddWithValue("@giaban4", giabanRa4);
+                    cmdRun.Parameters.AddWithValue("@gianet", float.Parse(dataGridView1.Rows[i].Cells[9].Value.ToString()));
+                    cmdRun.Parameters.AddWithValue("@id_banggia", id_bangGia);
+                    cmdRun.Parameters.AddWithValue("@giaban1", giabanRa1);
+                    cmdRun.Parameters.AddWithValue("@giaban2", giabanRa2);
+                    cmdRun.Parameters.AddWithValue("@giaban3", giabanRa3);
+                    cmdRun.Parameters.AddWithValue("@giaban4", giabanRa4);
+                    cmdRun.Parameters.AddWithValue("@user_id", user_id);
 
                     cmdRun.ExecuteNonQuery();
                 }
@@ -235,7 +237,7 @@ namespace PhanMem
             {
                 con.Open();
             }
-            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia ORDER BY id DESC", con);
+            SqlCommand cmd = new SqlCommand("SELECT id,name FROM banggia WHERE user_id = '"+ user_id +"' ORDER BY id DESC", con);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -289,7 +291,7 @@ namespace PhanMem
             {
                 con.Open();
             }
-            SqlCommand cmdQr = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia= '" + id_banggia + "'  ", con);
+            SqlCommand cmdQr = new SqlCommand("SELECT * FROM sanpham WHERE id_banggia= '" + id_banggia + "' AND user_id = '"+ user_id +"' ", con);
             SqlDataReader read = cmdQr.ExecuteReader();
 
             while (read.Read())
@@ -355,10 +357,10 @@ namespace PhanMem
                 con.Open();
             }
 
-            var query = "UPDATE banggia SET status= 0 WHERE id <> '" + id_bangGiaChon + "' ";
+            var query = "UPDATE banggia SET status= 0 WHERE id <> '" + id_bangGiaChon + "' AND user_id = '" + user_id + "' ";
             var cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
-            var query2 = "UPDATE banggia SET status= 1 WHERE id = '" + id_bangGiaChon + "' ";
+            var query2 = "UPDATE banggia SET status= 1 WHERE id = '" + id_bangGiaChon + "' AND user_id = '" + user_id + "' ";
             var cmd2 = new SqlCommand(query2, con);
             id_using = id_bangGiaChon;
             lblBangGia.Text = nameBang;
@@ -380,10 +382,10 @@ namespace PhanMem
                 {
                     con.Open();
                 }
-                String querry = "DELETE FROM banggia WHERE id = '" + id_bangGiaChon + "' ";
+                String querry = "DELETE FROM banggia WHERE id = '" + id_bangGiaChon + "' AND user_id = '" + user_id + "' ";
                 var cmd = new SqlCommand(querry, con);
                 cmd.ExecuteNonQuery();
-                String querry2 = "DELETE FROM sanpham WHERE id_banggia = '" + id_bangGiaChon + "' ";
+                String querry2 = "DELETE FROM sanpham WHERE id_banggia = '" + id_bangGiaChon + "' AND user_id = '" + user_id + "' ";
                 var cmd2 = new SqlCommand(querry2, con);
                 cmd2.ExecuteNonQuery();
                 if (con.State == ConnectionState.Open)

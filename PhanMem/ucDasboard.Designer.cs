@@ -37,6 +37,7 @@
             this.metroTile4 = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.metroTile3 = new MetroFramework.Controls.MetroTile();
+            this.metroTile8 = new MetroFramework.Controls.MetroTile();
             this.metroPanel1.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +59,7 @@
             // 
             // metroPanel2
             // 
+            this.metroPanel2.Controls.Add(this.metroTile8);
             this.metroPanel2.Controls.Add(this.metroTile7);
             this.metroPanel2.Controls.Add(this.metroTile6);
             this.metroPanel2.Controls.Add(this.metroTile5);
@@ -160,6 +162,16 @@
             this.metroTile3.UseSelectable = true;
             this.metroTile3.Click += new System.EventHandler(this.metroTile3_Click);
             // 
+            // metroTile8
+            // 
+            this.metroTile8.ActiveControl = null;
+            this.metroTile8.Location = new System.Drawing.Point(159, 297);
+            this.metroTile8.Name = "metroTile8";
+            this.metroTile8.Size = new System.Drawing.Size(148, 137);
+            this.metroTile8.TabIndex = 9;
+            this.metroTile8.Text = "Tài khoản";
+            this.metroTile8.UseSelectable = true;
+            // 
             // ucDasboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,5 +196,6 @@
         private MetroFramework.Controls.MetroTile metroTile7;
         private MetroFramework.Controls.MetroTile metroTile6;
         private MetroFramework.Controls.MetroTile metroTile5;
+        private MetroFramework.Controls.MetroTile metroTile8;
     }
 }
