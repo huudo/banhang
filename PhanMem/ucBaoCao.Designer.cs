@@ -83,6 +83,7 @@
             this.metroTile5.TabIndex = 6;
             this.metroTile5.Text = "SP Bán chạy";
             this.metroTile5.UseSelectable = true;
+            this.metroTile5.Click += new System.EventHandler(this.metroTile5_Click);
             // 
             // metroTile4
             // 
@@ -93,6 +94,7 @@
             this.metroTile4.TabIndex = 5;
             this.metroTile4.Text = "BC Cuối ngày";
             this.metroTile4.UseSelectable = true;
+            this.metroTile4.Click += new System.EventHandler(this.metroTile4_Click);
             // 
             // metroTile3
             // 
@@ -103,6 +105,7 @@
             this.metroTile3.TabIndex = 4;
             this.metroTile3.Text = "BC Lợi nhuận";
             this.metroTile3.UseSelectable = true;
+            this.metroTile3.Click += new System.EventHandler(this.metroTile3_Click);
             // 
             // metroTile2
             // 
