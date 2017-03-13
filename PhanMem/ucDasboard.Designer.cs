@@ -103,12 +103,14 @@
             this.metroTile7.Location = new System.Drawing.Point(499, 147);
             this.metroTile7.Name = "metroTile7";
             this.metroTile7.Size = new System.Drawing.Size(156, 144);
+            this.metroTile7.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroTile7.TabIndex = 8;
             this.metroTile7.Text = "SẢN PHẨM";
             this.metroTile7.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile7.TileImage")));
             this.metroTile7.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile7.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.metroTile7.UseSelectable = true;
+            this.metroTile7.UseStyleColors = true;
             this.metroTile7.UseTileImage = true;
             this.metroTile7.Click += new System.EventHandler(this.metroTile7_Click);
             // 

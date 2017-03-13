@@ -57,7 +57,10 @@ namespace PhanMem
             mPanel.Controls["ucDasboard"].BringToFront();
             mlBack.Visible = false;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
 
 
     }
