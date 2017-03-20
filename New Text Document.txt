@@ -1,0 +1,22 @@
+ public ftp()
+        {
+            InitializeComponent();
+            CreateDirectoryOnFTP("ftp://huudotrong.somee.com/www.huudotrong.somee.com", "huudotrong", "Mmne1212", "NewDirectory2");
+ 
+        }
+        public void CreateDirectoryOnFTP(String inFTPServerAndPath, String inUsername, String inPassword, String inNewDirectory)
+        {
+        
+            FtpWebRequest request = (FtpWebRequest)FtpWebRequest.Create(inFTPServerAndPath + "/" + inNewDirectory);
+
+            // Step 2 - Configure the connection request
+            request.Credentials = new NetworkCredential(inUsername, inPassword);
+            request.UsePassive = true;
+            request.UseBinary = true;
+            request.KeepAlive = false;
+
+            request.Method = WebRequestMethods.Ftp.MakeDirectory;
+
+            // Step 3 - Call GetResponse() method to actually attempt to create the directory
+            FtpWebResponse makeDirectoryResponse = (FtpWebResponse)request.GetResponse();
+        }
