@@ -43,12 +43,12 @@ namespace PhanMem
         }
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            AddTabPage(new QuanLyCongNo());
+            AddTabPage(new BaoCaoSanLuong());
         }
        
         private void metroTile2_Click(object sender, EventArgs e)
         {
-            AddTabPage(new BCCuoiNgay());
+            AddTabPage(new BCTaiChinh());
         }
         private void AddTabPage(Form frm)
         {
@@ -123,5 +123,21 @@ namespace PhanMem
                     f, br, rect, strF);
             }
         }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            AddTabPage(new BCLoiNhuan());
+        }
+
+        private void metroTile4_Click(object sender, EventArgs e)
+        {
+            AddTabPage(new BCCuoiNgay());
+        }
+
+        private void metroTile5_Click(object sender, EventArgs e)
+        {
+            AddTabPage(new TieuBieu());
+        }
+
     }
 }

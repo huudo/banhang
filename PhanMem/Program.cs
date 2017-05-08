@@ -19,6 +19,7 @@ namespace PhanMem
         static void Main()
         {
             Application.EnableVisualStyles();
+<<<<<<< HEAD
             Application.SetCompatibleTextRenderingDefault(false);
             SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
             con.Open();
@@ -34,6 +35,11 @@ namespace PhanMem
                 Application.Run(new Welcome());
             }
             con.Close();
+=======
+            Application.SetCompatibleTextRenderingDefault(false);           
+            Application.Run(new Login());
+           
+>>>>>>> 20f7e7cdd68672c6eb044722f7ada001ea0c88bd
             
         }
     }

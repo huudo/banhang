@@ -16,7 +16,6 @@ namespace PhanMem
         {
             InitializeComponent();
         }
-
         private void metroTile1_Click(object sender, EventArgs e)
         {
             if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucNhapHang"))
@@ -77,5 +76,34 @@ namespace PhanMem
             frmMain.Instance.Text = "";
             frmMain.Instance.Text = "      QUẢN LÝ CÔNG NỢ";
         }
+
+        private void metroTile6_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucBangGia"))
+            {
+                ucBangGia uc = new ucBangGia();
+                uc.Dock = DockStyle.Fill;
+                frmMain.Instance.MetroContainer.Controls.Add(uc);
+            }
+            frmMain.Instance.MetroContainer.Controls["ucBangGia"].BringToFront();
+            frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = ""; 
+            frmMain.Instance.Text = "      BẢNG GIÁ";
+        }
+
+        private void metroTile7_Click(object sender, EventArgs e)
+        {
+            if (!frmMain.Instance.MetroContainer.Controls.ContainsKey("ucSanPham"))
+            {
+                ucSanPham uc = new ucSanPham();
+                uc.Dock = DockStyle.Fill;
+                frmMain.Instance.MetroContainer.Controls.Add(uc);
+            }
+            frmMain.Instance.MetroContainer.Controls["ucSanPham"].BringToFront();
+            frmMain.Instance.MetroBack.Visible = true;
+            frmMain.Instance.Text = "";
+            frmMain.Instance.Text = "      SẢN PHẨM";
+        }
+
     }
 }

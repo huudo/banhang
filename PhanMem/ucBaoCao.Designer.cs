@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaoCao));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroTile5 = new MetroFramework.Controls.MetroTile();
@@ -80,9 +81,15 @@
             this.metroTile5.Location = new System.Drawing.Point(2, 462);
             this.metroTile5.Name = "metroTile5";
             this.metroTile5.Size = new System.Drawing.Size(118, 109);
+            this.metroTile5.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroTile5.TabIndex = 6;
             this.metroTile5.Text = "SP Bán chạy";
+            this.metroTile5.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile5.TileImage")));
+            this.metroTile5.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile5.UseSelectable = true;
+            this.metroTile5.UseStyleColors = true;
+            this.metroTile5.UseTileImage = true;
+            this.metroTile5.Click += new System.EventHandler(this.metroTile5_Click);
             // 
             // metroTile4
             // 
@@ -90,9 +97,15 @@
             this.metroTile4.Location = new System.Drawing.Point(3, 350);
             this.metroTile4.Name = "metroTile4";
             this.metroTile4.Size = new System.Drawing.Size(117, 109);
+            this.metroTile4.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile4.TabIndex = 5;
             this.metroTile4.Text = "BC Cuối ngày";
+            this.metroTile4.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile4.TileImage")));
+            this.metroTile4.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile4.UseSelectable = true;
+            this.metroTile4.UseStyleColors = true;
+            this.metroTile4.UseTileImage = true;
+            this.metroTile4.Click += new System.EventHandler(this.metroTile4_Click);
             // 
             // metroTile3
             // 
@@ -102,7 +115,12 @@
             this.metroTile3.Size = new System.Drawing.Size(117, 107);
             this.metroTile3.TabIndex = 4;
             this.metroTile3.Text = "BC Lợi nhuận";
+            this.metroTile3.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile3.TileImage")));
+            this.metroTile3.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile3.UseSelectable = true;
+            this.metroTile3.UseStyleColors = true;
+            this.metroTile3.UseTileImage = true;
+            this.metroTile3.Click += new System.EventHandler(this.metroTile3_Click);
             // 
             // metroTile2
             // 
@@ -110,9 +128,14 @@
             this.metroTile2.Location = new System.Drawing.Point(3, 136);
             this.metroTile2.Name = "metroTile2";
             this.metroTile2.Size = new System.Drawing.Size(117, 101);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Green;
             this.metroTile2.TabIndex = 3;
             this.metroTile2.Text = "BC Tài chính";
+            this.metroTile2.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile2.TileImage")));
+            this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile2.UseSelectable = true;
+            this.metroTile2.UseStyleColors = true;
+            this.metroTile2.UseTileImage = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
             // metroTile1
@@ -121,9 +144,14 @@
             this.metroTile1.Location = new System.Drawing.Point(3, 26);
             this.metroTile1.Name = "metroTile1";
             this.metroTile1.Size = new System.Drawing.Size(117, 107);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Orange;
             this.metroTile1.TabIndex = 2;
             this.metroTile1.Text = "BC Sản lượng";
+            this.metroTile1.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile1.TileImage")));
+            this.metroTile1.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile1.UseSelectable = true;
+            this.metroTile1.UseStyleColors = true;
+            this.metroTile1.UseTileImage = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
             // tabControl1

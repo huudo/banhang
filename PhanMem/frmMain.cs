@@ -42,6 +42,7 @@ namespace PhanMem
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(Login.MyStaticValues.account_id.ToString());
             mlBack.Visible = false;
             _instance = this;
             ucDasboard uc = new ucDasboard();
@@ -56,7 +57,10 @@ namespace PhanMem
             mPanel.Controls["ucDasboard"].BringToFront();
             mlBack.Visible = false;
         }
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
 
 
     }

@@ -429,7 +429,7 @@
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.Location = new System.Drawing.Point(518, 130);
             this.metroLabel11.Name = "metroLabel11";
-            this.metroLabel11.Size = new System.Drawing.Size(49, 19);
+            this.metroLabel11.Size = new System.Drawing.Size(48, 19);
             this.metroLabel11.Style = MetroFramework.MetroColorStyle.Black;
             this.metroLabel11.TabIndex = 21;
             this.metroLabel11.Text = "KM/KG";
@@ -440,7 +440,7 @@
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.Location = new System.Drawing.Point(403, 130);
             this.metroLabel10.Name = "metroLabel10";
-            this.metroLabel10.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel10.Size = new System.Drawing.Size(56, 19);
             this.metroLabel10.Style = MetroFramework.MetroColorStyle.Black;
             this.metroLabel10.TabIndex = 17;
             this.metroLabel10.Text = "VNĐ/KG";
@@ -604,7 +604,7 @@
             this.metroLabel7.AutoSize = true;
             this.metroLabel7.Location = new System.Drawing.Point(152, 63);
             this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(106, 19);
+            this.metroLabel7.Size = new System.Drawing.Size(104, 19);
             this.metroLabel7.Style = MetroFramework.MetroColorStyle.Black;
             this.metroLabel7.TabIndex = 14;
             this.metroLabel7.Text = "Tặng 1 khi mua :";
@@ -614,7 +614,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Location = new System.Drawing.Point(28, 155);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(68, 19);
             this.metroLabel4.Style = MetroFramework.MetroColorStyle.Black;
             this.metroLabel4.TabIndex = 6;
             this.metroLabel4.Text = "Tên hàng :";
@@ -926,6 +926,7 @@
             // 
             // txtNo
             // 
+            this.txtNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNo.Enabled = false;
             this.txtNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNo.Location = new System.Drawing.Point(881, 81);
@@ -935,6 +936,7 @@
             // 
             // txtPay
             // 
+            this.txtPay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPay.Location = new System.Drawing.Point(881, 44);
             this.txtPay.Name = "txtPay";
@@ -945,6 +947,7 @@
             // 
             // txtSum
             // 
+            this.txtSum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSum.Enabled = false;
             this.txtSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSum.Location = new System.Drawing.Point(881, 10);
@@ -954,6 +957,7 @@
             // 
             // label17
             // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(714, 82);
@@ -964,6 +968,7 @@
             // 
             // label16
             // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(714, 47);
@@ -974,6 +979,7 @@
             // 
             // label15
             // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(714, 13);
@@ -984,6 +990,7 @@
             // 
             // btnOrder
             // 
+            this.btnOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOrder.Location = new System.Drawing.Point(1039, 71);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(106, 36);
