@@ -10,7 +10,8 @@ namespace PhanMem
     {
         public static SqlConnection querryConnect()
         {
-            SqlConnection con = new SqlConnection(@" workstation id=quanlybh.mssql.somee.com;packet size=4096;user id=huudotrong_SQLLogin_1;pwd=tykj2yevh4;data source=quanlybh.mssql.somee.com;persist security info=False;initial catalog=quanlybh ");
+            //SqlConnection con = new SqlConnection(@"Data Source=(Localdb)\v11.0;Integrated Security=True;AttachDbFilename=" + AppDomain.CurrentDomain.BaseDirectory + "quanly.mdf");
+            SqlConnection con = new SqlConnection(@"workstation id=quanlybh.mssql.somee.com;packet size=4096;user id=huudotrong_SQLLogin_1;pwd=tykj2yevh4;data source=quanlybh.mssql.somee.com;persist security info=False;initial catalog=quanlybh ");
             return con;
         }
     }
